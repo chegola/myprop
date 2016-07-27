@@ -1,0 +1,10 @@
+version: '2'
+services:
+    myprop-elasticsearch:
+        container_name: myprop-elasticsearch
+        image: elasticsearch:1.7.5
+        # volumes:
+        #     - ~/volumes/jhipster/myprop/elasticsearch/:/usr/share/elasticsearch/data/
+        ports:
+            - 9200:9200
+            - 9300:9300

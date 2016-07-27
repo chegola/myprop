@@ -1,0 +1,12 @@
+version: '2'
+services:
+    myprop-postgresql:
+        container_name: myprop-postgresql
+        image: postgres:9.5.3
+        # volumes:
+        #     - ~/volumes/jhipster/myprop/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=myprop
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
