@@ -7,6 +7,20 @@
             "otherEntityField": "login",
             "ownerSide": true,
             "otherEntityRelationshipName": "myAccount"
+        },
+        {
+            "relationshipName": "unit",
+            "otherEntityName": "unit",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "myAccount"
+        },
+        {
+            "relationshipName": "unit",
+            "otherEntityName": "unit",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "externalId",
+            "ownerSide": true
         }
     ],
     "fields": [

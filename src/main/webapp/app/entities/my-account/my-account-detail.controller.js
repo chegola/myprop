@@ -5,9 +5,9 @@
         .module('mypropApp')
         .controller('MyAccountDetailController', MyAccountDetailController);
 
-    MyAccountDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'MyAccount', 'User'];
+    MyAccountDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'MyAccount', 'User', 'Unit'];
 
-    function MyAccountDetailController($scope, $rootScope, $stateParams, previousState, entity, MyAccount, User) {
+    function MyAccountDetailController($scope, $rootScope, $stateParams, previousState, entity, MyAccount, User, Unit) {
         var vm = this;
 
         vm.myAccount = entity;

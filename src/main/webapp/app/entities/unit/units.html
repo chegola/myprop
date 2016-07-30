@@ -37,6 +37,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="externalId"><span translate="mypropApp.unit.externalId">External Id</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="area"><span translate="mypropApp.unit.area">Area</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -44,6 +45,7 @@
                 <tr ng-repeat="unit in vm.units track by unit.id">
                     <td><a ui-sref="unit-detail({id:unit.id})">{{unit.id}}</a></td>
                     <td>{{unit.externalId}}</td>
+                    <td>{{unit.area}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

@@ -98,7 +98,7 @@ public class MyAccountResource {
     @Timed
     public List<MyAccount> getAllMyAccounts() {
         log.debug("REST request to get all MyAccounts");
-        List<MyAccount> myAccounts = myAccountRepository.findAll();
+        List<MyAccount> myAccounts = myAccountRepository.findAllWithEagerRelationships();
         return myAccounts;
     }
 
@@ -114,7 +114,7 @@ public class MyAccountResource {
     @Timed
     public ResponseEntity<MyAccount> getMyAccount(@PathVariable Long id) {
         log.debug("REST request to get MyAccount : {}", id);
-        MyAccount myAccount = myAccountRepository.findOne(id);
+        MyAccount myAccount = myAccountRepository.findOneWithEagerRelationships(id);
         return Optional.ofNullable(myAccount)
             .map(result -> new ResponseEntity<>(
                 result,

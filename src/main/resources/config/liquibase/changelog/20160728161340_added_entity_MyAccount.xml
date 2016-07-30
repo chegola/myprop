@@ -34,5 +34,16 @@
             <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
+        <createTable tableName="mp_account_unit">
+            <column name="units_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="my_accounts_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="my_accounts_id, units_id" tableName="mp_account_unit"/>
+        
     </changeSet>
 </databaseChangeLog>

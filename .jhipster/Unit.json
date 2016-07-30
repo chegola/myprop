@@ -1,5 +1,13 @@
 {
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "myAccount",
+            "otherEntityName": "myAccount",
+            "relationshipType": "many-to-many",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "unit"
+        }
+    ],
     "fields": [
         {
             "fieldName": "externalId",
@@ -8,6 +16,14 @@
                 "maxlength"
             ],
             "fieldValidateRulesMaxlength": "10"
+        },
+        {
+            "fieldName": "area",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": 20
         }
     ],
     "changelogDate": "20160729160632",

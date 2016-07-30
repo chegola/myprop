@@ -16,6 +16,12 @@
         <dd>
             {{vm.myAccount.user.login}}
         </dd>
+        <dt><span translate="mypropApp.myAccount.unit">Unit</span></dt>
+        <dd>
+            <span ng-repeat="unit in vm.myAccount.units">
+                <a ui-sref="unit-detail({id: unit.id})">{{unit.externalId}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
     </dl>
 
     <button type="submit"

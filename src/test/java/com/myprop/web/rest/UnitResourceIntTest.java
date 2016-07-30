@@ -44,6 +44,8 @@ public class UnitResourceIntTest {
 
     private static final String DEFAULT_EXTERNAL_ID = "AAAAAAAAAA";
     private static final String UPDATED_EXTERNAL_ID = "BBBBBBBBBB";
+    private static final String DEFAULT_AREA = "AAAAAAAAAAAAAAAAAAAA";
+    private static final String UPDATED_AREA = "BBBBBBBBBBBBBBBBBBBB";
 
     @Inject
     private UnitRepository unitRepository;
@@ -77,6 +79,7 @@ public class UnitResourceIntTest {
         unitSearchRepository.deleteAll();
         unit = new Unit();
         unit.setExternalId(DEFAULT_EXTERNAL_ID);
+        unit.setArea(DEFAULT_AREA);
     }
 
     @Test
@@ -96,6 +99,7 @@ public class UnitResourceIntTest {
         assertThat(units).hasSize(databaseSizeBeforeCreate + 1);
         Unit testUnit = units.get(units.size() - 1);
         assertThat(testUnit.getExternalId()).isEqualTo(DEFAULT_EXTERNAL_ID);
+        assertThat(testUnit.getArea()).isEqualTo(DEFAULT_AREA);
 
         // Validate the Unit in ElasticSearch
         Unit unitEs = unitSearchRepository.findOne(testUnit.getId());
@@ -113,7 +117,8 @@ public class UnitResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(unit.getId().intValue())))
-                .andExpect(jsonPath("$.[*].externalId").value(hasItem(DEFAULT_EXTERNAL_ID.toString())));
+                .andExpect(jsonPath("$.[*].externalId").value(hasItem(DEFAULT_EXTERNAL_ID.toString())))
+                .andExpect(jsonPath("$.[*].area").value(hasItem(DEFAULT_AREA.toString())));
     }
 
     @Test
@@ -127,7 +132,8 @@ public class UnitResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(unit.getId().intValue()))
-            .andExpect(jsonPath("$.externalId").value(DEFAULT_EXTERNAL_ID.toString()));
+            .andExpect(jsonPath("$.externalId").value(DEFAULT_EXTERNAL_ID.toString()))
+            .andExpect(jsonPath("$.area").value(DEFAULT_AREA.toString()));
     }
 
     @Test
@@ -150,6 +156,7 @@ public class UnitResourceIntTest {
         Unit updatedUnit = new Unit();
         updatedUnit.setId(unit.getId());
         updatedUnit.setExternalId(UPDATED_EXTERNAL_ID);
+        updatedUnit.setArea(UPDATED_AREA);
 
         restUnitMockMvc.perform(put("/api/units")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -161,6 +168,7 @@ public class UnitResourceIntTest {
         assertThat(units).hasSize(databaseSizeBeforeUpdate);
         Unit testUnit = units.get(units.size() - 1);
         assertThat(testUnit.getExternalId()).isEqualTo(UPDATED_EXTERNAL_ID);
+        assertThat(testUnit.getArea()).isEqualTo(UPDATED_AREA);
 
         // Validate the Unit in ElasticSearch
         Unit unitEs = unitSearchRepository.findOne(testUnit.getId());
@@ -201,6 +209,7 @@ public class UnitResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.[*].id").value(hasItem(unit.getId().intValue())))
-            .andExpect(jsonPath("$.[*].externalId").value(hasItem(DEFAULT_EXTERNAL_ID.toString())));
+            .andExpect(jsonPath("$.[*].externalId").value(hasItem(DEFAULT_EXTERNAL_ID.toString())))
+            .andExpect(jsonPath("$.[*].area").value(hasItem(DEFAULT_AREA.toString())));
     }
 }

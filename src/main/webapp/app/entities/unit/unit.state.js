@@ -125,6 +125,7 @@
                         entity: function () {
                             return {
                                 externalId: null,
+                                area: null,
                                 id: null
                             };
                         }

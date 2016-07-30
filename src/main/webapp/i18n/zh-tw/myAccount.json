@@ -18,7 +18,9 @@
             },
             "name_surname": "Name Surname",
             "mobile": "Mobile",
-            "user": "User"
+            "user": "User",
+            "unit": "Unit",
+            "unit": "Unit"
         }
     }
 }

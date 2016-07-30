@@ -5,14 +5,15 @@
         .module('mypropApp')
         .controller('UnitDialogController', UnitDialogController);
 
-    UnitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Unit'];
+    UnitDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Unit', 'MyAccount'];
 
-    function UnitDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Unit) {
+    function UnitDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Unit, MyAccount) {
         var vm = this;
 
         vm.unit = entity;
         vm.clear = clear;
         vm.save = save;
+        vm.myaccounts = MyAccount.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

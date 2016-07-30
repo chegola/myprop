@@ -1,5 +1,6 @@
 package com.myprop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -28,6 +31,15 @@ public class Unit implements Serializable {
     @Column(name = "external_id", length = 10)
     private String externalId;
 
+    @Size(max = 20)
+    @Column(name = "area", length = 20)
+    private String area;
+
+    @ManyToMany(mappedBy = "units")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MyAccount> myAccounts = new HashSet<>();
+
     public Long getId() {
         return id;
     }
@@ -42,6 +54,22 @@ public class Unit implements Serializable {
 
     public void setExternalId(String externalId) {
         this.externalId = externalId;
+    }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public Set<MyAccount> getMyAccounts() {
+        return myAccounts;
+    }
+
+    public void setMyAccounts(Set<MyAccount> myAccounts) {
+        this.myAccounts = myAccounts;
     }
 
     @Override
@@ -69,6 +97,7 @@ public class Unit implements Serializable {
         return "Unit{" +
             "id=" + id +
             ", externalId='" + externalId + "'" +
+            ", area='" + area + "'" +
             '}';
     }
 }

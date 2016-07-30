@@ -1,5 +1,6 @@
 package com.myprop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -7,6 +8,8 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -35,6 +38,14 @@ public class MyAccount implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
+
+
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @JoinTable(name = "mp_account_unit",
+               joinColumns = @JoinColumn(name="my_accounts_id", referencedColumnName="ID"),
+               inverseJoinColumns = @JoinColumn(name="units_id", referencedColumnName="ID"))
+    private Set<Unit> units = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -66,6 +77,14 @@ public class MyAccount implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Set<Unit> getUnits() {
+        return units;
+    }
+
+    public void setUnits(Set<Unit> units) {
+        this.units = units;
     }
 
     @Override

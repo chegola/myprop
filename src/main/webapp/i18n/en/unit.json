@@ -16,7 +16,9 @@
             "detail": {
                 "title": "Unit"
             },
-            "externalId": "External Id"
+            "externalId": "External Id",
+            "area": "Area",
+            "myAccount": "My Account"
         }
     }
 }

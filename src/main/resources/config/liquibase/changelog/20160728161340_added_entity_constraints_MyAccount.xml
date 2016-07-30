@@ -7,12 +7,23 @@
         Added the constraints for entity MyAccount.
     -->
     <changeSet id="20160728161340-2" author="jhipster">
-        
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="mp_account"
                                  constraintName="fk_myaccount_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="my_accounts_id"
+                                 baseTableName="mp_account_unit"
+                                 constraintName="fk_mp_account_unit_my_accounts_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mp_account"/>
+        <addForeignKeyConstraint baseColumnNames="units_id"
+                                 baseTableName="mp_account_unit"
+                                 constraintName="fk_mp_account_unit_units_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mp_unit"/>
 
     </changeSet>
 </databaseChangeLog>

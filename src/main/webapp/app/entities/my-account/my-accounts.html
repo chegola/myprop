@@ -39,6 +39,7 @@
                     <th><span translate="mypropApp.myAccount.name_surname">Name Surname</span></th>
                     <th><span translate="mypropApp.myAccount.mobile">Mobile</span></th>
                     <th><span translate="mypropApp.myAccount.user">User</span></th>
+                    <th><span translate="mypropApp.myAccount.unit">Unit</span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -49,6 +50,11 @@
                     <td>{{myAccount.mobile}}</td>
                     <td>
                         {{myAccount.user.login}}
+                    </td>
+                    <td>
+                        <span ng-repeat="unit in myAccount.units">
+                            <a class="form-control-static" ui-sref="unit-detail({id: unit.id})">{{unit.externalId}}</a>{{$last ? '' : ', '}}
+                        </span>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
