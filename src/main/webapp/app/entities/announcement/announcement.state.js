@@ -13,7 +13,7 @@
             parent: 'entity',
             url: '/announcement?page&sort&search',
             data: {
-                authorities: ['ROLE_USER'],
+                //authorities: ['ROLE_USER'],
                 pageTitle: 'mypropApp.announcement.home.title'
             },
             views: {
@@ -55,7 +55,7 @@
             parent: 'entity',
             url: '/announcement/{id}',
             data: {
-                authorities: ['ROLE_USER'],
+               // authorities: ['ROLE_USER'],
                 pageTitle: 'mypropApp.announcement.detail.title'
             },
             views: {
@@ -87,7 +87,7 @@
             parent: 'announcement-detail',
             url: '/detail/edit',
             data: {
-                authorities: ['ROLE_USER']
+               // authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -143,7 +143,7 @@
             parent: 'announcement',
             url: '/{id}/edit',
             data: {
-                authorities: ['ROLE_USER']
+               // authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -168,7 +168,7 @@
             parent: 'announcement',
             url: '/{id}/delete',
             data: {
-                authorities: ['ROLE_USER']
+               // authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
