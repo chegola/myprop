@@ -9,6 +9,7 @@
                 "main": "實體",
                 "myAccount": "My Account",
                 "unit": "Unit",
+                "announcement": "Announcement",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

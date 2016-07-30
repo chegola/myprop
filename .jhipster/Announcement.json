@@ -1,0 +1,34 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "subject",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "detail",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "4000"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20160730024257",
+    "dto": "no",
+    "service": "serviceImpl",
+    "entityTableName": "mp_announce",
+    "pagination": "pager"
+}
