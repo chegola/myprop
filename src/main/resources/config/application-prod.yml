@@ -20,8 +20,8 @@ spring:
     datasource:
         url: jdbc:postgresql://localhost:5432/myprop
         name:
-        username: myprop
-        password:
+        username: postgres
+        password: asdfjkl;
     jpa:
         database-platform: com.myprop.domain.util.FixedPostgreSQL82Dialect
         database: POSTGRESQL
