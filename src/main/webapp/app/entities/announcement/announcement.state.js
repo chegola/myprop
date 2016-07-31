@@ -18,6 +18,48 @@
             },
             views: {
                 'content@': {
+                    templateUrl: 'app/entities/announcement/announcements-list.html',
+                    controller: 'AnnouncementController',
+                    controllerAs: 'vm'
+                }
+            },
+            params: {
+                page: {
+                    value: '1',
+                    squash: true
+                },
+                sort: {
+                    value: 'startDate,desc',
+                    squash: true
+                },
+                search: null
+            },
+            resolve: {
+                pagingParams: ['$stateParams', 'PaginationUtil', function ($stateParams, PaginationUtil) {
+                    return {
+                        page: PaginationUtil.parsePage($stateParams.page),
+                        sort: $stateParams.sort,
+                        predicate: PaginationUtil.parsePredicate($stateParams.sort),
+                        ascending: PaginationUtil.parseAscending($stateParams.sort),
+                        search: $stateParams.search
+                    };
+                }],
+                translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                    $translatePartialLoader.addPart('announcement');
+                    $translatePartialLoader.addPart('global');
+                    return $translate.refresh();
+                }]
+            }
+        })
+        .state('announcement-ori', {
+            parent: 'entity',
+            url: '/announcement?page&sort&search',
+            data: {
+                //authorities: ['ROLE_USER'],
+                pageTitle: 'mypropApp.announcement.home.title'
+            },
+            views: {
+                'content@': {
                     templateUrl: 'app/entities/announcement/announcements.html',
                     controller: 'AnnouncementController',
                     controllerAs: 'vm'
@@ -51,16 +93,19 @@
                 }]
             }
         })
+
+
+
         .state('announcement-detail', {
             parent: 'entity',
             url: '/announcement/{id}',
             data: {
-               // authorities: ['ROLE_USER'],
+                //authorities: ['ROLE_USER'],
                 pageTitle: 'mypropApp.announcement.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/announcement/announcement-detail.html',
+                    templateUrl: 'app/entities/announcement/announcement-detail-view.html',
                     controller: 'AnnouncementDetailController',
                     controllerAs: 'vm'
                 }
@@ -112,7 +157,7 @@
             parent: 'announcement',
             url: '/new',
             data: {
-                authorities: ['ROLE_USER']
+                authorities: ['ROLE_ADMIN']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

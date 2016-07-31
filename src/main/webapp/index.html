@@ -34,7 +34,7 @@
     <div class="android-header mdl-layout__header mdl-layout__header--waterfall mdl-shadow--4dp">
         <div class="mdl-layout__header-row">
           <span class="android-title mdl-layout-title">
-            <img class="android-logo-image" src="images/android-logo.png">
+            <img src="content/images/logo-Pruklada-color.png">
           </span>
             <!-- Add spacer, to align navigation to the right in desktop -->
             <div class="android-header-spacer mdl-layout-spacer"></div>
@@ -50,14 +50,14 @@
             <!-- Navigation -->
             <div class="android-navigation-container">
                 <nav class="android-navigation mdl-navigation">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement" >ข่าวสาร</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement">Announcement</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement">ข่าวสาร</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement-ori">Announcement</a>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ng-switch-when="true">แจ้งข้อมูล</a>
                     <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
                 </nav>
             </div>
           <span class="android-mobile-title mdl-layout-title">
-            <img class="android-logo-image" src="images/android-logo.png">
+            <img class="pruklada-logo-image" src="content/images/logo-Pruklada-color.png">
           </span>
             <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
                     id="more-button">
@@ -72,10 +72,10 @@
 
     <div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
-          <img class="android-logo-image" src="images/android-logo-white.png">
+              <img  class="android-logo-image" src="content/images/logo-Pruklada-BW.png">
         </span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="">ข่าวสาร</a>
+            <a class="mdl-navigation__link" href="" ui-sref="announcement">ข่าวสาร</a>
             <a class="mdl-navigation__link" href="" ng-switch-when="true">แจ้งข้อมูล</a>
             <div class="android-drawer-separator"></div>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="false" ng-click="vm.login()">Sign in</a>

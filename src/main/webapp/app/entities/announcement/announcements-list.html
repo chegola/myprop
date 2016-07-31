@@ -1,83 +1,38 @@
-<div>
-    <h2 translate="mypropApp.announcement.home.title">Announcements</h2>
-    <jhi-alert></jhi-alert>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="announcement.new" >
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span class="hidden-xs"  translate="mypropApp.announcement.home.createLabel">
-                        Create new Announcement
-                    </span>
-                </button>
+<div class="android-more-section">
+    <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="new ticket" style="position:fixed"
+               ui-sref="announcement.new" has-authority="ROLE_ADMIN">
+        <md-icon md-font-set="material-icons">add</md-icon>
+    </md-button>
+    <div class="android-section-title mdl-typography--display-1-color-contrast">ประกาศจากนิติฯ</div>
+    <div class="android-card-container mdl-grid">
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-card mdl-shadow--3dp"
+             ng-repeat="announcement in vm.announcements track by announcement.id">
+            <div layout="column" layout-padding>
+                <div class="mdl-card__title ">
+                    <h4 class="mdl-card__title-text">{{announcement.subject}}</h4>
+                </div>
+                <i>{{announcement.startDate}}</i>
             </div>
-            <div class="col-xs-8 no-padding-right">
-                <form name="searchForm" class="form-inline">
-                    <div class="input-group pull-right" >
-                        <input type="text" class="form-control" ng-model="vm.searchQuery" id="searchQuery" placeholder="{{ 'mypropApp.announcement.home.search' | translate }}">
-                        <span  class="input-group-btn width-min" >
-                            <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </span>
-                        <span class="input-group-btn width-min" ng-if="vm.currentSearch">
-                            <button class="btn btn-info" ng-click="vm.clear()">
-                                <span class="glyphicon glyphicon-trash"></span>
-                            </button>
-                        </span>
-                    </div>
-                </form>
+            <md-divider></md-divider>
+            <div class="mdl-card__supporting-text">
+                {{announcement.detail}}
+            </div>
+
+            <div class="mdl-card__actions">
+                <div layout="row" layout-padding  layout-align="space-between center">
+                    <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
+                       ui-sref="announcement-detail({id:announcement.id})">
+                        ดูรายละเอียด
+                        <i class="material-icons">chevron_right</i>
+                    </a>
+                    <button type="submit"
+                            ui-sref="announcement.delete({id:announcement.id})"
+                            class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
+                        <span class="glyphicon glyphicon-remove-circle"></span>
+                        <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-    <br/>
-    <div class="table-responsive">
-        <table class="jh-table table table-striped">
-            <thead>
-                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="subject"><span translate="mypropApp.announcement.subject">Subject</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="detail"><span translate="mypropApp.announcement.detail">Detail</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="startDate"><span translate="mypropApp.announcement.startDate">Start Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="endDate"><span translate="mypropApp.announcement.endDate">End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="announcement in vm.announcements track by announcement.id">
-                    <td><a ui-sref="announcement-detail({id:announcement.id})">{{announcement.id}}</a></td>
-                    <td>{{announcement.subject}}</td>
-                    <td>{{announcement.detail}}</td>
-                        <td>{{announcement.startDate | date:'mediumDate'}}</td>
-                        <td>{{announcement.endDate | date:'mediumDate'}}</td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
-                                    ui-sref="announcement-detail({id:announcement.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="announcement.edit({id:announcement.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="announcement.delete({id:announcement.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="text-center">
-        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
-    </div>
-    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
 </div>
