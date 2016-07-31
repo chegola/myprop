@@ -3,7 +3,7 @@
                ui-sref="announcement.new" has-authority="ROLE_ADMIN">
         <md-icon md-font-set="material-icons">add</md-icon>
     </md-button>
-    <div class="android-section-title mdl-typography--display-1-color-contrast">ประกาศจากนิติฯ</div>
+    <div class="android-section-title mdl-typography--display-1-color-contrast">ประกาศจากนิติบุคคล</div>
     <div class="android-card-container mdl-grid">
         <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-card mdl-shadow--3dp"
              ng-repeat="announcement in vm.announcements track by announcement.id">
@@ -14,8 +14,8 @@
                 <i>{{announcement.startDate}}</i>
             </div>
             <md-divider></md-divider>
-            <div class="mdl-card__supporting-text">
-                {{announcement.detail}}
+            <div class="mdl-card__supporting-text" >
+                <span ng-bind-html="announcement.detail"></span>
             </div>
 
             <div class="mdl-card__actions">

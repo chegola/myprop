@@ -136,7 +136,8 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/announcement/announcement-dialog.html',
+                    //templateUrl: 'app/entities/announcement/announcement-dialog.html',
+                    templateUrl: 'app/entities/announcement/announcement-dialog-update.html',
                     controller: 'AnnouncementDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
@@ -161,7 +162,8 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/announcement/announcement-dialog.html',
+                    //templateUrl: 'app/entities/announcement/announcement-dialog.html',
+                    templateUrl: 'app/entities/announcement/announcement-dialog-new.html',
                     controller: 'AnnouncementDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',

@@ -7,7 +7,7 @@
         <md-divider></md-divider>
         <div class="well">
             <p><b>{{vm.announcement.startDate | date:'mediumDate'}}</b></p>
-            <p>{{vm.announcement.detail}}</p>
+            <p> <span ng-bind-html="vm.announcement.detail"></span></p>
         </div>
         <md-divider></md-divider>
         <br>
