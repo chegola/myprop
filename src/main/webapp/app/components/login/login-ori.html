@@ -5,11 +5,8 @@
 </div>
 <div class="modal-body">
     <div class="row">
-        <div class="col-md-4 col-md-offset-2">
-           <!-- <h1 translate="login.title">Sign in</h1>-->
-            <center>
-                <img  src="content/images/logo-Pruklada-color-medium.png">
-            </center>
+        <div class="col-md-4 col-md-offset-4">
+            <h1 translate="login.title">Sign in</h1>
         </div>
         <div class="col-md-8 col-md-offset-2">
             <div class="alert alert-danger" ng-show="vm.authenticationError" translate="login.messages.error.authentication">
@@ -36,16 +33,18 @@
                 <button type="submit" class="btn btn-primary" translate="login.form.button">Sign in</button>
             </form>
             <p></p>
-<!--            <div class="alert alert-warning">
+            <div class="alert alert-warning">
                 <a class="alert-link" href="" ng-click="vm.requestResetPassword()" translate="login.password.forgot">Did you forget your password?</a>
-            </div>-->
+            </div>
             <div class="alert alert-warning" translate="global.messages.info.register" translate-compile>
                 You don't have an account yet? <a class="alert-link" href="" ng-click="vm.register()">Register a new account</a>
             </div>
         </div>
         <div class="col-md-6">
             <br/>
+            <jh-social ng-provider="google"></jh-social>
             <jh-social ng-provider="facebook"></jh-social>
+            <jh-social ng-provider="twitter"></jh-social>
             <!-- jhipster-needle-add-social-button -->
         </div>
     </div>

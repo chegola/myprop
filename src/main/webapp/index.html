@@ -60,9 +60,11 @@
                     <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
                 </nav>
             </div>
-          <span class="android-mobile-title mdl-layout-title">
-            <img class="pruklada-logo-image" src="content/images/logo-Pruklada-color.png">
-          </span>
+            <a href="#/">
+                <span class="android-mobile-title mdl-layout-title">
+                    <img class="pruklada-logo-image" src="content/images/logo-Pruklada-color.png">
+                </span>
+            </a>
             <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
                     id="more-button">
                 <i class="material-icons">more_vert</i>
@@ -91,6 +93,10 @@
                ng-click="vm.login()">Sign in</a>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="true"
                ng-click="vm.logout()">Sign out</a>
+            <div class="android-drawer-separator"></div>
+            <span class="mdl-navigation__link" href="" ng-switch-when="true" has-authority="ROLE_ADMIN">ผู้ดูแลระบบ</span>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true" has-authority="ROLE_ADMIN" ui-sref="user-management">บริหารจัดการผู้ใช้งาน</a>
+
         </nav>
     </div>
 

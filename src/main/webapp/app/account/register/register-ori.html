@@ -4,8 +4,7 @@
             <h1 translate="register.title">Registration</h1>
 
             <div class="alert alert-success" ng-show="vm.success" translate="register.messages.success">
-                <strong>Registration saved!</strong>
-                <!--Please check your email for confirmation.-->
+                <strong>Registration saved!</strong> Please check your email for confirmation.
             </div>
 
             <div class="alert alert-danger" ng-show="vm.error" translate="register.messages.error.fail">
@@ -116,13 +115,15 @@
                 <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary" translate="register.form.button">Register</button>
             </form>
             <p></p>
-<!--            <div class="alert alert-warning" translate="global.messages.info.authenticated" translate-compile>
+            <div class="alert alert-warning" translate="global.messages.info.authenticated" translate-compile>
                 If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
-            </div>-->
+            </div>
         </div>
         <div class="col-md-4">
             <br/>
+            <jh-social ng-provider="google"></jh-social>
             <jh-social ng-provider="facebook"></jh-social>
+            <jh-social ng-provider="twitter"></jh-social>
             <!-- jhipster-needle-add-social-button -->
         </div>
     </div>
