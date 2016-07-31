@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span translate="mypropApp.announcement.detail.title">Announcement</span> {{vm.announcement.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="mypropApp.announcement.subject">Subject</span></dt>
+        <dd>
+            <span>{{vm.announcement.subject}}</span>
+        </dd>
+        <dt><span translate="mypropApp.announcement.detail">Detail</span></dt>
+        <dd>
+            <span>{{vm.announcement.detail}}</span>
+        </dd>
+        <dt><span translate="mypropApp.announcement.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{vm.announcement.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span translate="mypropApp.announcement.endDate">End Date</span></dt>
+        <dd>
+            <span>{{vm.announcement.endDate | date:'mediumDate'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
