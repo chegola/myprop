@@ -4964,6 +4964,7 @@ a.badge:focus {
   margin-bottom: 30px;
   color: inherit;
   background-color: #eee;
+  background: #000 url("../../../../content/images/imodern-b.jpg") no-repeat center center;
 }
 .jumbotron h1,
 .jumbotron .h1 {

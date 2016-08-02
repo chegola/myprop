@@ -34,6 +34,7 @@
                 'sk': 'Slovenský',
                 'sv': 'Svenska',
                 'ta': 'தமிழ்',
+                'th': 'ไทย',
                 'tr': 'Türkçe',
                 'zh-cn': '中文（简体）',
                 'zh-tw': '繁體中文'
