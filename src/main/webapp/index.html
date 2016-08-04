@@ -55,9 +55,10 @@
             <!-- Navigation -->
             <div class="android-navigation-container">
                 <nav class="android-navigation mdl-navigation">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement">ข่าวสาร</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ng-switch-when="true">แจ้งข้อมูล</a>
-                    <!--<a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
+                    <i class="material-icons">announcement</i>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
+                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>
+                    <!--<a class="nmdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
                 </nav>
             </div>
             <a href="#/">
@@ -71,11 +72,11 @@
             </button>
             <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
                 <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="false" ng-click="vm.login()"
-                    id="login">Sign in
+                    id="login" translate="global.menu.account.login">Sign in
                 </li>
                 <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="true" ng-click="vm.logout()"
-                    id="logout">Sign out
-                </li>
+                    id="logout" translate="global.menu.account.logout">Sign out
+                </li>1
                 <md-divider></md-divider>
                 <div ng-controller="JhiLanguageController as languageVm">
                     <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
@@ -93,16 +94,16 @@
             <img class="android-logo-image" src="content/images/logo-Pruklada-white-small.png">
         </span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="" ui-sref="announcement">ข่าวสาร</a>
-            <a class="mdl-navigation__link" href="" ng-switch-when="true">แจ้งข้อมูล</a>
+            <a class="mdl-navigation__link" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>
             <div class="android-drawer-separator"></div>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="false"
-               ng-click="vm.login()">Sign in</a>
+               ng-click="vm.login()" translate="global.menu.account.login">Sign in</a>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="true"
-               ng-click="vm.logout()">Sign out</a>
-            <div class="android-drawer-separator" ng-switch-when="true" has-authority="ROLE_ADMIN"></div>
-            <span class="mdl-navigation__link" href="" ng-switch-when="true" has-authority="ROLE_ADMIN">ผู้ดูแลระบบ</span>
-            <a class="mdl-navigation__link" href="" ng-switch-when="true" has-authority="ROLE_ADMIN" ui-sref="user-management">บริหารจัดการผู้ใช้งาน</a>
+               ng-click="vm.logout()" translate="global.menu.account.logout">Sign out</a>
+            <div class="android-drawer-separator" ng-switch-when="true" has-any-authority="ROLE_ADMIN"></div>
+            <span class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" translate="global.menu.admin.main">ผู้ดูแลระบบ</span>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" ui-sref="user-management" translate="global.menu.admin.userManagement">บริหารจัดการผู้ใช้งาน</a>
             <div class="android-drawer-separator"></div>
             <div ng-controller="JhiLanguageController as languageVm">
                 <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">

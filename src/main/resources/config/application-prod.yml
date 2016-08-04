@@ -36,10 +36,10 @@ spring:
             cluster-name:
             cluster-nodes: localhost:9300
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp.mail.yahoo.com
+        port: 587
+        username: arkhomk@yahoo.com
+        password: Smmfd@%!9
     thymeleaf:
         cache: true
 
@@ -72,7 +72,7 @@ jhipster:
                 # Token is valid 24 hours
                 tokenValidityInSeconds: 86400
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: myprop@localhost
+        from: arkhomk@yahoo.com
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:

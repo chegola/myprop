@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "Myprop",
+        "title": "หมู่บ้านพฤกษ์ลดา วงแหวนรัตนาธิเบศร์",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
@@ -17,12 +17,12 @@
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
-                "login": "Sign in",
-                "logout": "Sign out",
-                "register": "Register"
+                "login": "ลงชื่อเข้าใช้",
+                "logout": "ออกจากระบบ",
+                "register": "ลงทะเบียน"
             },
             "admin": {
-                "main": "Administration",
+                "main": "ผู้ดูแลระบบ",
                 "userManagement": "User management",
                 "tracker": "User tracker",
                 "metrics": "Metrics",
@@ -34,17 +34,20 @@
                 "database": "Database",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Language"
+            "language": "Language",
+            "announcement" : "ข่าวสาร",
+            "serviceRequest" : "แจ้งนิติฯ"
+
         },
         "form": {
-            "username": "Username",
-            "username.placeholder": "Your username",
-            "newpassword": "New password",
-            "newpassword.placeholder": "New password",
-            "confirmpassword": "New password confirmation",
-            "confirmpassword.placeholder": "Confirm the new password",
-            "email": "E-mail",
-            "email.placeholder": "Your e-mail"
+            "username": "ชื่อผู้ใช้",
+            "username.placeholder": "ชื่อผู้ใช้ของคุณ",
+            "newpassword": "รหัสผ่านใหม่",
+            "newpassword.placeholder": "รหัสผ่านใหม่",
+            "confirmpassword": "ยืนยันรหัสผ่านใหม่",
+            "confirmpassword.placeholder": "ยืนยันรหัสผ่านใหม่",
+            "email": "อีเมล",
+            "email.placeholder": "อีเมลของคุณ"
         },
         "messages": {
             "info": {
@@ -52,7 +55,7 @@
                 "register": "ถ้าคุณยังไม่มี login? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">คลิ๊กที่นี่ เพื่อลงทะเบียน</a>"
             },
             "error": {
-                "dontmatch": "The password and its confirmation do not match!"
+                "dontmatch": "รหัสผ่านไม่ตรงกัน"
             },
             "validate": {
                 "newpassword": {
@@ -101,7 +104,7 @@
             "title": "Confirm delete operation"
         },
         "validation": {
-            "required": "This field is required.",
+            "required": "ต้องใส่ข้อมูลในช่องนี้",
             "minlength": "This field is required to be at least {{ min }} characters.",
             "maxlength": "This field cannot be longer than {{ max }} characters.",
             "min": "This field should be more than {{ min }}.",

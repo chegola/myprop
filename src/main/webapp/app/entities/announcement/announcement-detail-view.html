@@ -1,27 +1,27 @@
 <div class="android-more-section">
-    <jhi-alert-error></jhi-alert-error>
-    <div md-layout="column" layout-padding>
-        <div class="well">
+    <md-whiteframe class="md-whiteframe-2dp" flex layout layout-align="start center">
+        <jhi-alert-error></jhi-alert-error>
+        <div md-layout="column" flex  layout-margin>
             <center><h3>{{vm.announcement.subject}}</h3></center>
-        </div>
-        <md-divider></md-divider>
-        <div class="well">
-            <p><b>{{vm.announcement.startDate | date:'mediumDate'}}</b></p>
-            <p> <span ng-bind-html="vm.announcement.detail"></span></p>
+            <md-divider></md-divider>
+            <p><h4>{{vm.announcement.startDate | date:'mediumDate'}}</h4></p>
+            <p><span ng-bind-html="vm.announcement.detail"></span></p>
 
+            <md-divider></md-divider>
+            <div layout="row" layout-padding layout-align="space-between center">
+                <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
+                   ui-sref="{{ vm.previousState }}" translate="entity.action.back"><i class="material-icons">chevron_left</i>กลับ
+                </a>
+                <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
+                        class="btn btn-primary"
+                        has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+                </button>
+            </div>
         </div>
-        <md-divider></md-divider>
-        <br>
-        <div layout="row" layout-padding layout-align="space-between center">
-            <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
-               ui-sref="{{ vm.previousState }}"><i class="material-icons">chevron_left</i>กลับ
-            </a>
-            <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})" class="btn btn-primary"
-                    has-authority="ROLE_ADMIN">
-                <span class="glyphicon glyphicon-pencil"></span>
-                <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
-            </button>
-        </div>
-    </div>
+    </md-whiteframe>
 </div>
+
+
 

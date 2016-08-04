@@ -50,6 +50,9 @@
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.announcements = data;
+                for (i=0; i< vm.queryCount; i++) {
+                    vm.announcements[i].plainText = String(vm.announcements[i].detail).replace(/<[^>]+>/gm, '');
+                }
                 vm.page = pagingParams.page;
             }
             function onError(error) {

@@ -1,6 +1,6 @@
 {
     "global": {
-        "title": "Myprop",
+        "title": "Pruklada Outer Ring",
         "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
         "menu": {
             "home": "Home",
@@ -34,7 +34,10 @@
                 "database": "Database",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Language"
+            "language": "Language",
+            "announcement" : "Announcement",
+            "serviceRequest" : "Service Request"
+
         },
         "form": {
             "username": "Username",
@@ -49,7 +52,7 @@
         "messages": {
             "info": {
                 "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
-                "register": "ถ้าคุณยังไม่มี login? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">คลิ๊กที่นี่ เพื่อลงทะเบียน</a>"
+                "register": "You don't have an account yet? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">Register a new account</a>"
             },
             "error": {
                 "dontmatch": "The password and its confirmation do not match!"

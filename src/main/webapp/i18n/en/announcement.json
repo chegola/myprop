@@ -19,7 +19,10 @@
             "subject": "Subject",
             "detail": "Detail",
             "startDate": "Start Date",
-            "endDate": "End Date"
+            "endDate": "End Date",
+            "title" : "Announcement from Juristic",
+            "detail" : "See more details",
+            "back" : "Back"
         }
     }
 }

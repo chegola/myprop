@@ -2,24 +2,27 @@
     "mypropApp": {
         "announcement" : {
             "home": {
-                "title": "Announcements",
-                "createLabel": "Create a new Announcement",
-                "createOrEditLabel": "Create or edit a Announcement",
-                "search": "Search for Announcement"
+                "title": "ข่าวสาร",
+                "createLabel": "สร้างข่าวสาร",
+                "createOrEditLabel": "สร้าง หรือ แก้ไข ข่าวสาร",
+                "search": "ค้นหาข่าวสาร"
             },
-            "created": "A new Announcement is created with identifier {{ param }}",
-            "updated": "A Announcement is updated with identifier {{ param }}",
-            "deleted": "A Announcement is deleted with identifier {{ param }}",
+            "created": "ข่าวสารถูกบันทึกด้วยหมายเลข {{ param }}",
+            "updated": "ข่าวสารถูกแก้ไขด้วยหมายเลข {{ param }}",
+            "deleted": "ข่าวสารถูกลบด้วยหมายเลข {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete Announcement {{ id }}?"
+                "question": "คุณต้องการลบข่าวสารหมายเลข {{ id }}?"
             },
             "detail": {
-                "title": "Announcement"
+                "title": "ข่าวสาร"
             },
-            "subject": "Subject",
-            "detail": "Detail",
-            "startDate": "Start Date",
-            "endDate": "End Date"
+            "subject": "หัวข้อข่าวสาร",
+            "detail": "รายละเอียด",
+            "startDate": "วันที่เริ่ม",
+            "endDate": "วันที่สิ้นสุด",
+            "title" : "ข่าวสารจากนิติบุคคล",
+            "detail" : "ดูรายละเอียด",
+            "back" : "กลับ"
         }
     }
 }

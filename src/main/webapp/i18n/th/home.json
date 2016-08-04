@@ -3,7 +3,7 @@
         "title": "ยินดีต้อนรับ!",
         "subtitle": "ชุมชนหมู่บ้านพฤกษ์ลดา วงแหวนรัตนาธิเบศร์",
         "logged": {
-            "message": "นี่คือชื่อล๊อกอินของคุณ \"{{username}}\"."
+            "message": "คุณได้ลงชื่อเข้าใช้โดยใช้ชื่อ \"{{username}}\"."
         },
         "question": "If you have any question on JHipster:",
         "link": {

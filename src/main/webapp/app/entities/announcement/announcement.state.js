@@ -132,7 +132,7 @@
             parent: 'announcement-detail',
             url: '/detail/edit',
             data: {
-               // authorities: ['ROLE_USER']
+               authorities: ['ROLE_ADMIN', 'ROLE_MANAGER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -158,7 +158,7 @@
             parent: 'announcement',
             url: '/new',
             data: {
-                authorities: ['ROLE_ADMIN']
+                authorities: ['ROLE_ADMIN', 'ROLE_MANAGER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -190,7 +190,7 @@
             parent: 'announcement',
             url: '/{id}/edit',
             data: {
-               // authorities: ['ROLE_USER']
+               authorities: ['ROLE_ADMIN', 'ROLE_MANAGER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
@@ -215,7 +215,7 @@
             parent: 'announcement',
             url: '/{id}/delete',
             data: {
-               // authorities: ['ROLE_USER']
+               authorities: ['ROLE_ADMIN', 'ROLE_MANAGER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({

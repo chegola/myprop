@@ -1,48 +1,48 @@
+
 <style>
 .demo-card-wide.mdl-card {
-  width: 812px;
-  height: 312px;
-}
-.demo-card-wide > .mdl-card__title {
-  color: #fff;
-  height: 176px;
-  background: url('../assets/demos/welcome_card.jpg') center / cover;
-}
-.demo-card-wide > .mdl-card__menu {
-  color: #fff;
+  background: #F1F8E9;
 }
 </style>
+
 <div class="android-more-section">
     <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="new ticket" style="position:fixed"
-               ui-sref="announcement.new" has-authority="ROLE_ADMIN">
+               ui-sref="announcement.new" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
         <md-icon md-font-set="material-icons">add</md-icon>
     </md-button>
-    <div class="android-section-title mdl-typography--display-1-color-contrast">ประกาศจากนิติบุคคล</div>
+    <div class="android-section-title mdl-typography--display-1-color-contrast" translate="mypropApp.announcement.title">ประกาศจากนิติบุคคล</div>
     <div class="android-card-container mdl-grid">
-        <div class="mdl-cell mdl-cell&#45;&#45;12-col mdl-cell&#45;&#45;12-col-tablet mdl-cell&#45;&#45;12-col-phone mdl-card mdl-shadow&#45;&#45;3dp"
+        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone  demo-card-wide mdl-card mdl-shadow--2dp"
              ng-repeat="announcement in vm.announcements track by announcement.id">
       <!--  <div class="demo-card-wide mdl-card mdl-shadow&#45;&#45;2dp" ng-repeat="announcement in vm.announcements track by announcement.id">-->
-            <div layout="column" layout-padding>
+          <!--  <div layout="column" layout-padding>
                 <div class="mdl-card__title ">
                     <h4 class="mdl-card__title-text">{{announcement.subject}}</h4>
                 </div>
                 <i>{{announcement.startDate}}</i>
-            </div>
-            <md-divider></md-divider>
+            </div>-->
+<!--            <div class="mdl-card__supporting-text" >
+                &lt;!&ndash;<div ng-bind-html="announcement.detail"></div>&ndash;&gt;
+             &lt;!&ndash;   <p> {{announcement.plainText}}</p>&ndash;&gt;
+            </div>-->
+
             <div class="mdl-card__supporting-text" >
-                <div ng-bind-html="announcement.detail"></div>
+                <h4>{{announcement.subject}}</h4>
+                <br>
+                <i>{{announcement.startDate}}</i>
+                <hr>
             </div>
 
             <div class="mdl-card__actions">
                 <div layout="row" layout-padding  layout-align="space-between center">
                     <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
-                       ui-sref="announcement-detail({id:announcement.id})">
+                       ui-sref="announcement-detail({id:announcement.id})" translate="mypropApp.announcement.detail">
                         ดูรายละเอียด
                         <i class="material-icons">chevron_right</i>
                     </a>
                     <button type="submit"
                             ui-sref="announcement.delete({id:announcement.id})"
-                            class="btn btn-danger btn-sm" has-authority="ROLE_ADMIN">
+                            class="btn btn-danger btn-sm" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
                         <span class="glyphicon glyphicon-remove-circle"></span>
                         <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                     </button>
