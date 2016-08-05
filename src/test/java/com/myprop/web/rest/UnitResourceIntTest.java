@@ -3,7 +3,6 @@ package com.myprop.web.rest;
 import com.myprop.MypropApp;
 import com.myprop.domain.Unit;
 import com.myprop.repository.UnitRepository;
-import com.myprop.repository.search.UnitSearchRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,9 +50,6 @@ public class UnitResourceIntTest {
     private UnitRepository unitRepository;
 
     @Inject
-    private UnitSearchRepository unitSearchRepository;
-
-    @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Inject
@@ -67,7 +63,6 @@ public class UnitResourceIntTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         UnitResource unitResource = new UnitResource();
-        ReflectionTestUtils.setField(unitResource, "unitSearchRepository", unitSearchRepository);
         ReflectionTestUtils.setField(unitResource, "unitRepository", unitRepository);
         this.restUnitMockMvc = MockMvcBuilders.standaloneSetup(unitResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
@@ -76,7 +71,6 @@ public class UnitResourceIntTest {
 
     @Before
     public void initTest() {
-        unitSearchRepository.deleteAll();
         unit = new Unit();
         unit.setExternalId(DEFAULT_EXTERNAL_ID);
         unit.setArea(DEFAULT_AREA);
@@ -102,8 +96,6 @@ public class UnitResourceIntTest {
         assertThat(testUnit.getArea()).isEqualTo(DEFAULT_AREA);
 
         // Validate the Unit in ElasticSearch
-        Unit unitEs = unitSearchRepository.findOne(testUnit.getId());
-        assertThat(unitEs).isEqualToComparingFieldByField(testUnit);
     }
 
     @Test
@@ -149,7 +141,6 @@ public class UnitResourceIntTest {
     public void updateUnit() throws Exception {
         // Initialize the database
         unitRepository.saveAndFlush(unit);
-        unitSearchRepository.save(unit);
         int databaseSizeBeforeUpdate = unitRepository.findAll().size();
 
         // Update the unit
@@ -171,8 +162,6 @@ public class UnitResourceIntTest {
         assertThat(testUnit.getArea()).isEqualTo(UPDATED_AREA);
 
         // Validate the Unit in ElasticSearch
-        Unit unitEs = unitSearchRepository.findOne(testUnit.getId());
-        assertThat(unitEs).isEqualToComparingFieldByField(testUnit);
     }
 
     @Test
@@ -180,7 +169,6 @@ public class UnitResourceIntTest {
     public void deleteUnit() throws Exception {
         // Initialize the database
         unitRepository.saveAndFlush(unit);
-        unitSearchRepository.save(unit);
         int databaseSizeBeforeDelete = unitRepository.findAll().size();
 
         // Get the unit
@@ -189,8 +177,6 @@ public class UnitResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate ElasticSearch is empty
-        boolean unitExistsInEs = unitSearchRepository.exists(unit.getId());
-        assertThat(unitExistsInEs).isFalse();
 
         // Validate the database is empty
         List<Unit> units = unitRepository.findAll();
@@ -202,7 +188,6 @@ public class UnitResourceIntTest {
     public void searchUnit() throws Exception {
         // Initialize the database
         unitRepository.saveAndFlush(unit);
-        unitSearchRepository.save(unit);
 
         // Search the unit
         restUnitMockMvc.perform(get("/api/_search/units?query=id:" + unit.getId()))

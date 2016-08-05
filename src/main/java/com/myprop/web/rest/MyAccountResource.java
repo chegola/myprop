@@ -3,11 +3,9 @@ package com.myprop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.myprop.domain.MyAccount;
 import com.myprop.repository.MyAccountRepository;
-import com.myprop.repository.search.MyAccountSearchRepository;
 import com.myprop.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +17,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing MyAccount.
@@ -32,13 +26,10 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class MyAccountResource {
 
     private final Logger log = LoggerFactory.getLogger(MyAccountResource.class);
-        
+
     @Inject
     private MyAccountRepository myAccountRepository;
-    
-    @Inject
-    private MyAccountSearchRepository myAccountSearchRepository;
-    
+
     /**
      * POST  /my-accounts : Create a new myAccount.
      *
@@ -56,7 +47,6 @@ public class MyAccountResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("myAccount", "idexists", "A new myAccount cannot already have an ID")).body(null);
         }
         MyAccount result = myAccountRepository.save(myAccount);
-        myAccountSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/my-accounts/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("myAccount", result.getId().toString()))
             .body(result);
@@ -81,7 +71,6 @@ public class MyAccountResource {
             return createMyAccount(myAccount);
         }
         MyAccount result = myAccountRepository.save(myAccount);
-        myAccountSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("myAccount", myAccount.getId().toString()))
             .body(result);
@@ -135,7 +124,6 @@ public class MyAccountResource {
     public ResponseEntity<Void> deleteMyAccount(@PathVariable Long id) {
         log.debug("REST request to delete MyAccount : {}", id);
         myAccountRepository.delete(id);
-        myAccountSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("myAccount", id.toString())).build();
     }
 
@@ -146,7 +134,7 @@ public class MyAccountResource {
      * @param query the query of the myAccount search
      * @return the result of the search
      */
-    @RequestMapping(value = "/_search/my-accounts",
+/*    @RequestMapping(value = "/_search/my-accounts",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
@@ -155,7 +143,7 @@ public class MyAccountResource {
         return StreamSupport
             .stream(myAccountSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
-    }
+    }*/
 
 
 }

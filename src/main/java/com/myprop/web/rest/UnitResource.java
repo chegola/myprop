@@ -3,7 +3,6 @@ package com.myprop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.myprop.domain.Unit;
 import com.myprop.repository.UnitRepository;
-import com.myprop.repository.search.UnitSearchRepository;
 import com.myprop.web.rest.util.HeaderUtil;
 import com.myprop.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -22,10 +21,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Unit.
@@ -35,13 +30,11 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class UnitResource {
 
     private final Logger log = LoggerFactory.getLogger(UnitResource.class);
-        
+
     @Inject
     private UnitRepository unitRepository;
-    
-    @Inject
-    private UnitSearchRepository unitSearchRepository;
-    
+
+
     /**
      * POST  /units : Create a new unit.
      *
@@ -59,7 +52,6 @@ public class UnitResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("unit", "idexists", "A new unit cannot already have an ID")).body(null);
         }
         Unit result = unitRepository.save(unit);
-        unitSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/units/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("unit", result.getId().toString()))
             .body(result);
@@ -84,7 +76,6 @@ public class UnitResource {
             return createUnit(unit);
         }
         Unit result = unitRepository.save(unit);
-        unitSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("unit", unit.getId().toString()))
             .body(result);
@@ -104,7 +95,7 @@ public class UnitResource {
     public ResponseEntity<List<Unit>> getAllUnits(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Units");
-        Page<Unit> page = unitRepository.findAll(pageable); 
+        Page<Unit> page = unitRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/units");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -142,7 +133,6 @@ public class UnitResource {
     public ResponseEntity<Void> deleteUnit(@PathVariable Long id) {
         log.debug("REST request to delete Unit : {}", id);
         unitRepository.delete(id);
-        unitSearchRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("unit", id.toString())).build();
     }
 
@@ -153,17 +143,16 @@ public class UnitResource {
      * @param query the query of the unit search
      * @return the result of the search
      */
-    @RequestMapping(value = "/_search/units",
+   /* @RequestMapping(value = "/_search/units",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
     public ResponseEntity<List<Unit>> searchUnits(@RequestParam String query, Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to search for a page of Units for query {}", query);
-        Page<Unit> page = unitSearchRepository.search(queryStringQuery(query), pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/units");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/_search/units");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
+    }*/
 
 
 }

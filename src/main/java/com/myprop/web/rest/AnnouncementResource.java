@@ -21,10 +21,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
 
 /**
  * REST controller for managing Announcement.
@@ -34,10 +31,10 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class AnnouncementResource {
 
     private final Logger log = LoggerFactory.getLogger(AnnouncementResource.class);
-        
+
     @Inject
     private AnnouncementService announcementService;
-    
+
     /**
      * POST  /announcements : Create a new announcement.
      *
@@ -98,7 +95,7 @@ public class AnnouncementResource {
     public ResponseEntity<List<Announcement>> getAllAnnouncements(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Announcements");
-        Page<Announcement> page = announcementService.findAll(pageable); 
+        Page<Announcement> page = announcementService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/announcements");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -154,7 +151,7 @@ public class AnnouncementResource {
         throws URISyntaxException {
         log.debug("REST request to search for a page of Announcements for query {}", query);
         Page<Announcement> page = announcementService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/announcements");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/_search/announcements");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

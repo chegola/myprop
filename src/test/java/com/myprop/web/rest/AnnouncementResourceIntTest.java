@@ -4,7 +4,6 @@ import com.myprop.MypropApp;
 import com.myprop.domain.Announcement;
 import com.myprop.repository.AnnouncementRepository;
 import com.myprop.service.AnnouncementService;
-import com.myprop.repository.search.AnnouncementSearchRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -63,9 +62,6 @@ public class AnnouncementResourceIntTest {
     private AnnouncementService announcementService;
 
     @Inject
-    private AnnouncementSearchRepository announcementSearchRepository;
-
-    @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Inject
@@ -87,7 +83,6 @@ public class AnnouncementResourceIntTest {
 
     @Before
     public void initTest() {
-        announcementSearchRepository.deleteAll();
         announcement = new Announcement();
         announcement.setSubject(DEFAULT_SUBJECT);
         announcement.setDetail(DEFAULT_DETAIL);
@@ -117,8 +112,7 @@ public class AnnouncementResourceIntTest {
         assertThat(testAnnouncement.getEndDate()).isEqualTo(DEFAULT_END_DATE);
 
         // Validate the Announcement in ElasticSearch
-        Announcement announcementEs = announcementSearchRepository.findOne(testAnnouncement.getId());
-        assertThat(announcementEs).isEqualToComparingFieldByField(testAnnouncement);
+
     }
 
     @Test
@@ -212,8 +206,6 @@ public class AnnouncementResourceIntTest {
         assertThat(testAnnouncement.getEndDate()).isEqualTo(UPDATED_END_DATE);
 
         // Validate the Announcement in ElasticSearch
-        Announcement announcementEs = announcementSearchRepository.findOne(testAnnouncement.getId());
-        assertThat(announcementEs).isEqualToComparingFieldByField(testAnnouncement);
     }
 
     @Test
@@ -229,9 +221,6 @@ public class AnnouncementResourceIntTest {
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-        // Validate ElasticSearch is empty
-        boolean announcementExistsInEs = announcementSearchRepository.exists(announcement.getId());
-        assertThat(announcementExistsInEs).isFalse();
 
         // Validate the database is empty
         List<Announcement> announcements = announcementRepository.findAll();

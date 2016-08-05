@@ -3,7 +3,6 @@ package com.myprop.web.rest;
 import com.myprop.MypropApp;
 import com.myprop.domain.MyAccount;
 import com.myprop.repository.MyAccountRepository;
-import com.myprop.repository.search.MyAccountSearchRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -51,9 +50,6 @@ public class MyAccountResourceIntTest {
     private MyAccountRepository myAccountRepository;
 
     @Inject
-    private MyAccountSearchRepository myAccountSearchRepository;
-
-    @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Inject
@@ -67,7 +63,6 @@ public class MyAccountResourceIntTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         MyAccountResource myAccountResource = new MyAccountResource();
-        ReflectionTestUtils.setField(myAccountResource, "myAccountSearchRepository", myAccountSearchRepository);
         ReflectionTestUtils.setField(myAccountResource, "myAccountRepository", myAccountRepository);
         this.restMyAccountMockMvc = MockMvcBuilders.standaloneSetup(myAccountResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
@@ -76,7 +71,6 @@ public class MyAccountResourceIntTest {
 
     @Before
     public void initTest() {
-        myAccountSearchRepository.deleteAll();
         myAccount = new MyAccount();
         myAccount.setName_surname(DEFAULT_NAME_SURNAME);
         myAccount.setMobile(DEFAULT_MOBILE);
@@ -102,8 +96,6 @@ public class MyAccountResourceIntTest {
         assertThat(testMyAccount.getMobile()).isEqualTo(DEFAULT_MOBILE);
 
         // Validate the MyAccount in ElasticSearch
-        MyAccount myAccountEs = myAccountSearchRepository.findOne(testMyAccount.getId());
-        assertThat(myAccountEs).isEqualToComparingFieldByField(testMyAccount);
     }
 
     @Test
@@ -167,7 +159,6 @@ public class MyAccountResourceIntTest {
     public void updateMyAccount() throws Exception {
         // Initialize the database
         myAccountRepository.saveAndFlush(myAccount);
-        myAccountSearchRepository.save(myAccount);
         int databaseSizeBeforeUpdate = myAccountRepository.findAll().size();
 
         // Update the myAccount
@@ -189,8 +180,6 @@ public class MyAccountResourceIntTest {
         assertThat(testMyAccount.getMobile()).isEqualTo(UPDATED_MOBILE);
 
         // Validate the MyAccount in ElasticSearch
-        MyAccount myAccountEs = myAccountSearchRepository.findOne(testMyAccount.getId());
-        assertThat(myAccountEs).isEqualToComparingFieldByField(testMyAccount);
     }
 
     @Test
@@ -198,7 +187,6 @@ public class MyAccountResourceIntTest {
     public void deleteMyAccount() throws Exception {
         // Initialize the database
         myAccountRepository.saveAndFlush(myAccount);
-        myAccountSearchRepository.save(myAccount);
         int databaseSizeBeforeDelete = myAccountRepository.findAll().size();
 
         // Get the myAccount
@@ -207,8 +195,6 @@ public class MyAccountResourceIntTest {
                 .andExpect(status().isOk());
 
         // Validate ElasticSearch is empty
-        boolean myAccountExistsInEs = myAccountSearchRepository.exists(myAccount.getId());
-        assertThat(myAccountExistsInEs).isFalse();
 
         // Validate the database is empty
         List<MyAccount> myAccounts = myAccountRepository.findAll();
@@ -220,7 +206,6 @@ public class MyAccountResourceIntTest {
     public void searchMyAccount() throws Exception {
         // Initialize the database
         myAccountRepository.saveAndFlush(myAccount);
-        myAccountSearchRepository.save(myAccount);
 
         // Search the myAccount
         restMyAccountMockMvc.perform(get("/api/_search/my-accounts?query=id:" + myAccount.getId()))
