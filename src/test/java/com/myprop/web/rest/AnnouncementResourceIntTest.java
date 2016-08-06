@@ -55,6 +55,9 @@ public class AnnouncementResourceIntTest {
     private static final LocalDate DEFAULT_END_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_END_DATE = LocalDate.now(ZoneId.systemDefault());
 
+    private static final Boolean DEFAULT_STICKY = false;
+    private static final Boolean UPDATED_STICKY = true;
+
     @Inject
     private AnnouncementRepository announcementRepository;
 
@@ -88,6 +91,7 @@ public class AnnouncementResourceIntTest {
         announcement.setDetail(DEFAULT_DETAIL);
         announcement.setStartDate(DEFAULT_START_DATE);
         announcement.setEndDate(DEFAULT_END_DATE);
+        announcement.setSticky(DEFAULT_STICKY);
     }
 
     @Test
@@ -110,9 +114,7 @@ public class AnnouncementResourceIntTest {
         assertThat(testAnnouncement.getDetail()).isEqualTo(DEFAULT_DETAIL);
         assertThat(testAnnouncement.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testAnnouncement.getEndDate()).isEqualTo(DEFAULT_END_DATE);
-
-        // Validate the Announcement in ElasticSearch
-
+        assertThat(testAnnouncement.isSticky()).isEqualTo(DEFAULT_STICKY);
     }
 
     @Test
@@ -147,7 +149,8 @@ public class AnnouncementResourceIntTest {
                 .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT.toString())))
                 .andExpect(jsonPath("$.[*].detail").value(hasItem(DEFAULT_DETAIL.toString())))
                 .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
-                .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())));
+                .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
+                .andExpect(jsonPath("$.[*].sticky").value(hasItem(DEFAULT_STICKY.booleanValue())));
     }
 
     @Test
@@ -164,7 +167,8 @@ public class AnnouncementResourceIntTest {
             .andExpect(jsonPath("$.subject").value(DEFAULT_SUBJECT.toString()))
             .andExpect(jsonPath("$.detail").value(DEFAULT_DETAIL.toString()))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
-            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()));
+            .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
+            .andExpect(jsonPath("$.sticky").value(DEFAULT_STICKY.booleanValue()));
     }
 
     @Test
@@ -190,6 +194,7 @@ public class AnnouncementResourceIntTest {
         updatedAnnouncement.setDetail(UPDATED_DETAIL);
         updatedAnnouncement.setStartDate(UPDATED_START_DATE);
         updatedAnnouncement.setEndDate(UPDATED_END_DATE);
+        updatedAnnouncement.setSticky(UPDATED_STICKY);
 
         restAnnouncementMockMvc.perform(put("/api/announcements")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -204,8 +209,7 @@ public class AnnouncementResourceIntTest {
         assertThat(testAnnouncement.getDetail()).isEqualTo(UPDATED_DETAIL);
         assertThat(testAnnouncement.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testAnnouncement.getEndDate()).isEqualTo(UPDATED_END_DATE);
-
-        // Validate the Announcement in ElasticSearch
+        assertThat(testAnnouncement.isSticky()).isEqualTo(UPDATED_STICKY);
     }
 
     @Test
@@ -221,26 +225,8 @@ public class AnnouncementResourceIntTest {
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-
         // Validate the database is empty
         List<Announcement> announcements = announcementRepository.findAll();
         assertThat(announcements).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchAnnouncement() throws Exception {
-        // Initialize the database
-        announcementService.save(announcement);
-
-        // Search the announcement
-        restAnnouncementMockMvc.perform(get("/api/_search/announcements?query=id:" + announcement.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(announcement.getId().intValue())))
-            .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT.toString())))
-            .andExpect(jsonPath("$.[*].detail").value(hasItem(DEFAULT_DETAIL.toString())))
-            .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
-            .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())));
     }
 }

@@ -41,12 +41,4 @@ public interface AnnouncementService {
      *  @param id the id of the entity
      */
     void delete(Long id);
-
-    /**
-     * Search for the announcement corresponding to the query.
-     * 
-     *  @param query the query of the search
-     *  @return the list of entities
-     */
-    Page<Announcement> search(String query, Pageable pageable);
 }

@@ -37,6 +37,14 @@
                 </p>
             </div>
         </div>-->
+        <div class="form-group">
+            <label for="field_sticky">
+                <input ng-disabled="vm.announcement.sticky === null" type="checkbox"  id="field_sticky"
+                       ng-model="vm.announcement.sticky"
+                /><span translate="mypropApp.announcement.sticky">Sticky</span>
+            </label>
+        </div>
+
         <div text-angular ng-model="vm.announcement.detail"></div>
         <div class="form-group">
             <label class="control-label" translate="mypropApp.announcement.startDate" for="field_startDate">Start Date</label>

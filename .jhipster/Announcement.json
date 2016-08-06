@@ -24,6 +24,10 @@
             "fieldName": "endDate",
             "fieldType": "LocalDate",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "sticky",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20160730024257",

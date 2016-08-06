@@ -22,7 +22,8 @@
             "endDate": "End Date",
             "title" : "Announcement from Juristic",
             "detail" : "See more details",
-            "back" : "Back"
+            "back" : "Back",
+            "sticky" : "Pin Subject"
         }
     }
 }

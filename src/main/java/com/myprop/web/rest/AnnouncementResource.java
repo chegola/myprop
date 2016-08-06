@@ -22,7 +22,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
-
 /**
  * REST controller for managing Announcement.
  */
@@ -31,10 +30,10 @@ import java.util.Optional;
 public class AnnouncementResource {
 
     private final Logger log = LoggerFactory.getLogger(AnnouncementResource.class);
-
+        
     @Inject
     private AnnouncementService announcementService;
-
+    
     /**
      * POST  /announcements : Create a new announcement.
      *
@@ -95,7 +94,7 @@ public class AnnouncementResource {
     public ResponseEntity<List<Announcement>> getAllAnnouncements(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Announcements");
-        Page<Announcement> page = announcementService.findAll(pageable);
+        Page<Announcement> page = announcementService.findAll(pageable); 
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/announcements");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -135,25 +134,5 @@ public class AnnouncementResource {
         announcementService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("announcement", id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/announcements?query=:query : search for the announcement corresponding
-     * to the query.
-     *
-     * @param query the query of the announcement search
-     * @return the result of the search
-     */
-    @RequestMapping(value = "/_search/announcements",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public ResponseEntity<List<Announcement>> searchAnnouncements(@RequestParam String query, Pageable pageable)
-        throws URISyntaxException {
-        log.debug("REST request to search for a page of Announcements for query {}", query);
-        Page<Announcement> page = announcementService.search(query, pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/_search/announcements");
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
 
 }

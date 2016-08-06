@@ -1,7 +1,5 @@
 package com.myprop.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -14,7 +12,6 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "mp_announce")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class Announcement implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,6 +33,9 @@ public class Announcement implements Serializable {
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "sticky")
+    private Boolean sticky;
 
     public Long getId() {
         return id;
@@ -77,6 +77,14 @@ public class Announcement implements Serializable {
         this.endDate = endDate;
     }
 
+    public Boolean isSticky() {
+        return sticky;
+    }
+
+    public void setSticky(Boolean sticky) {
+        this.sticky = sticky;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -105,6 +113,7 @@ public class Announcement implements Serializable {
             ", detail='" + detail + "'" +
             ", startDate='" + startDate + "'" +
             ", endDate='" + endDate + "'" +
+            ", sticky='" + sticky + "'" +
             '}';
     }
 }
