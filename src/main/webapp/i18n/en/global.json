@@ -82,6 +82,9 @@
         },
         "ribbon": {
             "dev":"Development"
+        },
+        "shortcut" : {
+            "usefulNumbers" : "Useful Numbers"
         }
     },
     "entity": {

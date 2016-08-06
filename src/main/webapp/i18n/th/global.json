@@ -82,6 +82,9 @@
         },
         "ribbon": {
             "dev":"Development"
+        },
+        "shortcut" : {
+            "usefulNumbers" : "หมวยเลขโทรศัพท์ที่เป็นประโยชน์"
         }
     },
     "entity": {
