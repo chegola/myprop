@@ -1,15 +1,16 @@
 {
     "login": {
-        "title": "ล๊อกอิน",
+        "title": "เข้าสู่ระบบ",
         "form": {
             "password": "รหัสผ่าน",
             "password.placeholder": "รหัสผ่านของคุณ",
             "rememberme": "บันทึกฉันไว้",
-            "button": "ล๊อกอิน"
+            "button": "เข้าสู่ระบบ",
+            "or" : "หรือ"
         },
         "messages": {
             "error": {
-                "authentication": "<strong>ล๊อกอินไม่สำเร็จ!</strong> กรุณาตรวจสอบรหัสผ่าน และลองอีกครั้ง."
+                "authentication": "<strong>การลงชื่อเข้าใช้ไม่สำเร็จ!</strong> กรุณาตรวจสอบรหัสผ่าน และลองอีกครั้ง."
             }
         },
         "password" : {

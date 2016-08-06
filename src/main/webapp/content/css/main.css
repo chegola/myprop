@@ -108,13 +108,15 @@ Main page styles
 .homePic {
     display: inline-block;
     width: 1047px;
-    height: 497px;
+    height: 300px;
     background: url("../images/imodern-b.jpg") no-repeat center top;
     background-size: contain;
 }
 
 .loginPic {
     display: inline-block;
+    width: 347px;
+    height: 197px;
     background: url("../images/logo-Pruklada-color-medium.png") no-repeat center top;
     background-size: contain;
 }

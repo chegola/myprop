@@ -52,7 +52,7 @@
         "messages": {
             "info": {
                 "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
-                "register": "ถ้าคุณยังไม่มี login? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">คลิ๊กที่นี่ เพื่อลงทะเบียน</a>"
+                "register": "ถ้าคุณยังไม่มีชื่อผู้ใช้? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">คลิ๊กที่นี่ เพื่อลงทะเบียน</a>"
             },
             "error": {
                 "dontmatch": "รหัสผ่านไม่ตรงกัน"

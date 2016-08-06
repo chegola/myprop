@@ -13,8 +13,15 @@
             <span class="homePic img-responsive img-rounded"></span>
         </div>
         <div class="col-md-6">
-            <h1 translate="home.title">Welcome, Java Hipster!</h1>
-            <h3  translate="home.subtitle">This is your homepage</h3>
+            <h2 translate="home.title">Welcome, Java Hipster!</h2>
+            <h4  translate="home.subtitle">This is your homepage</h4>
+            <div class="well">
+                <ul>
+                    <li><a href="" target="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสารจากนิติบุคคล</a></li>
+                </ul>
+
+            </div>
+
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true" translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">

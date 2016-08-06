@@ -1,6 +1,6 @@
 {
     "social": {
-        "btnLabel": "ล๊อกอินด้วย {{ label }}",
+        "btnLabel": "ลงชื่อเข้าใช้ด้วย {{ label }}",
         "register": {
             "title": "ลงทะเบียนด้วย {{ label }}",
             "errorTitle": "ลงทะเบียนโดยใช้บัญชีอื่น",

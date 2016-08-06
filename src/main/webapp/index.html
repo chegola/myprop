@@ -43,9 +43,9 @@
             </a>
             <!-- Add spacer, to align navigation to the right in desktop -->
             <div class="android-header-spacer mdl-layout-spacer"></div>
-             <div
-                class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right mdl-textfield--full-width">
-                <label class="mdl-button mdl-js-button mdl-button--icon" for="search-field">
+             <!--<div
+                class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;expandable mdl-textfield&#45;&#45;floating-label mdl-textfield&#45;&#45;align-right mdl-textfield&#45;&#45;full-width">
+                <label class="mdl-button mdl-js-button mdl-button&#45;&#45;icon" for="search-field">
                     <i class="material-icons">search</i>
                 </label>
                 <div class="mdl-textfield__expandable-holder">
@@ -53,13 +53,12 @@
                 </div>
 
 
-            </div>
+            </div>-->
             <!-- Navigation -->
             <div class="android-navigation-container">
                 <nav class="android-navigation mdl-navigation">
-                    <i class="material-icons">announcement</i>
                     <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>
+                    <!-- <a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>-->
                     <!--<a class="nmdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
                 </nav>
             </div>
@@ -78,7 +77,7 @@
                 </li>
                 <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="true" ng-click="vm.logout()"
                     id="logout" translate="global.menu.account.logout">Sign out
-                </li>1
+                </li>
                 <md-divider></md-divider>
                 <div ng-controller="JhiLanguageController as languageVm">
                     <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
@@ -97,7 +96,7 @@
         </span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
-            <a class="mdl-navigation__link" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>
+           <!-- <a class="mdl-navigation__link" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>-->
             <div class="android-drawer-separator"></div>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="false"
                ng-click="vm.login()" translate="global.menu.account.login">Sign in</a>
