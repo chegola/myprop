@@ -1,8 +1,8 @@
 {
     "register": {
-        "title": "Registration",
+        "title": "ลงทะเบียน",
         "form": {
-            "button": "Register"
+            "button": "ลงทะเบียน"
         },
         "messages": {
             "validate": {

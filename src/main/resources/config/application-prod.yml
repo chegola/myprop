@@ -34,7 +34,13 @@ spring:
         host: smtp.mail.yahoo.com
         port: 587
         username: arkhomk@yahoo.com
-        password: Smmfd@%!9
+        password: oqfrqtwmrpgjdojy
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.mail.yahoo.com
     thymeleaf:
         cache: true
 

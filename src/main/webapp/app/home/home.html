@@ -18,10 +18,17 @@
             <div class="well">
                 <ul>
                     <li><a href="" target="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a></li>
+                    <div ng-controller="JhiLanguageController as languageVm">
+                        <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
+                            <li>
+                                <a class="mdl-navigation__link"  ng-click="languageVm.changeLanguage(language);">{{language | findLanguageFromKey}}</a>
+                            </li>
+                        </div>
+                    </div>
+
+
                 </ul>
-
             </div>
-
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true" translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
@@ -32,9 +39,17 @@
                     If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
                 </div>-->
 
+                <div class="alert alert-success" ng-switch-when="false" translate="global.messages.info.login" translate-compile>
+                    <strong>Your user has been activated.</strong> Please <a class="alert-link" href="" ng-click="vm.login()">sign in</a>.
+                </div>
+
+
                 <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register" translate-compile>
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>
+
+
+
             </div>
 
          <!--   <p translate="home.question">

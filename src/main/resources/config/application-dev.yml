@@ -36,13 +36,25 @@ spring:
         host: smtp.mail.yahoo.com
         port: 587
         username: arkhomk@yahoo.com
-        password: Smmfd@%!9
+        password: oqfrqtwmrpgjdojy
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.mail.yahoo.com
     messages:
         cache-seconds: 1
     thymeleaf:
         cache: false
     profiles:
         include: swagger # automatically set the 'swagger' profile
+    social:
+        # see https://developers.facebook.com/docs/facebook-login/v2.2
+        facebook:
+            clientId: 817226791746420
+            clientSecret: e437b3cefc70d51107eb8a41d1f6ec38
+
 
 liquibase:
     contexts: dev

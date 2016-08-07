@@ -25,6 +25,8 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('register');
+                     $translatePartialLoader.addPart('login');
+                     $translatePartialLoader.addPart('activate');
                     return $translate.refresh();
                 }]
             }

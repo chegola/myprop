@@ -69,22 +69,40 @@
                 </span>
             </a>
             <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
+                    id="language">
+                <i class="material-icons">language</i>
+            </button>
+            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="language">
+                <div ng-controller="JhiLanguageController as languageVm">
+                    <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
+                        <li class="mdl-menu__item" ui-sref-active="active" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</li>
+                    </div>
+                </div>
+            </ul>
+
+            <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
                     id="more-button">
                 <i class="material-icons">more_vert</i>
             </button>
+
+
             <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+
+                <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="true" ui-sref="settings"
+                    id="settings" translate="global.menu.account.settings">Settings
+                </li>
+                <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="true" ui-sref="password"
+                    id="password" translate="global.menu.account.password">Password
+                </li>
+                <md-divider></md-divider>
+
                 <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="false" ng-click="vm.login()"
                     id="login" translate="global.menu.account.login">Sign in
                 </li>
                 <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="true" ng-click="vm.logout()"
                     id="logout" translate="global.menu.account.logout">Sign out
                 </li>
-                <md-divider></md-divider>
-                <div ng-controller="JhiLanguageController as languageVm">
-                    <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
-                        <li class="mdl-menu__item" ui-sref-active="active" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</li>
-                    </div>
-                </div>
+
             </ul>
 
         </div>
@@ -103,13 +121,20 @@
                ng-click="vm.login()" translate="global.menu.account.login">Sign in</a>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="true"
                ng-click="vm.logout()" translate="global.menu.account.logout">Sign out</a>
+
+            <div class="android-drawer-separator" ng-switch-when="true"></div>
+            <span class="mdl-navigation__link" href="" ng-switch-when="true" translate="global.menu.account.main">Account</span>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="settings" translate="global.menu.account.settings">Settings</a>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="password" translate="global.menu.account.password">Password</a>
+
+
             <div class="android-drawer-separator" ng-switch-when="true" has-any-authority="ROLE_ADMIN"></div>
             <span class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" translate="global.menu.admin.main">ผู้ดูแลระบบ</span>
             <a class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" ui-sref="user-management" translate="global.menu.admin.userManagement">บริหารจัดการผู้ใช้งาน</a>
             <div class="android-drawer-separator"></div>
             <div ng-controller="JhiLanguageController as languageVm">
                 <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
-                    <a class="mdl-navigation__link"  ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</a>
+                    <a class="mdl-navigation__link"  ng-click="languageVm.changeLanguage(language);">{{language | findLanguageFromKey}}</a>
                 </div>
             </div>
         </nav>

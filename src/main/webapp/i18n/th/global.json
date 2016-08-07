@@ -13,9 +13,9 @@
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
-                "main": "Account",
-                "settings": "Settings",
-                "password": "Password",
+                "main": "บัญชีของคุณ",
+                "settings": "แก้ไขข้อมูลส่วนตัว",
+                "password": "แก้ไขรหัสผ่าน",
                 "sessions": "Sessions",
                 "login": "ลงชื่อเข้าใช้",
                 "logout": "ออกจากระบบ",
@@ -52,7 +52,8 @@
         "messages": {
             "info": {
                 "authenticated": "If you want to <a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">sign in</a>, you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\").",
-                "register": "ถ้าคุณยังไม่มีชื่อผู้ใช้? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">คลิ๊กที่นี่ เพื่อลงทะเบียน</a>"
+                "register": "ถ้าคุณยังไม่มีชื่อผู้ใช้? <a class=\"alert-link\" href=\"\" ng-click=\"vm.register()\">คลิ๊กที่นี่ เพื่อลงทะเบียน</a>",
+                "login" : "<a class=\"alert-link\" href=\"\" ng-click=\"vm.login()\">คลิ๊กที่นี่ เพื่อลงชื่อเข้าใช้</a>"
             },
             "error": {
                 "dontmatch": "รหัสผ่านไม่ตรงกัน"

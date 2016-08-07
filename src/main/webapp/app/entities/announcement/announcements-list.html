@@ -16,7 +16,7 @@
         <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone  demo-card-wide mdl-card mdl-shadow--2dp"
              ng-repeat="announcement in vm.announcements | pin">
             <div class="mdl-card__supporting-text" >
-                <h3>{{announcement.subject}}</h3>
+                <h5>{{announcement.subject}}</h5>
                 <i>{{announcement.startDate}}</i>
 
                 <md-divider></md-divider>
@@ -44,7 +44,7 @@
              ng-repeat="announcementUnpin in vm.announcements | unpin">
 
             <div class="mdl-card__supporting-text" >
-                <h3>{{announcementUnpin.subject}}</h3>
+                <h5>{{announcementUnpin.subject}}</h5>
                 <i>{{announcementUnpin.startDate}}</i>
                 <md-divider></md-divider>
             </div>
