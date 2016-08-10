@@ -137,6 +137,11 @@
                     <a class="mdl-navigation__link"  ng-click="languageVm.changeLanguage(language);">{{language | findLanguageFromKey}}</a>
                 </div>
             </div>
+
+            <div class="android-drawer-separator"></div>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="my-account" translate="global.menu.entities.myAccount">My Account</a>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="unit" translate="global.menu.entities.unit">Unit</a>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="my-account.open" translate="global.menu.entities.myAccount">My Account</a>
         </nav>
     </div>
 
@@ -237,6 +242,7 @@
 <script src="app/entities/unit/unit.service.js"></script>
 <script src="app/entities/unit/unit.search.service.js"></script>
 <script src="app/entities/unit/unit.controller.js"></script>
+<script src="app/entities/my-account/my-account-filter.js"></script>
 <script src="app/entities/my-account/my-account-dialog.controller.js"></script>
 <script src="app/entities/my-account/my-account-detail.controller.js"></script>
 <script src="app/entities/my-account/my-account-delete-dialog.controller.js"></script>

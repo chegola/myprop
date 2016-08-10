@@ -117,6 +117,35 @@
                 });
             }]
         })
+        .state('my-account.open', {
+                    parent: 'my-account',
+                    url: '/open',
+                    data: {
+                        authorities: ['ROLE_USER']
+                    },
+                    onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                        $uibModal.open({
+                            templateUrl: 'app/entities/my-account/my-account-dialog-new.html',
+                            controller: 'MyAccountDialogController',
+                            controllerAs: 'vm',
+                            backdrop: 'static',
+                            size: 'lg',
+                            resolve: {
+                                entity: function () {
+                                    return {
+                                        name_surname: null,
+                                        mobile: null,
+                                        id: null
+                                    };
+                                }
+                            }
+                        }).result.then(function() {
+                            $state.go('my-account', null, { reload: true });
+                        }, function() {
+                            $state.go('my-account');
+                        });
+                    }]
+                })
         .state('my-account.edit', {
             parent: 'my-account',
             url: '/{id}/edit',
