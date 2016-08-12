@@ -22,93 +22,93 @@ function getVF(n, opt_precision) {
 $provide.value("$locale", {
   "DATETIME_FORMATS": {
     "AMPMS": [
-      "AM",
-      "PM"
+      "\u0e01\u0e48\u0e2d\u0e19\u0e40\u0e17\u0e35\u0e48\u0e22\u0e07",
+      "\u0e2b\u0e25\u0e31\u0e07\u0e40\u0e17\u0e35\u0e48\u0e22\u0e07"
     ],
     "DAY": [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
+      "\u0e27\u0e31\u0e19\u0e2d\u0e32\u0e17\u0e34\u0e15\u0e22\u0e4c",
+      "\u0e27\u0e31\u0e19\u0e08\u0e31\u0e19\u0e17\u0e23\u0e4c",
+      "\u0e27\u0e31\u0e19\u0e2d\u0e31\u0e07\u0e04\u0e32\u0e23",
+      "\u0e27\u0e31\u0e19\u0e1e\u0e38\u0e18",
+      "\u0e27\u0e31\u0e19\u0e1e\u0e24\u0e2b\u0e31\u0e2a\u0e1a\u0e14\u0e35",
+      "\u0e27\u0e31\u0e19\u0e28\u0e38\u0e01\u0e23\u0e4c",
+      "\u0e27\u0e31\u0e19\u0e40\u0e2a\u0e32\u0e23\u0e4c"
     ],
     "ERANAMES": [
-      "Before Christ",
-      "Anno Domini"
+      "\u0e1b\u0e35\u0e01\u0e48\u0e2d\u0e19\u0e04\u0e23\u0e34\u0e2a\u0e15\u0e4c\u0e28\u0e31\u0e01\u0e23\u0e32\u0e0a",
+      "\u0e04\u0e23\u0e34\u0e2a\u0e15\u0e4c\u0e28\u0e31\u0e01\u0e23\u0e32\u0e0a"
     ],
     "ERAS": [
-      "BC",
-      "AD"
+      "\u0e1b\u0e35\u0e01\u0e48\u0e2d\u0e19 \u0e04.\u0e28.",
+      "\u0e04.\u0e28."
     ],
     "FIRSTDAYOFWEEK": 6,
     "MONTH": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+      "\u0e21\u0e01\u0e23\u0e32\u0e04\u0e21",
+      "\u0e01\u0e38\u0e21\u0e20\u0e32\u0e1e\u0e31\u0e19\u0e18\u0e4c",
+      "\u0e21\u0e35\u0e19\u0e32\u0e04\u0e21",
+      "\u0e40\u0e21\u0e29\u0e32\u0e22\u0e19",
+      "\u0e1e\u0e24\u0e29\u0e20\u0e32\u0e04\u0e21",
+      "\u0e21\u0e34\u0e16\u0e38\u0e19\u0e32\u0e22\u0e19",
+      "\u0e01\u0e23\u0e01\u0e0e\u0e32\u0e04\u0e21",
+      "\u0e2a\u0e34\u0e07\u0e2b\u0e32\u0e04\u0e21",
+      "\u0e01\u0e31\u0e19\u0e22\u0e32\u0e22\u0e19",
+      "\u0e15\u0e38\u0e25\u0e32\u0e04\u0e21",
+      "\u0e1e\u0e24\u0e28\u0e08\u0e34\u0e01\u0e32\u0e22\u0e19",
+      "\u0e18\u0e31\u0e19\u0e27\u0e32\u0e04\u0e21"
     ],
     "SHORTDAY": [
-      "Sun",
-      "Mon",
-      "Tue",
-      "Wed",
-      "Thu",
-      "Fri",
-      "Sat"
+      "\u0e2d\u0e32.",
+      "\u0e08.",
+      "\u0e2d.",
+      "\u0e1e.",
+      "\u0e1e\u0e24.",
+      "\u0e28.",
+      "\u0e2a."
     ],
     "SHORTMONTH": [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec"
+      "\u0e21.\u0e04.",
+      "\u0e01.\u0e1e.",
+      "\u0e21\u0e35.\u0e04.",
+      "\u0e40\u0e21.\u0e22.",
+      "\u0e1e.\u0e04.",
+      "\u0e21\u0e34.\u0e22.",
+      "\u0e01.\u0e04.",
+      "\u0e2a.\u0e04.",
+      "\u0e01.\u0e22.",
+      "\u0e15.\u0e04.",
+      "\u0e1e.\u0e22.",
+      "\u0e18.\u0e04."
     ],
     "STANDALONEMONTH": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
+      "\u0e21\u0e01\u0e23\u0e32\u0e04\u0e21",
+      "\u0e01\u0e38\u0e21\u0e20\u0e32\u0e1e\u0e31\u0e19\u0e18\u0e4c",
+      "\u0e21\u0e35\u0e19\u0e32\u0e04\u0e21",
+      "\u0e40\u0e21\u0e29\u0e32\u0e22\u0e19",
+      "\u0e1e\u0e24\u0e29\u0e20\u0e32\u0e04\u0e21",
+      "\u0e21\u0e34\u0e16\u0e38\u0e19\u0e32\u0e22\u0e19",
+      "\u0e01\u0e23\u0e01\u0e0e\u0e32\u0e04\u0e21",
+      "\u0e2a\u0e34\u0e07\u0e2b\u0e32\u0e04\u0e21",
+      "\u0e01\u0e31\u0e19\u0e22\u0e32\u0e22\u0e19",
+      "\u0e15\u0e38\u0e25\u0e32\u0e04\u0e21",
+      "\u0e1e\u0e24\u0e28\u0e08\u0e34\u0e01\u0e32\u0e22\u0e19",
+      "\u0e18\u0e31\u0e19\u0e27\u0e32\u0e04\u0e21"
     ],
     "WEEKENDRANGE": [
       5,
       6
     ],
-    "fullDate": "EEEE, MMMM d, y",
-    "longDate": "MMMM d, y",
-    "medium": "MMM d, y h:mm:ss a",
-    "mediumDate": "MMM d, y",
-    "mediumTime": "h:mm:ss a",
-    "short": "M/d/yy h:mm a",
-    "shortDate": "M/d/yy",
-    "shortTime": "h:mm a"
+    "fullDate": "EEEE\u0e17\u0e35\u0e48 d MMMM G y",
+    "longDate": "d MMMM G y",
+    "medium": "d MMM y HH:mm:ss",
+    "mediumDate": "d MMM y",
+    "mediumTime": "HH:mm:ss",
+    "short": "d/M/yy HH:mm",
+    "shortDate": "d/M/yy",
+    "shortTime": "HH:mm"
   },
   "NUMBER_FORMATS": {
-    "CURRENCY_SYM": "$",
+    "CURRENCY_SYM": "\u0e3f",
     "DECIMAL_SEP": ".",
     "GROUP_SEP": ",",
     "PATTERNS": [
@@ -136,8 +136,8 @@ $provide.value("$locale", {
       }
     ]
   },
-  "id": "en",
-  "localeID": "en",
-  "pluralCat": function(n, opt_precision) {  var i = n | 0;  var vf = getVF(n, opt_precision);  if (i == 1 && vf.v == 0) {    return PLURAL_CATEGORY.ONE;  }  return PLURAL_CATEGORY.OTHER;}
+  "id": "th",
+  "localeID": "th",
+  "pluralCat": function(n, opt_precision) {  return PLURAL_CATEGORY.OTHER;}
 });
 }]);

@@ -17,7 +17,7 @@
              ng-repeat="announcement in vm.announcements | pin">
             <div class="mdl-card__supporting-text" >
                 <h5>{{announcement.subject}}</h5>
-                <i>{{announcement.startDate}}</i>
+                <i>{{announcement.startDate | date:'mediumDate'}}</i>
 
                 <md-divider></md-divider>
             </div>
@@ -45,7 +45,7 @@
 
             <div class="mdl-card__supporting-text" >
                 <h5>{{announcementUnpin.subject}}</h5>
-                <i>{{announcementUnpin.startDate}}</i>
+                <i>{{announcementUnpin.startDate | date:'mediumDate'}}</i>
                 <md-divider></md-divider>
             </div>
 
