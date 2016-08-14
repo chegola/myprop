@@ -34,7 +34,7 @@
                 "database": "Database",
                 "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
             },
-            "language": "Language",
+            "language": "ภาษา",
             "announcement" : "ข่าวสาร",
             "serviceRequest" : "แจ้งนิติฯ"
 

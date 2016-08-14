@@ -133,16 +133,17 @@
             <span class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" translate="global.menu.admin.main">ผู้ดูแลระบบ</span>
             <a class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" ui-sref="user-management" translate="global.menu.admin.userManagement">บริหารจัดการผู้ใช้งาน</a>
             <div class="android-drawer-separator"></div>
+            <span class="mdl-navigation__link" translate="global.menu.language">Language</span>
             <div ng-controller="JhiLanguageController as languageVm">
                 <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
                     <a class="mdl-navigation__link"  ng-click="languageVm.changeLanguage(language);">{{language | findLanguageFromKey}}</a>
                 </div>
             </div>
 
-            <div class="android-drawer-separator"></div>
+            <!--<div class="android-drawer-separator"></div>
             <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="my-account" translate="global.menu.entities.myAccount">My Account</a>
             <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="unit" translate="global.menu.entities.unit">Unit</a>
-            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="my-account.open" translate="global.menu.entities.myAccount">My Account</a>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true"  ui-sref="my-account.open" translate="global.menu.entities.myAccount">My Account</a>-->
         </nav>
     </div>
 
