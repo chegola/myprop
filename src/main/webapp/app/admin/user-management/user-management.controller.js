@@ -27,7 +27,7 @@
         vm.transition = transition;
 
         vm.loadAll();
-        
+
         JhiLanguageService.getAll().then(function (languages) {
             vm.languages = languages;
         });
@@ -74,7 +74,7 @@
                 id: null, login: null, firstName: null, lastName: null, email: null,
                 activated: null, langKey: null, createdBy: null, createdDate: null,
                 lastModifiedBy: null, lastModifiedDate: null, resetDate: null,
-                resetKey: null, authorities: null
+                resetKey: null, authorities: null, subscribed: null
             };
         }
 

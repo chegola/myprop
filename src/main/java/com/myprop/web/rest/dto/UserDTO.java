@@ -37,6 +37,8 @@ public class UserDTO {
 
     private Set<String> authorities;
 
+    private boolean subscribed;
+
     public UserDTO() {
     }
 
@@ -44,11 +46,11 @@ public class UserDTO {
         this(user.getLogin(), user.getFirstName(), user.getLastName(),
             user.getEmail(), user.getActivated(), user.getLangKey(),
             user.getAuthorities().stream().map(Authority::getName)
-                .collect(Collectors.toSet()));
+                .collect(Collectors.toSet()), user.getSubscribed());
     }
 
     public UserDTO(String login, String firstName, String lastName,
-        String email, boolean activated, String langKey, Set<String> authorities) {
+        String email, boolean activated, String langKey, Set<String> authorities, boolean subscribed) {
 
         this.login = login;
         this.firstName = firstName;
@@ -57,6 +59,7 @@ public class UserDTO {
         this.activated = activated;
         this.langKey = langKey;
         this.authorities = authorities;
+        this.subscribed = subscribed;
     }
 
     public String getLogin() {
@@ -87,6 +90,8 @@ public class UserDTO {
         return authorities;
     }
 
+    public boolean isSubscribed() { return subscribed; }
+
     @Override
     public String toString() {
         return "UserDTO{" +
@@ -97,6 +102,7 @@ public class UserDTO {
             ", activated=" + activated +
             ", langKey='" + langKey + '\'' +
             ", authorities=" + authorities +
+            ", subscribed=" + subscribed +
             "}";
     }
 }

@@ -73,6 +73,10 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(name = "reset_date", nullable = true)
     private ZonedDateTime resetDate = null;
 
+    @NotNull
+    @Column(nullable = false)
+    private boolean subscribed = true;
+
     @JsonIgnore
     @ManyToMany
     @JoinTable(
@@ -136,6 +140,14 @@ public class User extends AbstractAuditingEntity implements Serializable {
 
     public void setActivated(boolean activated) {
         this.activated = activated;
+    }
+
+    public boolean getSubscribed() {
+        return subscribed;
+    }
+
+    public void setSubscribed(boolean subscribed) {
+        this.subscribed = subscribed;
     }
 
     public String getActivationKey() {
@@ -211,6 +223,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
             ", activated='" + activated + '\'' +
             ", langKey='" + langKey + '\'' +
             ", activationKey='" + activationKey + '\'' +
+            ", subscribed=" + subscribed +
             "}";
     }
 }

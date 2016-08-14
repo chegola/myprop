@@ -7,7 +7,8 @@
             "lastname": "Last Name",
             "lastname.placeholder": "Your last name",
             "language": "Language",
-            "button": "Save"
+            "button": "Save",
+            "subscribed": "Send me email a new announcement"
         },
         "messages": {
             "error": {

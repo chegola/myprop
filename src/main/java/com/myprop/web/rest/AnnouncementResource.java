@@ -2,7 +2,10 @@ package com.myprop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
 import com.myprop.domain.Announcement;
+import com.myprop.domain.User;
+import com.myprop.repository.UserRepository;
 import com.myprop.service.AnnouncementService;
+import com.myprop.service.MailService;
 import com.myprop.web.rest.util.HeaderUtil;
 import com.myprop.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -30,10 +33,16 @@ import java.util.Optional;
 public class AnnouncementResource {
 
     private final Logger log = LoggerFactory.getLogger(AnnouncementResource.class);
-        
+
     @Inject
     private AnnouncementService announcementService;
-    
+
+    @Inject
+    private MailService mailService;
+
+    @Inject
+    private UserRepository userRepository;
+
     /**
      * POST  /announcements : Create a new announcement.
      *
@@ -51,11 +60,18 @@ public class AnnouncementResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("announcement", "idexists", "A new announcement cannot already have an ID")).body(null);
         }
         Announcement result = announcementService.save(announcement);
+        this.sendAnnouncementEmail(announcement);
         return ResponseEntity.created(new URI("/api/announcements/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("announcement", result.getId().toString()))
             .body(result);
     }
 
+    private void sendAnnouncementEmail(Announcement announcement){
+        List<User> users = userRepository.findAllBySubscribed(true);
+        for (User user : users) {
+            mailService.sendAnnouncemenceEmail(user, announcement.getSubject());
+        }
+    }
     /**
      * PUT  /announcements : Updates an existing announcement.
      *
@@ -94,7 +110,7 @@ public class AnnouncementResource {
     public ResponseEntity<List<Announcement>> getAllAnnouncements(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Announcements");
-        Page<Announcement> page = announcementService.findAll(pageable); 
+        Page<Announcement> page = announcementService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/announcements");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
