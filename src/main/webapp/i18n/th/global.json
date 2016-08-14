@@ -14,7 +14,7 @@
             },
             "account": {
                 "main": "บัญชีของคุณ",
-                "settings": "แก้ไขข้อมูลส่วนตัว",
+                "settings": "ตั้งค่า",
                 "password": "แก้ไขรหัสผ่าน",
                 "sessions": "Sessions",
                 "login": "ลงชื่อเข้าใช้",
