@@ -1,7 +1,11 @@
 <div>
-    <div class="row">
+    <div layout="row" layout-padding>
+<!--
         <div class="col-md-6 col-md-offset-2">
-            <h3 translate="register.title">Registration</h3>
+        </div>
+-->
+        <div class="col-md-8 col-md-offset-2">
+            <h4 translate="register.title">Registration</h4>
 
             <div class="alert alert-success" ng-show="vm.success" translate="register.messages.success">
                 <strong>Registration saved!</strong>
@@ -23,8 +27,7 @@
             <div class="alert alert-danger" ng-show="vm.doNotMatch" translate="global.messages.error.dontmatch">
                 The password and its confirmation do not match!
             </div>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
+
 
             <form ng-show="!vm.success" name="form" role="form" novalidate ng-submit="vm.register()" show-validation>
                 <jh-social ng-provider="facebook"></jh-social>

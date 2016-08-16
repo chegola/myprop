@@ -114,12 +114,13 @@ public class MailService {
     }
 
     @Async
-    public void sendAnnouncemenceEmail(User user, String announcementSubject) {
+    public void sendAnnouncemenceEmail(User user, String announcementSubject, Long id) {
         log.debug("Sending a new announcement subject {} and  e-mail to '{}'", announcementSubject, user.getEmail());
         Locale locale = Locale.forLanguageTag(user.getLangKey());
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable("announcementSubject", announcementSubject);
+        context.setVariable("announcementId", id);
         String content = templateEngine.process("announcementNewEmail", context);
         String subject = messageSource.getMessage("email.announce.title", null, locale);
         sendEmail(user.getEmail(), subject, content, false, true);

@@ -4,7 +4,7 @@
         "form": {
             "password": "รหัสผ่าน",
             "password.placeholder": "รหัสผ่านของคุณ",
-            "rememberme": "บันทึกฉันไว้",
+            "rememberme": "ให้ฉันลงชื่อเข้าใช้เสมอ",
             "button": "เข้าสู่ระบบ",
             "or" : "หรือ"
         },

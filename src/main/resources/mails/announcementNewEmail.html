@@ -8,8 +8,10 @@
         <p th:text="#{email.announce.greeting(${user.firstName})}">
             Dear
         </p>
-        <p th:text="#{email.announce.new_content(${announcementSubject})}">
-            Your JHipster account has been created with the social connection: Provider.
+        <p th:text="#{email.announce.new_content(${announcementSubject})}"></p>
+        <p>
+            <a th:href="@{|https://phrueklada.herokuapp.com/#/announcement/${announcementId}|}"
+              th:text="|#{email.announce.linkTo}|"></a>
         </p>
         <p>
             <span th:text="#{email.announce.text1}">Regards, </span>

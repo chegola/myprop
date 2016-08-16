@@ -69,7 +69,7 @@ public class AnnouncementResource {
     private void sendAnnouncementEmail(Announcement announcement){
         List<User> users = userRepository.findAllBySubscribed(true);
         for (User user : users) {
-            mailService.sendAnnouncemenceEmail(user, announcement.getSubject());
+            mailService.sendAnnouncemenceEmail(user, announcement.getSubject(), announcement.getId());
         }
     }
     /**
