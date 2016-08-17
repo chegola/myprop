@@ -31,16 +31,16 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
     mail:
-        host: smtp.mail.yahoo.com
+        host: smtp-mail.outlook.com
         port: 587
-        username: arkhomk@yahoo.com
-        password: oqfrqtwmrpgjdojy
+        username: phriklada@hotmail.co.th
+        password: 1234lada
         protocol: smtp
         tls: true
         properties.mail.smtp:
             auth: true
             starttls.enable: true
-            ssl.trust: smtp.mail.yahoo.com
+            ssl.trust: smtp-mail.outlook.com
     thymeleaf:
         cache: true
 
@@ -69,7 +69,7 @@ jhipster:
                 # Token is valid 24 hours
                 tokenValidityInSeconds: 86400
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: arkhomk@yahoo.com
+        from: phriklada98@hotmail.co.th
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         spark:
