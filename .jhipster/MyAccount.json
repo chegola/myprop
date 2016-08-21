@@ -37,6 +37,10 @@
             "fieldName": "mobile",
             "fieldType": "String",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "approved",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20160728161340",

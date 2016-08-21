@@ -1,8 +1,6 @@
 package com.myprop.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -16,7 +14,6 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "mp_account")
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class MyAccount implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,13 +30,14 @@ public class MyAccount implements Serializable {
     @Column(name = "mobile")
     private String mobile;
 
+    @Column(name = "approved")
+    private Boolean approved;
+
     @OneToOne
     @JoinColumn(unique = true)
     private User user;
 
-
     @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "mp_account_unit",
                joinColumns = @JoinColumn(name="my_accounts_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="units_id", referencedColumnName="ID"))
@@ -67,6 +65,14 @@ public class MyAccount implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public Boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(Boolean approved) {
+        this.approved = approved;
     }
 
     public User getUser() {
@@ -111,6 +117,7 @@ public class MyAccount implements Serializable {
             "id=" + id +
             ", name_surname='" + name_surname + "'" +
             ", mobile='" + mobile + "'" +
+            ", approved='" + approved + "'" +
             '}';
     }
 }

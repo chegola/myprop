@@ -3,9 +3,11 @@ package com.myprop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.myprop.domain.MyAccount;
 import com.myprop.repository.MyAccountRepository;
+import com.myprop.service.MyAccountService;
 import com.myprop.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,10 @@ public class MyAccountResource {
     @Inject
     private MyAccountRepository myAccountRepository;
 
+    @Inject
+    private MyAccountService myAccountService;
+
+
     /**
      * POST  /my-accounts : Create a new myAccount.
      *
@@ -46,6 +52,8 @@ public class MyAccountResource {
         if (myAccount.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("myAccount", "idexists", "A new myAccount cannot already have an ID")).body(null);
         }
+
+        myAccount.setApproved(false);
         MyAccount result = myAccountRepository.save(myAccount);
         return ResponseEntity.created(new URI("/api/my-accounts/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("myAccount", result.getId().toString()))
@@ -67,14 +75,23 @@ public class MyAccountResource {
     @Timed
     public ResponseEntity<MyAccount> updateMyAccount(@Valid @RequestBody MyAccount myAccount) throws URISyntaxException {
         log.debug("REST request to update MyAccount : {}", myAccount);
+        MyAccount result;
+
         if (myAccount.getId() == null) {
             return createMyAccount(myAccount);
         }
-        MyAccount result = myAccountRepository.save(myAccount);
+
+        if (myAccount.isApproved()) {
+            result = myAccountService.approveResidential(myAccount);
+        } else {
+            result = myAccountRepository.save(myAccount);
+        }
+
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("myAccount", myAccount.getId().toString()))
             .body(result);
     }
+
 
     /**
      * GET  /my-accounts : get all the myAccounts.
@@ -126,24 +143,5 @@ public class MyAccountResource {
         myAccountRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("myAccount", id.toString())).build();
     }
-
-    /**
-     * SEARCH  /_search/my-accounts?query=:query : search for the myAccount corresponding
-     * to the query.
-     *
-     * @param query the query of the myAccount search
-     * @return the result of the search
-     */
-/*    @RequestMapping(value = "/_search/my-accounts",
-        method = RequestMethod.GET,
-        produces = MediaType.APPLICATION_JSON_VALUE)
-    @Timed
-    public List<MyAccount> searchMyAccounts(@RequestParam String query) {
-        log.debug("REST request to search MyAccounts for query {}", query);
-        return StreamSupport
-            .stream(myAccountSearchRepository.search(queryStringQuery(query)).spliterator(), false)
-            .collect(Collectors.toList());
-    }*/
-
 
 }

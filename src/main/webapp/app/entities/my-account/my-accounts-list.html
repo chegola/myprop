@@ -1,8 +1,8 @@
 <div>
-    <h2 translate="mypropApp.myAccount.home.title">My Accounts</h2>
+    <h4 translate="mypropApp.myAccount.home.title">My Accounts</h4>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
-        <div class="row">
+        <div layout="row" layout-padding>
             <div class="col-xs-4 no-padding-left">
                 <button class="btn btn-primary" ui-sref="my-account.new" >
                     <span class="glyphicon glyphicon-plus"></span>
@@ -54,6 +54,12 @@
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="my-account.approve({id:myAccount.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate=""></span>
                             </button>
                             <button type="submit"
                                     ui-sref="my-account.delete({id:myAccount.id})"

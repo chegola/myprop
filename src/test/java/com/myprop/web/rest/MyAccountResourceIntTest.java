@@ -46,6 +46,9 @@ public class MyAccountResourceIntTest {
     private static final String DEFAULT_MOBILE = "AAAAA";
     private static final String UPDATED_MOBILE = "BBBBB";
 
+    private static final Boolean DEFAULT_APPROVED = false;
+    private static final Boolean UPDATED_APPROVED = true;
+
     @Inject
     private MyAccountRepository myAccountRepository;
 
@@ -74,6 +77,7 @@ public class MyAccountResourceIntTest {
         myAccount = new MyAccount();
         myAccount.setName_surname(DEFAULT_NAME_SURNAME);
         myAccount.setMobile(DEFAULT_MOBILE);
+        myAccount.setApproved(DEFAULT_APPROVED);
     }
 
     @Test
@@ -94,8 +98,7 @@ public class MyAccountResourceIntTest {
         MyAccount testMyAccount = myAccounts.get(myAccounts.size() - 1);
         assertThat(testMyAccount.getName_surname()).isEqualTo(DEFAULT_NAME_SURNAME);
         assertThat(testMyAccount.getMobile()).isEqualTo(DEFAULT_MOBILE);
-
-        // Validate the MyAccount in ElasticSearch
+        assertThat(testMyAccount.isApproved()).isEqualTo(DEFAULT_APPROVED);
     }
 
     @Test
@@ -128,7 +131,8 @@ public class MyAccountResourceIntTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(myAccount.getId().intValue())))
                 .andExpect(jsonPath("$.[*].name_surname").value(hasItem(DEFAULT_NAME_SURNAME.toString())))
-                .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.toString())));
+                .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.toString())))
+                .andExpect(jsonPath("$.[*].approved").value(hasItem(DEFAULT_APPROVED.booleanValue())));
     }
 
     @Test
@@ -143,7 +147,8 @@ public class MyAccountResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON))
             .andExpect(jsonPath("$.id").value(myAccount.getId().intValue()))
             .andExpect(jsonPath("$.name_surname").value(DEFAULT_NAME_SURNAME.toString()))
-            .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.toString()));
+            .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.toString()))
+            .andExpect(jsonPath("$.approved").value(DEFAULT_APPROVED.booleanValue()));
     }
 
     @Test
@@ -166,6 +171,7 @@ public class MyAccountResourceIntTest {
         updatedMyAccount.setId(myAccount.getId());
         updatedMyAccount.setName_surname(UPDATED_NAME_SURNAME);
         updatedMyAccount.setMobile(UPDATED_MOBILE);
+        updatedMyAccount.setApproved(UPDATED_APPROVED);
 
         restMyAccountMockMvc.perform(put("/api/my-accounts")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -178,8 +184,7 @@ public class MyAccountResourceIntTest {
         MyAccount testMyAccount = myAccounts.get(myAccounts.size() - 1);
         assertThat(testMyAccount.getName_surname()).isEqualTo(UPDATED_NAME_SURNAME);
         assertThat(testMyAccount.getMobile()).isEqualTo(UPDATED_MOBILE);
-
-        // Validate the MyAccount in ElasticSearch
+        assertThat(testMyAccount.isApproved()).isEqualTo(UPDATED_APPROVED);
     }
 
     @Test
@@ -194,25 +199,8 @@ public class MyAccountResourceIntTest {
                 .accept(TestUtil.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk());
 
-        // Validate ElasticSearch is empty
-
         // Validate the database is empty
         List<MyAccount> myAccounts = myAccountRepository.findAll();
         assertThat(myAccounts).hasSize(databaseSizeBeforeDelete - 1);
-    }
-
-    @Test
-    @Transactional
-    public void searchMyAccount() throws Exception {
-        // Initialize the database
-        myAccountRepository.saveAndFlush(myAccount);
-
-        // Search the myAccount
-        restMyAccountMockMvc.perform(get("/api/_search/my-accounts?query=id:" + myAccount.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(myAccount.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name_surname").value(hasItem(DEFAULT_NAME_SURNAME.toString())))
-            .andExpect(jsonPath("$.[*].mobile").value(hasItem(DEFAULT_MOBILE.toString())));
     }
 }

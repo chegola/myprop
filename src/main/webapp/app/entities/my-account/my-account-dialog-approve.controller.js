@@ -3,14 +3,15 @@
 
     angular
         .module('mypropApp')
-        .controller('MyAccountDialogController', MyAccountDialogController);
+        .controller('MyAccountDialogApproveController', MyAccountDialogApproveController);
 
-    MyAccountDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'MyAccount', 'User', 'Unit', 'Principal'];
+    MyAccountDialogApproveController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'MyAccount', 'User', 'Unit', 'Principal'];
 
-    function MyAccountDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, MyAccount, User, Unit, Principal) {
+    function MyAccountDialogApproveController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, MyAccount, User, Unit, Principal) {
         var vm = this;
 
         vm.myAccount = entity;
+        vm.myAccount.approved = true;
         vm.clear = clear;
         vm.save = save;
         vm.units = Unit.query();
@@ -44,6 +45,7 @@
             }
         }
 
+
         function onSaveSuccess (result) {
             $scope.$emit('mypropApp:myAccountUpdate', result);
             $uibModalInstance.close(result);
@@ -57,3 +59,4 @@
 
     }
 })();
+

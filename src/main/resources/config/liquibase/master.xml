@@ -13,4 +13,6 @@
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="classpath:config/liquibase/changelog/25590806150619_changelog.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/25590814000000_add_col_jhi_user.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/25590817000000_add_col_mp_account.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/25590821000000_insert_jhi_authority.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

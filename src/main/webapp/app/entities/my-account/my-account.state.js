@@ -18,7 +18,7 @@
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/my-account/my-accounts.html',
+                    templateUrl: 'app/entities/my-account/my-accounts-list.html',
                     controller: 'MyAccountController',
                     controllerAs: 'vm'
                 }
@@ -88,7 +88,7 @@
                 });
             }]
         })
-        .state('my-account.new', {
+             .state('my-account.new', {
             parent: 'my-account',
             url: '/new',
             data: {
@@ -106,6 +106,7 @@
                             return {
                                 name_surname: null,
                                 mobile: null,
+                                approved: null,
                                 id: null
                             };
                         }
@@ -118,7 +119,7 @@
             }]
         })
         .state('my-account.open', {
-                    parent: 'my-account',
+                  //  parent: 'my-account',
                     url: '/open',
                     data: {
                         authorities: ['ROLE_USER']
@@ -156,6 +157,31 @@
                 $uibModal.open({
                     templateUrl: 'app/entities/my-account/my-account-dialog.html',
                     controller: 'MyAccountDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['MyAccount', function(MyAccount) {
+                            return MyAccount.get({id : $stateParams.id}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                    $state.go('my-account', null, { reload: true });
+                }, function() {
+                    $state.go('^');
+                });
+            }]
+        })
+        .state('my-account.approve', {
+            parent: 'my-account',
+            url: '/{id}/approve',
+            data: {
+                authorities: ['ROLE_ADMIN','ROLE_MANAGER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/my-account/my-account-dialog-approve.html',
+                    controller: 'MyAccountDialogApproveController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',

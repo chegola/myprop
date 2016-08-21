@@ -17,7 +17,7 @@
             <label class="control-label" translate="mypropApp.myAccount.name_surname" for="field_name_surname">Name Surname</label>
             <input type="text" class="form-control" name="name_surname" id="field_name_surname"
                     ng-model="vm.myAccount.name_surname"
-                    required ng-maxlength="100" />
+                    readonly required ng-maxlength="100" />
             <div ng-show="editForm.name_surname.$invalid">
                 <p class="help-block"
                     ng-show="editForm.name_surname.$error.required" translate="entity.validation.required">
@@ -51,7 +51,15 @@
 
         <div class="form-group">
             <label translate="mypropApp.myAccount.unit" for="field_unit">Unit</label>
-            <select class="form-control" id="field_unit" multiple name="unit" ng-model="vm.myAccount.units" ng-options="unit as unit.externalId for unit in vm.units track by unit.id"></select>
+            <select class="form-control" id="field_unit" multiple name="unit" ng-model="vm.myAccount.units" ng-options="unit as unit.externalId for unit in vm.units track by unit.id"  required></select>
+            <div ng-show="editForm.field_unit.$invalid">
+                <p class="help-block"
+                   ng-show="editForm.field_unit.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+
+            </div>
+
         </div>
     </div>
     <div class="modal-footer">
