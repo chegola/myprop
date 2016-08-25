@@ -21,8 +21,18 @@
 
         function getAccount() {
             Principal.identity().then(function(account) {
+                var separator = "";
                 vm.user = account.login;
-                vm.myAccount.name_surname = account.firstName + ' ' + account.lastName,
+                if (!account.firstName) {
+                    account.firstName = ""
+                } else {
+                    separator = "  "; // a space between name and surname
+                }
+
+                if (!account.lastName) {
+                    account.lastName = ""
+                }
+                vm.myAccount.name_surname = account.firstName + separator + account.lastName;
                 vm.myAccount.user = User.get({login : vm.user});
             });
         }

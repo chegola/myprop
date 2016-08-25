@@ -15,18 +15,6 @@
         vm.clear = clear;
         vm.save = save;
         vm.units = Unit.query();
-        vm.user = null;
-        getAccount();
-
-        vm.account = null;
-
-        function getAccount() {
-            Principal.identity().then(function(account) {
-                vm.user = account.login;
-                vm.myAccount.name_surname = account.firstName + ' ' + account.lastName,
-                vm.myAccount.user = User.get({login : vm.user});
-            });
-        }
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

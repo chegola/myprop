@@ -2,11 +2,12 @@
     "mypropApp": {
         "myAccount" : {
             "home": {
-                "title": "My Accounts",
+                "title": "My Account",
                 "createLabel": "Create a new My Account",
                 "createOrEditLabel": "Create or edit a My Account",
                 "search": "Search for My Account"
             },
+            "approval" : "Verify resident ownership",
             "created": "A new My Account is created with identifier {{ param }}",
             "updated": "A My Account is updated with identifier {{ param }}",
             "deleted": "A My Account is deleted with identifier {{ param }}",
@@ -21,7 +22,9 @@
             "approved": "Approved",
             "user": "User",
             "unit": "Unit",
-            "unit": "Unit"
+            "approve" : "approve",
+            "approved" : "Status"
+
         }
     }
 }

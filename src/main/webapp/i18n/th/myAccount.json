@@ -2,25 +2,27 @@
     "mypropApp": {
         "myAccount" : {
             "home": {
-                "title": "My Accounts",
-                "createLabel": "Create a new My Account",
-                "createOrEditLabel": "Create or edit a My Account",
+                "title": "ข้อมูลการเป็นเจ้าของบ้าน",
+                "createLabel": "ข้อมูลการเป็นเจ้าของบ้าน",
+                "createOrEditLabel": "กรอกข้อมูลการเป็นเจ้าของบ้าน",
                 "search": "Search for My Account"
             },
+            "approval" : "ตรวจสอบการเป็นเจ้าของบ้าน",
             "created": "A new My Account is created with identifier {{ param }}",
             "updated": "A My Account is updated with identifier {{ param }}",
             "deleted": "A My Account is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete My Account {{ id }}?"
+                "question": "คุณต้องการลบข้อมูลการเป็นเจ้าของบ้านหมายเลข ID : {{ id }} ใช่หรือไม่?"
             },
             "detail": {
                 "title": "My Account"
             },
-            "name_surname": "Name Surname",
-            "mobile": "Mobile",
-            "user": "User",
-            "unit": "Unit",
-            "unit": "Unit"
+            "name_surname": "ชื่อ - นามสกุล",
+            "mobile": "เบอร์โทรติดต่อ - ทางนิติฯ จะติดต่อไปเมื่อจำเป็นเท่านั้น",
+            "user": "ชื่อที่เข้าใช้งาน",
+            "unit": "เป็นเจ้าของบ้านเลขที่",
+            "approve" : "อนุมัติ",
+            "approved" : "สถานะการอนุมัติ"
         }
     }
 }

@@ -92,23 +92,23 @@
         "action": {
             "addblob": "Add blob",
             "addimage": "Add image",
-            "back": "Back",
-            "cancel": "Cancel",
-            "delete": "Delete",
-            "edit": "Edit",
-            "open": "Open",
-            "save": "Save",
-            "view": "View"
+            "back": "กลับ",
+            "cancel": "ยกเลิก",
+            "delete": "ลบ",
+            "edit": "แก้ไข",
+            "open": "เปิด",
+            "save": "บันทึก",
+            "view": "ดู"
         },
         "detail": {
             "field": "Field",
             "value": "Value"
         },
         "delete": {
-            "title": "Confirm delete operation"
+            "title": "ยืนยันการลบข้อมูล"
         },
         "validation": {
-            "required": "ต้องใส่ข้อมูลในช่องนี้",
+            "required": "กรุณากรอกข้อมูลในช่องนี้",
             "minlength": "This field is required to be at least {{ min }} characters.",
             "maxlength": "This field cannot be longer than {{ max }} characters.",
             "min": "This field should be more than {{ min }}.",
