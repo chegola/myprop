@@ -88,7 +88,7 @@
                 });
             }]
         })
-             .state('my-account.new', {
+        .state('my-account.new', {
             parent: 'my-account',
             url: '/new',
             data: {
@@ -119,7 +119,7 @@
             }]
         })
         .state('my-account.open', {
-                  //  parent: 'my-account',
+                    parent: 'my-account',
                     url: '/open',
                     data: {
                         authorities: ['ROLE_USER']

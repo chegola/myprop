@@ -19,4 +19,8 @@ public interface MyAccountRepository extends JpaRepository<MyAccount,Long> {
     @Query("select myAccount from MyAccount myAccount left join fetch myAccount.units where myAccount.id =:id")
     MyAccount findOneWithEagerRelationships(@Param("id") Long id);
 
+    @Query("select distinct myAccount from MyAccount myAccount inner join myAccount.user u left join fetch myAccount.units where u.login = ?#{principal.username}")
+  // @Query("select distinct myAccount from MyAccount myAccount left join fetch myAccount.units")
+    List<MyAccount>  findOneWithEagerRelationshipsByUserId();
+
 }

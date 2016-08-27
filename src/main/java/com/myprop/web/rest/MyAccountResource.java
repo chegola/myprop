@@ -3,20 +3,23 @@ package com.myprop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.myprop.domain.MyAccount;
 import com.myprop.repository.MyAccountRepository;
+import com.myprop.security.AuthoritiesConstants;
 import com.myprop.service.MyAccountService;
 import com.myprop.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -104,7 +107,17 @@ public class MyAccountResource {
     @Timed
     public List<MyAccount> getAllMyAccounts() {
         log.debug("REST request to get all MyAccounts");
-        List<MyAccount> myAccounts = myAccountRepository.findAllWithEagerRelationships();
+        List<MyAccount> myAccounts = null;
+        final Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)
+            SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        final SimpleGrantedAuthority admin_role = new SimpleGrantedAuthority(AuthoritiesConstants.ADMIN);
+        final SimpleGrantedAuthority manager_role = new SimpleGrantedAuthority(AuthoritiesConstants.MANAGER);
+        if (authorities.contains(admin_role) || authorities.contains(manager_role)) {
+            myAccounts = myAccountRepository.findAllWithEagerRelationships();
+        } else {
+            myAccounts = myAccountRepository.findOneWithEagerRelationshipsByUserId();
+        }
+
         return myAccounts;
     }
 
