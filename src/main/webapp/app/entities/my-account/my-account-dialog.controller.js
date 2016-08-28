@@ -15,7 +15,7 @@
         vm.save = save;
         vm.units = Unit.query();
         vm.user = null;
-
+        vm.users = null;
         getLogin();
 
         if (!vm.myAccount.name_surname) {
@@ -27,6 +27,7 @@
          Principal.identity().then(function(account) {
             vm.user = account.login;
             vm.myAccount.user = User.get({login : vm.user});
+            vm.users = User.query();
          });
         }
 

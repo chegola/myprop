@@ -4,7 +4,13 @@
     <div class="container-fluid">
         <div layout="row" layout-padding>
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="my-account.open" ng-disabled="vm.hasData" >
+                <button class="btn btn-primary" ui-sref="my-account.open" ng-hide="vm.hasData"  has-authority="ROLE_USER">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="mypropApp.myAccount.home.createLabel">
+                        Create new My Account
+                    </span>
+                </button>
+                <button class="btn btn-primary" ui-sref="my-account.open"  has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
                     <span class="glyphicon glyphicon-plus"></span>
                     <span  translate="mypropApp.myAccount.home.createLabel">
                         Create new My Account
@@ -25,7 +31,6 @@
                     <th><span translate="mypropApp.myAccount.approved">Approved</span></th>
                     <th><span translate="mypropApp.myAccount.user">User</span></th>
                     <th><span translate="mypropApp.myAccount.unit">Unit</span></th>
-                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -33,7 +38,15 @@
                  <!--   <td><a ui-sref="my-account-detail({id:myAccount.id})">{{myAccount.id}}</a></td>-->
                     <td>
                         <div class="btn-group flex-btn-group-container">
+                            <button type="submit" has-any-authority="ROLE_ADMIN, ROLE_MANAGER"
+                                    ng-disabled="myAccount.approved"
+                                    ng-click="vm.setApproved(myAccount, true)"
+                                    class="btn btn-success btn-sm">
+                                <span class="glyphicon glyphicon-ok"></span>
+                                <span class="hidden-xs hidden-sm" translate="mypropApp.myAccount.approve"></span>
+                            </button>
                             <button type="submit"
+                                    ng-disabled="myAccount.approved"
                                     ui-sref="my-account.edit({id:myAccount.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
@@ -65,29 +78,8 @@
                             <a class="form-control-static" ui-sref="unit-detail({id: unit.id})">{{unit.externalId}}</a>{{$last ? '' : ', '}}
                         </span>
                     </td>
-                    <td class="text-right">
-                        <div class="btn-group flex-btn-group-container">
-                           <!-- <button type="submit"
-                                    ui-sref="my-account-detail({id:myAccount.id})"
-                                    class="btn btn-info btn-sm">
-                                <span class="glyphicon glyphicon-eye-open"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
-                            </button>-->
-                          <!--  <button type="submit" has-any-authority="ROLE_ADMIN, ROLE_MANAGER"
-                                    ui-sref="my-account.approve({id:myAccount.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" translate=""></span>
-                            </button>-->
-                            <button type="submit" has-any-authority="ROLE_ADMIN, ROLE_MANAGER"
-                                    ng-click="vm.setApproved(myAccount, true)"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" translate=""></span>
-                            </button>
 
-                        </div>
-                    </td>
+
                 </tr>
             </tbody>
         </table>

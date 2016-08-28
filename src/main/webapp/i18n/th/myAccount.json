@@ -12,7 +12,7 @@
             "updated": "A My Account is updated with identifier {{ param }}",
             "deleted": "A My Account is deleted with identifier {{ param }}",
             "delete": {
-                "question": "คุณต้องการลบข้อมูลการเป็นเจ้าของบ้านหมายเลข ID : {{ id }} ใช่หรือไม่?"
+                "question": "คุณต้องการลบข้อมูลการเป็นเจ้าของบ้าน ใช่หรือไม่?"
             },
             "detail": {
                 "title": "My Account"
