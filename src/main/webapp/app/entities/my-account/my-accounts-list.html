@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div layout="row" layout-padding>
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="my-account.new" >
+                <button class="btn btn-primary" ui-sref="my-account.open" ng-disabled="vm.hasData" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span  translate="mypropApp.myAccount.home.createLabel">
                         Create new My Account
@@ -18,7 +18,8 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr>
-                    <th><span translate="global.field.id">ID</span></th>
+           <!--         <th><span translate="global.field.id">ID</span></th>-->
+                    <th></th>
                     <th><span translate="mypropApp.myAccount.name_surname">Name Surname</span></th>
                     <th><span translate="mypropApp.myAccount.mobile">Mobile</span></th>
                     <th><span translate="mypropApp.myAccount.approved">Approved</span></th>
@@ -29,10 +30,33 @@
             </thead>
             <tbody>
                 <tr ng-repeat="myAccount in vm.myAccounts track by myAccount.id">
-                    <td><a ui-sref="my-account-detail({id:myAccount.id})">{{myAccount.id}}</a></td>
+                 <!--   <td><a ui-sref="my-account-detail({id:myAccount.id})">{{myAccount.id}}</a></td>-->
+                    <td>
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="my-account.edit({id:myAccount.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="my-account.delete({id:myAccount.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
                     <td>{{myAccount.name_surname}}</td>
                     <td>{{myAccount.mobile}}</td>
-                    <td>{{myAccount.approved}}</td>
+                    <td><!--{{myAccount.approved}}-->
+
+                      <span class="label label-danger"  ng-show="!myAccount.approved"
+                            translate="mypropApp.myAccount.status.not_approved" >Waiting list</span>
+                      <span class="label label-success" ng-show="myAccount.approved"
+                            translate="mypropApp.myAccount.status.approved" >Approved</span>
+
+                    </td>
                     <td>
                         {{myAccount.user.login}}
                     </td>
@@ -43,30 +67,25 @@
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
-                            <button type="submit"
+                           <!-- <button type="submit"
                                     ui-sref="my-account-detail({id:myAccount.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
-                            </button>
-                            <button type="submit"
-                                    ui-sref="my-account.edit({id:myAccount.id})"
-                                    class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
-                            </button>
-                            <button type="submit"
+                            </button>-->
+                          <!--  <button type="submit" has-any-authority="ROLE_ADMIN, ROLE_MANAGER"
                                     ui-sref="my-account.approve({id:myAccount.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm" translate=""></span>
+                            </button>-->
+                            <button type="submit" has-any-authority="ROLE_ADMIN, ROLE_MANAGER"
+                                    ng-click="vm.setApproved(myAccount, true)"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate=""></span>
                             </button>
-                            <button type="submit"
-                                    ui-sref="my-account.delete({id:myAccount.id})"
-                                    class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                            </button>
+
                         </div>
                     </td>
                 </tr>

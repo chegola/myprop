@@ -153,6 +153,7 @@ public class MyAccountResource {
     @Timed
     public ResponseEntity<Void> deleteMyAccount(@PathVariable Long id) {
         log.debug("REST request to delete MyAccount : {}", id);
+        myAccountService.unApproveResidential(id);
         myAccountRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("myAccount", id.toString())).build();
     }

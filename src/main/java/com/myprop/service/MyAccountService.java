@@ -36,18 +36,17 @@ public class MyAccountService {
     @Inject
     private AuthorityRepository authorityRepository;
 
+    @Inject
+    private UserService userService;
 
     public MyAccount approveResidential(MyAccount myAccount) {
         log.debug("Approving residential for {}", myAccount.getName_surname());
 
-
         Authority authority_resident = authorityRepository.findOne(AuthoritiesConstants.RESIDENT);
         Optional<Set<Authority>> authorities = userRepository.findOneById(myAccount.getUser().getId()).map(user-> {return user.getAuthorities();});
         authorities.get().add(authority_resident);
-        //authorities.add(authority_resident);
         userRepository.findOneById(myAccount.getUser().getId())
             .map(user-> {
-                user.setSubscribed(true);
                 user.setAuthorities(authorities.get());
                 userRepository.save(user);
                return user;
@@ -55,8 +54,17 @@ public class MyAccountService {
         myAccount.setApproved(true);
         myAccountRepository.save(myAccount);
         return myAccount;
+    }
 
-        /*
+    public void unApproveResidential(Long id) {
+        final MyAccount myAccount = myAccountRepository.findOne(id);
+        log.debug("Un-approving residential for {}", myAccount.getName_surname());
+        myAccount.setApproved(false);
+        userService.resetAuthorityToUserRole(myAccount.getUser().getId());
+        myAccountRepository.save(myAccount);
+    }
+}
+            /*
         /*//*return myAccountRepository.findOne(myAccount.getId())
             .map(user -> {
                 // activate given user for the registration key.
@@ -70,8 +78,6 @@ public class MyAccountService {
 
                       return user;
             });*/
-    }
-
 
     /*public Optional<MyAccount> approveResidential(MyAccount myAccount) {
         log.debug("Approving residential for {}", myAccount.getName_surname());
@@ -88,4 +94,4 @@ public class MyAccountService {
             });
     }*/
 
-}
+

@@ -155,7 +155,7 @@
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/my-account/my-account-dialog.html',
+                    templateUrl: 'app/entities/my-account/my-account-dialog-edit.html',
                     controller: 'MyAccountDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',

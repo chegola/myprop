@@ -11,7 +11,6 @@
         var vm = this;
 
         vm.myAccount = entity;
-        vm.myAccount.approved = true;
         vm.clear = clear;
         vm.save = save;
         vm.units = Unit.query();
@@ -44,7 +43,10 @@
             vm.isSaving = false;
         }
 
-
+        function setApproved (isApproved) {
+            vm.myAccount.approved = true;
+            MyAccount.update(vm.myAccount, onSaveSuccess, onSaveError);
+        }
     }
 })();
 

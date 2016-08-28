@@ -201,4 +201,16 @@ public class UserService {
             userRepository.delete(user);
         }
     }
+
+    @Transactional()
+    public User resetAuthorityToUserRole(Long id) {
+        User user = userRepository.findOne(id);
+        log.debug("Reset role to USER_ROLE for user {}", user.getLogin());
+        Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
+        Set<Authority> authorities = new HashSet<>();
+        authorities.add(authority);
+        user.setAuthorities(authorities);
+        userRepository.save(user);
+        return user;
+    }
 }

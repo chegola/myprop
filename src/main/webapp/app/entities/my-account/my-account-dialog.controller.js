@@ -15,14 +15,24 @@
         vm.save = save;
         vm.units = Unit.query();
         vm.user = null;
-        getAccount();
 
+        getLogin();
+
+        if (!vm.myAccount.name_surname) {
+            getAccount();
+        }
         vm.account = null;
+
+        function getLogin() {
+         Principal.identity().then(function(account) {
+            vm.user = account.login;
+            vm.myAccount.user = User.get({login : vm.user});
+         });
+        }
 
         function getAccount() {
             Principal.identity().then(function(account) {
                 var separator = "";
-                vm.user = account.login;
                 if (!account.firstName) {
                     account.firstName = ""
                 } else {
@@ -33,7 +43,6 @@
                     account.lastName = ""
                 }
                 vm.myAccount.name_surname = account.firstName + separator + account.lastName;
-                vm.myAccount.user = User.get({login : vm.user});
             });
         }
 
