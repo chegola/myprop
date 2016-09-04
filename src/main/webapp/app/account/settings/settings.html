@@ -1,7 +1,7 @@
 <div>
-    <div layout="row" layout-padding>
+    <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <h4 translate="settings.title" translate-values="{username: '{{vm.settingsAccount.login}}'}">User settings for [<b>{{vm.settingsAccount.login}}</b>]</h4>
+            <h3 translate="settings.title" translate-values="{username: '{{vm.settingsAccount.login}}'}">User settings for [<b>{{vm.settingsAccount.login}}</b>]</h3>
 
             <div class="alert alert-success" ng-show="vm.success" translate="settings.messages.success">
                 <strong>Settings saved!</strong>

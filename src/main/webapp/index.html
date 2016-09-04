@@ -14,38 +14,118 @@
     <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <!-- <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">-->
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
     <link rel="stylesheet" href="content/css/main.css">
     <link rel="stylesheet" href="content/css/styles.css">
+    <link rel="stylesheet" href="content/css/material-angular.css">
+
     <!-- endbuild -->
     <!-- Angular Material style sheet -->
-    <!--<link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">-->
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://use.fontawesome.com/c3bc85fc67.js"></script>
     <script src="i18n/angular-locale_th.js"></script>
 </head>
-<body ng-app="mypropApp" ng-strict-di>
+<body ng-app="mypropApp" ng-strict-di ng-controller="NavbarController as vm"  ng-switch="vm.isAuthenticated()">
 <!--[if lt IE 9]>
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<page-ribbon></page-ribbon>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" ng-controller="NavbarController as vm"
+<!--<page-ribbon></page-ribbon>-->
+
+<!-- Container #1 (see wireframe) -->
+<md-toolbar layout="row" >
+    <div class="md-toolbar-tools">
+        <md-button  hide-gt-sm ng-click="toggleLeft()" >
+            <i class="material-icons">menu</i>
+        </md-button>
+        <a href="#/">
+            <img src="content/images/logo-Pruklada-color-smallest.png">
+        </a>
+    </div>
+</md-toolbar>
+
+<!-- Container #2 -->
+<div flex layout="row">
+    <!-- Container #3 -->
+    <md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
+                md-component-id="left"
+                class="md-whiteframe-4dp" >
+        <md-list flex>
+            <md-list-item class="md-3-line"  hide-gt-sm>
+                <img  src="content/images/logo-Pruklada-color-small.png">
+            </md-list-item>
+            <md-divider ></md-divider>
+            <md-list-item class="md-1-line" ng-click="close()" ui-sref="announcement">
+                <div class="md-list-item-text" layout="column">
+                    <h6 translate="global.menu.announcement"></h6>
+                </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+            <md-list-item class="md-1-line" ng-click="close()" ui-sref="settings" ng-switch-when="true">
+                <div class="md-list-item-text" layout="column">
+                    <h6 translate="global.menu.account.settings"></h6>
+                </div>
+            </md-list-item>
+            <md-list-item class="md-1-line" ng-click="close()" ui-sref="password" ng-switch-when="true">
+                <div class="md-list-item-text" layout="column">
+                    <h6 translate="global.menu.account.password"></h6>
+                </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+            <md-list-item class="md-1-line" ui-sref-active="active" ng-switch-when="false" ng-click="vm.login()">
+                <div class="md-list-item-text" layout="column">
+                    <h6 translate="global.menu.account.login"></h6>
+                </div>
+            </md-list-item>
+            <md-list-item class="md-1-line" ui-sref-active="active" ng-switch-when="true" ng-click="vm.logout()">
+                <div class="md-list-item-text" layout="column">
+                    <h6 translate="global.menu.account.logout"></h6>
+                </div>
+            </md-list-item>
+            <md-divider ></md-divider>
+
+                <md-list-item class="md-1-line"  ng-click="close()" ng-switch-when="true"
+                              ui-sref="user-management">
+                    <div class="md-list-item-text" layout="column" >
+                        <h6 translate="global.menu.admin.userManagement"></h6>
+                    </div>
+                </md-list-item>
+
+
+            <!--
+            <div class="android-drawer-separator" ng-switch-when="true" has-any-authority="ROLE_ADMIN"></div>
+            <span class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" translate="global.menu.admin.main">ผู้ดูแลระบบ</span>
+            <a class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" ui-sref="user-management" translate="global.menu.admin.userManagement">บริหารจัดการผู้ใช้งาน</a>
+
+            -->
+        </md-list>
+    </md-sidenav>
+    <!-- Container #4 -->
+    <md-content flex id="content" >
+        <div ui-view="content" ng-cloak></div>
+
+    </md-content>
+</div>
+<!--
+
+<div class="mdl-layout mdl-js-layout mdl-layout&#45;&#45;fixed-header" ng-controller="NavbarController as vm"
      ng-switch="vm.isAuthenticated()">
-    <div class="android-header mdl-layout__header mdl-layout__header--waterfall mdl-shadow--4dp">
+    <div class="android-header mdl-layout__header mdl-layout__header&#45;&#45;waterfall mdl-shadow&#45;&#45;4dp">
         <div class="mdl-layout__header-row">
             <a href="#/">
                 <span class="android-title mdl-layout-title">
                     <img src="content/images/logo-Pruklada-color.png">
                 </span>
-                <!--<span class="navbar-version">v{{VERSION}}</span>-->
+                &lt;!&ndash;<span class="navbar-version">v{{VERSION}}</span>&ndash;&gt;
             </a>
-            <!-- Add spacer, to align navigation to the right in desktop -->
+            &lt;!&ndash; Add spacer, to align navigation to the right in desktop &ndash;&gt;
             <div class="android-header-spacer mdl-layout-spacer"></div>
-             <!--<div
+             &lt;!&ndash;<div
                 class="android-search-box mdl-textfield mdl-js-textfield mdl-textfield&#45;&#45;expandable mdl-textfield&#45;&#45;floating-label mdl-textfield&#45;&#45;align-right mdl-textfield&#45;&#45;full-width">
                 <label class="mdl-button mdl-js-button mdl-button&#45;&#45;icon" for="search-field">
                     <i class="material-icons">search</i>
@@ -55,13 +135,13 @@
                 </div>
 
 
-            </div>-->
-            <!-- Navigation -->
+            </div>&ndash;&gt;
+            &lt;!&ndash; Navigation &ndash;&gt;
             <div class="android-navigation-container">
                 <nav class="android-navigation mdl-navigation">
-                    <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
-                    <!-- <a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>-->
-                    <!--<a class="nmdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>-->
+                    <a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
+                    &lt;!&ndash; <a class="mdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>&ndash;&gt;
+                    &lt;!&ndash;<a class="nmdl-navigation__link mdl-typography&#45;&#45;text-uppercase" href="">Wear</a>&ndash;&gt;
                 </nav>
             </div>
             <a href="#/">
@@ -69,11 +149,11 @@
                     <img class="pruklada-logo-image" src="content/images/logo-Pruklada-color.png">
                 </span>
             </a>
-            <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
+            <button class="android-more-button mdl-button mdl-js-button mdl-button&#45;&#45;icon mdl-js-ripple-effect"
                     id="language">
                 <i class="material-icons">language</i>
             </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="language">
+            <ul class="mdl-menu mdl-js-menu mdl-menu&#45;&#45;bottom-right mdl-js-ripple-effect" for="language">
                 <div ng-controller="JhiLanguageController as languageVm">
                     <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
                         <li class="mdl-menu__item" ui-sref-active="active" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</li>
@@ -81,13 +161,13 @@
                 </div>
             </ul>
 
-            <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect"
+            <button class="android-more-button mdl-button mdl-js-button mdl-button&#45;&#45;icon mdl-js-ripple-effect"
                     id="more-button">
                 <i class="material-icons">more_vert</i>
             </button>
 
 
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <ul class="mdl-menu mdl-js-menu mdl-menu&#45;&#45;bottom-right mdl-js-ripple-effect" for="more-button">
 
                 <li class="mdl-menu__item" ui-sref-active="active" ng-switch-when="true" ui-sref="settings"
                     id="settings" translate="global.menu.account.settings">Settings
@@ -109,14 +189,14 @@
         </div>
     </div>
 
-    <!-- Drawer menu -->
+    &lt;!&ndash; Drawer menu &ndash;&gt;
     <div class="android-drawer mdl-layout__drawer">
         <span class="mdl-layout-title">
             <img class="android-logo-image" src="content/images/logo-Pruklada-white-small.png">
         </span>
         <nav class="mdl-navigation">
             <a class="mdl-navigation__link" href="" ui-sref="announcement" translate="global.menu.announcement">ข่าวสาร</a>
-           <!-- <a class="mdl-navigation__link" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>-->
+           &lt;!&ndash; <a class="mdl-navigation__link" href="" ng-switch-when="true" translate="global.menu.serviceRequest">แจ้งข้อมูล</a>&ndash;&gt;
             <div class="android-drawer-separator"></div>
             <a class="mdl-navigation__link" href="" ui-sref-active="active" ng-switch-when="false"
                ng-click="vm.login()" translate="global.menu.account.login">Sign in</a>
@@ -153,6 +233,7 @@
     </div>
 </div>
 
+-->
 
 <!--    <div ui-view="navbar" ng-cloak></div>
     <div class="container">
