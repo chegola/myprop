@@ -35,7 +35,7 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<!--<page-ribbon></page-ribbon>-->
+<page-ribbon></page-ribbon>
 
 <!-- Container #1 (see wireframe) -->
 <md-toolbar layout="row" >
@@ -80,8 +80,7 @@
 
             <md-divider ></md-divider>
             <div ng-controller="JhiLanguageController as languageVm">
-                <md-list-item class="md-1-line"  ng-click="languageVm.changeLanguage(language);vm.close();" ng-repeat="language in languageVm.languages"
-                              ui-sref="user-management" >
+                <md-list-item class="md-1-line"  ng-click="languageVm.changeLanguage(language);vm.close();" ng-repeat="language in languageVm.languages">
                     <div class="md-list-item-text" layout="column" >
                         <h6>{{language | findLanguageFromKey}}</h6>
                     </div>

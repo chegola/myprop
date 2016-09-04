@@ -1,17 +1,20 @@
-<div class="android-more-section">
-    <md-whiteframe class="md-whiteframe-2dp" flex layout layout-align="start center" >
+<div flex-xs flex-gt-xs="80" layout="column">
+    <md-whiteframe class="md-whiteframe-1dp" flex layout layout-align="start center" >
         <jhi-alert-error></jhi-alert-error>
         <div md-layout="column" flex  layout-margin>
-            <center><h4>{{vm.announcement.subject}}</h4></center>
+            <center><h3>{{vm.announcement.subject}}</h3></center>
             <md-divider></md-divider>
             <p><h5>{{vm.announcement.startDate | date:'mediumDate'}}</h5></p>
             <p><span ng-bind-html="vm.announcement.detail"></span></p>
 
             <md-divider></md-divider>
             <div layout="row" layout-padding layout-align="space-between center">
-                <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
+              <!--  <a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href=""
                    ui-sref="{{ vm.previousState }}" translate="entity.action.back"><i class="material-icons">chevron_left</i>กลับ
-                </a>
+                </a>-->
+                <md-button  class="md-raised md-primary" ui-sref="{{ vm.previousState }}" translate="entity.action.back">
+                    <!--<i class="material-icons">chevron_left</i>-->
+                </md-button>
                 <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
                         class="btn btn-primary"
                         has-any-authority="ROLE_ADMIN,ROLE_MANAGER">

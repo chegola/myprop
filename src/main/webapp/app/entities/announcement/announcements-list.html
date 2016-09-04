@@ -1,68 +1,51 @@
-
-<style>
-.demo-card-wide.mdl-card {
-  background: #F1F8E9;
-}
-</style>
-
-<div class="android-more-section">
+<div flex-xs flex-gt-xs="80" layout="column">
     <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="new ticket" style="position:fixed"
                ui-sref="announcement.new" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
         <md-icon md-font-set="material-icons">add</md-icon>
     </md-button>
-    <div class="android-section-title mdl-typography--display-1-color-contrast" translate="mypropApp.announcement.title">ประกาศจากนิติบุคคล</div>
+    <h3 translate="mypropApp.announcement.title"></h3>
     <md-divider></md-divider>
-    <div class="android-card-container mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone  demo-card-wide mdl-card mdl-shadow--2dp"
-             ng-repeat="announcement in vm.announcements | pin">
-            <div class="mdl-card__supporting-text" >
-                <h5>{{announcement.subject}}</h5>
-                <i>{{announcement.startDate | date:'mediumDate'}}</i>
-
-                <md-divider></md-divider>
+    <md-card   md-theme-watch  ng-repeat="announcement in vm.announcements | pin">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{announcement.subject}}</span>
+                <span class="md-subhead">{{announcement.startDate | date:'mediumDate'}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <i class="material-icons">favorite</i>
             </div>
-            <div class="mdl-card__actions">
-                <div layout="row" layout-padding  layout-align="space-between center">
-                    <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
-                       ui-sref="announcement-detail({id:announcement.id})" translate="mypropApp.announcement.detail">
-                        ดูรายละเอียด
-                    </a>
-                    <i class="material-icons">favorite</i>
-                    <button type="submit"
-                            ui-sref="announcement.delete({id:announcement.id})"
-                            class="btn btn-danger btn-sm" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
-                        <span class="glyphicon glyphicon-remove-circle"></span>
-                        <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                    </button>
-                </div>
+            <div layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ui-sref="announcement-detail({id:announcement.id})" translate="mypropApp.announcement.detail">See more detail</md-button>
+                <md-button class="md-raised md-warn"
+                           ui-sref="announcement.delete({id:announcement.id})" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                </md-button>
             </div>
-        </div>
-    </div>
-
-    <div class="android-card-container mdl-grid">
-        <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone  demo-card-wide mdl-card mdl-shadow--2dp"
-             ng-repeat="announcementUnpin in vm.announcements | unpin">
-
-            <div class="mdl-card__supporting-text" >
-                <h5>{{announcementUnpin.subject}}</h5>
-                <i>{{announcementUnpin.startDate | date:'mediumDate'}}</i>
-                <md-divider></md-divider>
+        </md-card-actions>
+    </md-card>
+    <md-card md-theme="default" md-theme-watch  ng-repeat="announcement in vm.announcements | unpin">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">{{announcement.subject}}</span>
+                <span class="md-subhead">{{announcement.startDate | date:'mediumDate'}}</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-actions layout="row" layout-align="space-between center">
+            <div layout="row" layout-align="start center">
+                <!--<i class="material-icons">favorite</i>-->
             </div>
-
-            <div class="mdl-card__actions">
-                <div layout="row" layout-padding  layout-align="space-between center">
-                    <a class="android-link mdl-button mdl-js-button mdl-typography--text-uppercase" href=""
-                       ui-sref="announcement-detail({id:announcementUnpin.id})" translate="mypropApp.announcement.detail">
-                        ดูรายละเอียด
-                    </a>
-                    <button type="submit"
-                            ui-sref="announcement.delete({id:announcementUnpin.id})"
-                            class="btn btn-danger btn-sm" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
-                        <span class="glyphicon glyphicon-remove-circle"></span>
-                        <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                    </button>
-                </div>
+            <div layout="row" layout-align="end center">
+                <md-button class="md-raised md-primary" ui-sref="announcement-detail({id:announcement.id})" translate="mypropApp.announcement.detail">See more detail</md-button>
+                <md-button class="md-raised md-warn"
+                           ui-sref="announcement.delete({id:announcement.id})" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                </md-button>
             </div>
-        </div>
-    </div>
+        </md-card-actions>
+    </md-card>
+
 </div>
