@@ -23,16 +23,16 @@
         vm.toggleNavbar = toggleNavbar;
         vm.collapseNavbar = collapseNavbar;
         vm.$state = $state;
+        vm.toggleLeft = buildDelayedToggler('left');
+        vm.close = close;
 
-        $scope.toggleLeft = buildDelayedToggler('left');
-        $scope.close = function () {
+        function close() {
             // Component lookup should always be available since we are not using `ng-if`
             $mdSidenav('left').close()
             .then(function () {
                 $log.debug("close LEFT is done");
             });
-        };
-
+        }
 
         function login() {
             collapseNavbar();

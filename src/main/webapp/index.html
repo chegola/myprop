@@ -28,7 +28,7 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://use.fontawesome.com/c3bc85fc67.js"></script>
-    <script src="i18n/angular-locale_th.js"></script>
+<!--    <script src="i18n/angular-locale_th.js"></script>-->
 </head>
 <body ng-app="mypropApp" ng-strict-di ng-controller="NavbarController as vm"  ng-switch="vm.isAuthenticated()">
 <!--[if lt IE 9]>
@@ -40,7 +40,7 @@
 <!-- Container #1 (see wireframe) -->
 <md-toolbar layout="row" >
     <div class="md-toolbar-tools">
-        <md-button  hide-gt-sm ng-click="toggleLeft()" >
+        <md-button  hide-gt-sm ng-click="vm.toggleLeft()" >
             <i class="material-icons">menu</i>
         </md-button>
         <a href="#/">
@@ -50,7 +50,7 @@
 </md-toolbar>
 
 <!-- Container #2 -->
-<div flex layout="row">
+<div flex layout="row" ng-cloak>
     <!-- Container #3 -->
     <md-sidenav md-is-locked-open="$mdMedia('gt-sm')"
                 md-component-id="left"
@@ -60,48 +60,60 @@
                 <img  src="content/images/logo-Pruklada-color-small.png">
             </md-list-item>
             <md-divider ></md-divider>
-            <md-list-item class="md-1-line" ng-click="close()" ui-sref="announcement">
+            <md-list-item class="md-1-line" ng-click="vm.close()" ui-sref="announcement">
                 <div class="md-list-item-text" layout="column">
                     <h6 translate="global.menu.announcement"></h6>
                 </div>
             </md-list-item>
             <md-divider ></md-divider>
-            <md-list-item class="md-1-line" ng-click="close()" ui-sref="settings" ng-switch-when="true">
+            <md-list-item class="md-1-line" ng-click="vm.close()" ui-sref="settings" ng-switch-when="true">
                 <div class="md-list-item-text" layout="column">
                     <h6 translate="global.menu.account.settings"></h6>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line" ng-click="close()" ui-sref="password" ng-switch-when="true">
+            <md-list-item class="md-1-line"  ng-click="vm.close()" ui-sref="password" ng-switch-when="true">
                 <div class="md-list-item-text" layout="column">
                     <h6 translate="global.menu.account.password"></h6>
                 </div>
             </md-list-item>
+
+
             <md-divider ></md-divider>
-            <md-list-item class="md-1-line" ui-sref-active="active" ng-switch-when="false" ng-click="vm.login()">
+            <div ng-controller="JhiLanguageController as languageVm">
+                <md-list-item class="md-1-line"  ng-click="languageVm.changeLanguage(language);vm.close();" ng-repeat="language in languageVm.languages"
+                              ui-sref="user-management" >
+                    <div class="md-list-item-text" layout="column" >
+                        <h6>{{language | findLanguageFromKey}}</h6>
+                    </div>
+                </md-list-item>
+            </div>
+            <md-divider ></md-divider>
+            <md-list-item class="md-1-line" ng-click="vm.login()" ng-switch-when="false" >
                 <div class="md-list-item-text" layout="column">
                     <h6 translate="global.menu.account.login"></h6>
                 </div>
             </md-list-item>
-            <md-list-item class="md-1-line" ui-sref-active="active" ng-switch-when="true" ng-click="vm.logout()">
+            <md-list-item class="md-1-line"  ng-switch-when="true" ng-click="vm.logout()">
                 <div class="md-list-item-text" layout="column">
                     <h6 translate="global.menu.account.logout"></h6>
                 </div>
             </md-list-item>
-            <md-divider ></md-divider>
 
-                <md-list-item class="md-1-line"  ng-click="close()" ng-switch-when="true"
-                              ui-sref="user-management">
-                    <div class="md-list-item-text" layout="column" >
-                        <h6 translate="global.menu.admin.userManagement"></h6>
-                    </div>
-                </md-list-item>
+            <md-divider ></md-divider>
+            <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
+                          ui-sref="user-management" has-authority="ROLE_ADMIN">
+                <div class="md-list-item-text" layout="column" >
+                    <h6 translate="global.menu.admin.userManagement"></h6>
+                </div>
+            </md-list-item>
 
 
             <!--
-            <div class="android-drawer-separator" ng-switch-when="true" has-any-authority="ROLE_ADMIN"></div>
-            <span class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" translate="global.menu.admin.main">ผู้ดูแลระบบ</span>
-            <a class="mdl-navigation__link" href="" ng-switch-when="true" has-any-authority="ROLE_ADMIN" ui-sref="user-management" translate="global.menu.admin.userManagement">บริหารจัดการผู้ใช้งาน</a>
-
+                <div ng-controller="JhiLanguageController as languageVm">
+                    <div active-menu="{{language}}" ng-repeat="language in languageVm.languages">
+                        <li class="mdl-menu__item" ui-sref-active="active" ng-click="languageVm.changeLanguage(language);vm.collapseNavbar();">{{language | findLanguageFromKey}}</li>
+                    </div>
+                </div>
             -->
         </md-list>
     </md-sidenav>
