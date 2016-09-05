@@ -28,7 +28,11 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://use.fontawesome.com/c3bc85fc67.js"></script>
-<!--    <script src="i18n/angular-locale_th.js"></script>-->
+
+    <!-- Owl Carousel Assets -->
+    <link href="content/css/owl-carousel/owl.carousel.css" rel="stylesheet">
+    <link href="content/css/owl-carousel/owl.theme.css" rel="stylesheet">
+
 </head>
 <body ng-app="mypropApp" ng-strict-di ng-controller="NavbarController as vm"  ng-switch="vm.isAuthenticated()">
 <!--[if lt IE 9]>
@@ -43,8 +47,16 @@
         <md-button  hide-gt-sm ng-click="vm.toggleLeft()" >
             <i class="material-icons">menu</i>
         </md-button>
+       <a href="#/">
+           <span class="android-title mdl-layout-title">
+                <img src="content/images/logo-Pruklada-color-smallest.png">
+           </span>
+           </span>
+        </a>
         <a href="#/">
-            <img src="content/images/logo-Pruklada-color-smallest.png">
+            <span class="android-mobile-title mdl-layout-title">
+                <img class="pruklada-logo-image" src="content/images/logo-Pruklada-color-smallest.png">
+            </span>
         </a>
     </div>
 </md-toolbar>
@@ -442,5 +454,9 @@
 <!-- endinject -->
 <!-- endbuild -->
 
+<!--  jQuery 1.7+  -->
+<script src="content/css/owl-carousel/jquery-1.9.1.min.js"></script>
+<!-- Include js plugin -->
+<script src="content/css/owl-carousel/owl.carousel.js"></script>
 </body>
 </html>
