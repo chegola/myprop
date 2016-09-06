@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="bower_components/material-design-lite/material.min.css">
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <link rel="stylesheet" href="bower_components/textAngular/dist/textAngular.css">
-    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
-    <!-- <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">-->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <!-- endinject -->
     <!-- endbuild -->
     <!-- build:css content/css/main.css -->
@@ -30,8 +29,8 @@
     <script src="https://use.fontawesome.com/c3bc85fc67.js"></script>
 
     <!-- Owl Carousel Assets -->
-    <link href="content/css/owl-carousel/owl.carousel.css" rel="stylesheet">
-    <link href="content/css/owl-carousel/owl.theme.css" rel="stylesheet">
+    <link href="content/css/owl.carousel.css" rel="stylesheet">
+    <link href="content/css/owl.theme.css" rel="stylesheet">
 
 </head>
 <body ng-app="mypropApp" ng-strict-di ng-controller="NavbarController as vm"  ng-switch="vm.isAuthenticated()">
@@ -336,6 +335,9 @@
 <script src="app/services/auth/auth.jwt.service.js"></script>
 <script src="app/services/auth/activate.service.js"></script>
 <script src="app/services/auth/account.service.js"></script>
+<script src="app/owl-carousel/owl.carousel.min.js"></script>
+<script src="app/owl-carousel/owl.carousel.js"></script>
+<script src="app/owl-carousel/jquery-1.9.1.min.js"></script>
 <script src="app/layouts/navbar/navbar.controller.js"></script>
 <script src="app/layouts/navbar/active-menu.directive.js"></script>
 <script src="app/layouts/navbar/active-link.directive.js"></script>
@@ -453,10 +455,5 @@
 <script src="app/account/account.state.js"></script>
 <!-- endinject -->
 <!-- endbuild -->
-
-<!--  jQuery 1.7+  -->
-<script src="content/css/owl-carousel/jquery-1.9.1.min.js"></script>
-<!-- Include js plugin -->
-<script src="content/css/owl-carousel/owl.carousel.js"></script>
 </body>
 </html>
