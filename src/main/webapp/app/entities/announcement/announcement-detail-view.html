@@ -14,8 +14,9 @@
                    ui-sref="{{ vm.previousState }}" translate="entity.action.back"><i class="material-icons">chevron_left</i>กลับ
                 </a>-->
 
-                <md-button  class="md-raised md-primary" ui-sref="{{ vm.previousState }}" translate="entity.action.back">
-                    <!--<i class="material-icons">chevron_left</i>-->
+                <md-button  class="md-primary" ui-sref="{{ vm.previousState }}">
+                    <md-icon class="material-icons">chevron_left</md-icon>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
                 </md-button>
                 <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
                         class="btn btn-primary"
