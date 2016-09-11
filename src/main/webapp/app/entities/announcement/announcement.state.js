@@ -110,6 +110,7 @@
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
                     $translatePartialLoader.addPart('announcement');
+                    $translatePartialLoader.addPart('userComment');
                     return $translate.refresh();
                 }],
                 entity: ['$stateParams', 'Announcement', function($stateParams, Announcement) {

@@ -4,23 +4,23 @@
         <div md-layout="column" flex  layout-margin>
             <center><h3>{{vm.announcement.subject}}</h3></center>
             <md-divider></md-divider>
+            <div layout="row"  layout-align="end center">
+
+                <md-button  class="md-default" ui-sref="announcement">
+                    <md-icon class="material-icons">close</md-icon>
+                    <span class="hidden-xs hidden-sm"></span>
+                </md-button>
+
+            </div>
             <div class="well">
                 <p><h5>{{vm.announcement.startDate | date:'mediumDate'}}</h5></p>
                 <p><span ng-bind-html="vm.announcement.detail"></span></p>
             </div>
 
             <div layout="row"  layout-align="space-between center">
-              <!--  <a class="android-link mdl-button mdl-js-button mdl-typography&#45;&#45;text-uppercase" href=""
-                   ui-sref="{{ vm.previousState }}" translate="entity.action.back"><i class="material-icons">chevron_left</i>กลับ
-                </a>-->
-
-                <md-button  class="md-primary" ui-sref="announcement">
-                    <md-icon class="material-icons">chevron_left</md-icon>
-                    <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
-                </md-button>
                 <md-button  class="md-primary" ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})">
-                    <md-icon class="material-icons">chevron_left</md-icon>
-                    <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
+                    <md-icon class="material-icons">note_add</md-icon>
+                    <span class="hidden-xs hidden-sm" translate="mypropApp.userComment.home.createLabel"></span>
                 </md-button>
                 <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
                         class="btn btn-primary"

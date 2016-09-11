@@ -5,16 +5,30 @@
         .module('mypropApp')
         .controller('UserCommentDialogController', UserCommentDialogController);
 
-    UserCommentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'UserComment', 'Announcement', 'User'];
+    UserCommentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity',
+        'UserComment', 'Announcement', 'User', 'Principal'];
 
-    function UserCommentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, UserComment, Announcement, User) {
+    function UserCommentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity,
+        UserComment, Announcement, User, Principal) {
         var vm = this;
 
         vm.userComment = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.announcements = Announcement.query();
-        vm.users = User.query();
+        getAnnouncement();
+        getLogin();
+
+        function getAnnouncement() {
+            vm.userComment.announcement = Announcement.get({id : $stateParams.id});
+            vm.announcements = Announcement.query();
+        }
+
+        function getLogin() {
+             Principal.identity().then(function(account) {
+                vm.userComment.user = User.get({login : account.login});
+                vm.users = User.query();
+             });
+        }
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

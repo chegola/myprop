@@ -2,9 +2,9 @@
     "mypropApp": {
         "userComment" : {
             "home": {
-                "title": "User Comments",
-                "createLabel": "Create a new User Comment",
-                "createOrEditLabel": "Create or edit a User Comment",
+                "title": "คอมเม้น",
+                "createLabel": "เพิ่มคอมเม้น",
+                "createOrEditLabel": "เพิ่มหรือแก้ไขคอมเม้น",
                 "search": "Search for User Comment"
             },
             "created": "A new User Comment is created with identifier {{ param }}",

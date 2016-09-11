@@ -124,7 +124,14 @@
                           ui-sref="my-account.open" has-authority="ROLE_ADMIN"
                           aria-label="User management">
                 <div class="md-list-item-text" layout="column" >
-                    <h6 translate="global.menu.admin.userManagement"></h6>
+                    <h6 translate="global.menu.entities.myAccount"></h6>
+                </div>
+            </md-list-item>
+            <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
+                          ui-sref="user-comment" has-authority="ROLE_ADMIN"
+                          aria-label="User management">
+                <div class="md-list-item-text" layout="column" >
+                    <h6 translate="global.menu.entities.userComment"></h6>
                 </div>
             </md-list-item>
         </md-list>
