@@ -1,0 +1,31 @@
+{
+    "relationships": [
+        {
+            "relationshipName": "announcement",
+            "otherEntityName": "announcement",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "comment",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "maxlength"
+            ],
+            "fieldValidateRulesMaxlength": "2000"
+        }
+    ],
+    "changelogDate": "20160910162657",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "mp_user_comment",
+    "pagination": "no"
+}

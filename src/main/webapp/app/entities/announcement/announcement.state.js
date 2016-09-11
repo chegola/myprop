@@ -93,9 +93,6 @@
                 }]
             }
         })
-
-
-
         .state('announcement-detail', {
             parent: 'entity',
             url: '/announcement/{id}',
@@ -127,6 +124,35 @@
                     return currentStateData;
                 }]
             }
+        })
+
+        .state('announcement-detail.user-comment-new', {
+           // parent: 'announcement-detail',
+            url: '/user-comment-new',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/user-comment/user-comment-dialog.html',
+                    controller: 'UserCommentDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: function () {
+                            return {
+                                comment: null,
+                                id: null
+                            };
+                        }
+                    }
+                }).result.then(function() {
+                    $state.go('announcement-detail', {id : $stateParams.id}, { reload: true });
+                }, function() {
+                    $state.go('announcement-detail', {id : $stateParams.id}, { reload: false });
+                });
+            }]
         })
         .state('announcement-detail.edit', {
             parent: 'announcement-detail',

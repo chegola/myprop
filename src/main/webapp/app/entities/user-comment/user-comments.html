@@ -1,0 +1,64 @@
+<div>
+    <h2 translate="mypropApp.userComment.home.title">User Comments</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-comment.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  translate="mypropApp.userComment.home.createLabel">
+                        Create new User Comment
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span translate="global.field.id">ID</span></th>
+                    <th><span translate="mypropApp.userComment.comment">Comment</span></th>
+                    <th><span translate="mypropApp.userComment.announcement">Announcement</span></th>
+                    <th><span translate="mypropApp.userComment.user">User</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="userComment in vm.userComments track by userComment.id">
+                    <td><a ui-sref="user-comment-detail({id:userComment.id})">{{userComment.id}}</a></td>
+                    <td>{{userComment.comment}}</td>
+                    <td>
+                        <a ui-sref="announcement-detail({id:userComment.announcement.id})">{{userComment.announcement.id}}</a>
+                    </td>
+                    <td>
+                        {{userComment.user.login}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-comment-detail({id:userComment.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-comment.edit({id:userComment.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-comment.delete({id:userComment.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

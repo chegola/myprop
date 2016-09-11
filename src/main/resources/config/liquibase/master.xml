@@ -8,8 +8,10 @@
     <include file="classpath:config/liquibase/changelog/20160728161340_added_entity_MyAccount.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160729160632_added_entity_Unit.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160730024257_added_entity_Announcement.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160910162657_added_entity_UserComment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20160728161340_added_entity_constraints_MyAccount.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160910162657_added_entity_constraints_UserComment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <include file="classpath:config/liquibase/changelog/25590806150619_changelog.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/25590814000000_add_col_jhi_user.xml" relativeToChangelogFile="false"/>

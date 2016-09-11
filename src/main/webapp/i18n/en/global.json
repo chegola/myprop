@@ -10,6 +10,7 @@
                 "myAccount": "My Account",
                 "unit": "Unit",
                 "announcement": "Announcement",
+                "userComment": "User Comment",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

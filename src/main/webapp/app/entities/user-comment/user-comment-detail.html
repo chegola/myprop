@@ -1,0 +1,31 @@
+
+<div>
+    <h2><span translate="mypropApp.userComment.detail.title">User Comment</span> {{vm.userComment.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="mypropApp.userComment.comment">Comment</span></dt>
+        <dd>
+            <span>{{vm.userComment.comment}}</span>
+        </dd>
+        <dt><span translate="mypropApp.userComment.announcement">Announcement</span></dt>
+        <dd>
+            <a ui-sref="announcement-detail({id:vm.userComment.announcement.id})">{{vm.userComment.announcement.id}}</a>
+        </dd>
+        <dt><span translate="mypropApp.userComment.user">User</span></dt>
+        <dd>
+            {{vm.userComment.user.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-comment-detail.edit({id:vm.userComment.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -14,7 +14,11 @@
                    ui-sref="{{ vm.previousState }}" translate="entity.action.back"><i class="material-icons">chevron_left</i>กลับ
                 </a>-->
 
-                <md-button  class="md-primary" ui-sref="{{ vm.previousState }}">
+                <md-button  class="md-primary" ui-sref="announcement">
+                    <md-icon class="material-icons">chevron_left</md-icon>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
+                </md-button>
+                <md-button  class="md-primary" ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})">
                     <md-icon class="material-icons">chevron_left</md-icon>
                     <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
                 </md-button>
