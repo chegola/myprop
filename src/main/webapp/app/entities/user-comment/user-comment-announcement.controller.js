@@ -12,8 +12,14 @@
         vm.getByAnnouncement = getByAnnouncement;
 
         function getByAnnouncement() {
-            UserComment.queryByAnnouncement({id : $stateParams.id},
+            UserComment.queryByAnnouncement({id : $stateParams.id, sort: sort()},
                 onSuccess, onError);
+
+            function sort() {
+                var result = ['desc'];
+                result.push('announcement_id');
+                return result;
+            }
 
             function onSuccess(data, headers) {
                 vm.userComments = data;
