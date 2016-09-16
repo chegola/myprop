@@ -27,10 +27,10 @@ import java.util.Optional;
 public class UserCommentResource {
 
     private final Logger log = LoggerFactory.getLogger(UserCommentResource.class);
-        
+
     @Inject
     private UserCommentRepository userCommentRepository;
-    
+
     /**
      * POST  /user-comments : Create a new userComment.
      *
@@ -91,6 +91,22 @@ public class UserCommentResource {
         List<UserComment> userComments = userCommentRepository.findAll();
         return userComments;
     }
+
+    /**
+     * GET  /user-comments/query-by-announcement/{id} : get all the userComments.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of userComments in body
+     */
+    @RequestMapping(value = "/user-comments/query-by-announcement/{id}",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public List<UserComment> getUserCommentsByAnnouncement(@PathVariable Long id) {
+        log.debug("REST request to get all UserComments by Announcement");
+        List<UserComment> userComments = userCommentRepository.findByAnnouncementId(id);
+        return userComments;
+    }
+
 
     /**
      * GET  /user-comments/:id : get the "id" userComment.

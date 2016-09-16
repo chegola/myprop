@@ -1,16 +1,15 @@
 <div flex-xs flex-gt-xs="80" layout="column">
+    <jhi-alert-error></jhi-alert-error>
     <md-whiteframe class="md-whiteframe-1dp" flex layout layout-align="start center" >
-        <jhi-alert-error></jhi-alert-error>
+
         <div md-layout="column" flex  layout-margin>
             <center><h3>{{vm.announcement.subject}}</h3></center>
             <md-divider></md-divider>
             <div layout="row"  layout-align="end center">
-
                 <md-button  class="md-default" ui-sref="announcement">
                     <md-icon class="material-icons">close</md-icon>
                     <span class="hidden-xs hidden-sm"></span>
                 </md-button>
-
             </div>
             <div class="well">
                 <p><h5>{{vm.announcement.startDate | date:'mediumDate'}}</h5></p>
@@ -31,6 +30,15 @@
             </div>
         </div>
     </md-whiteframe>
+
+    <div ng-controller="UserCommentAnnouncementController as uc" ng-init="uc.getByAnnouncement()">
+        <md-whiteframe ng-repeat="userComment in uc.userComments" class="md-whiteframe-1dp" flex layout>
+            {{userComment.comment}}
+        </md-whiteframe>
+    </div>
+
+
+
 </div>
 
 

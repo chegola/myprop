@@ -20,7 +20,10 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
-        });
+            'update': { method:'PUT' },
+            'queryByAnnouncement' : {
+                method : 'GET', isArray: true, url :'api/user-comments/query-by-announcement/:id' }
+            }
+        );
     }
 })();
