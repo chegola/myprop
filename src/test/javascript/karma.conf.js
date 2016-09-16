@@ -57,6 +57,7 @@ module.exports = function (config) {
             'src/main/webapp/bower_components/textAngular/dist/textAngular-sanitize.js',
             'src/main/webapp/bower_components/textAngular/dist/textAngularSetup.js',
             'src/main/webapp/bower_components/angular-ellipsis/src/angular-ellipsis.js',
+            'src/main/webapp/bower_components/angular-object-diff/dist/angular-object-diff.js',
             'src/main/webapp/bower_components/angular-mocks/angular-mocks.js',
             'src/main/webapp/bower_components/angular-material/angular-material.js',
             // endbower

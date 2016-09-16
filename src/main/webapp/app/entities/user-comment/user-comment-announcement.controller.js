@@ -16,7 +16,7 @@
                 onSuccess, onError);
 
             function sort() {
-                var result = ['desc'];
+                var result = ['last_modified_date'];
                 result.push('announcement_id');
                 return result;
             }

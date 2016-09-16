@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity UserComment.
+    -->
+    <changeSet id="20160917000000-1" author="che">
+        <createIndex indexName="idx_announcement"
+                     tableName="mp_user_comment"
+                     unique="false">
+            <column name="announcement_id" type="bigint"/>
+        </createIndex>
+
+    </changeSet>
+</databaseChangeLog>

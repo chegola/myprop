@@ -9,6 +9,7 @@
     <include file="classpath:config/liquibase/changelog/20160729160632_added_entity_Unit.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160730024257_added_entity_Announcement.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160910162657_added_entity_UserComment.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160916221522_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="classpath:config/liquibase/changelog/20160728161340_added_entity_constraints_MyAccount.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160910162657_added_entity_constraints_UserComment.xml" relativeToChangelogFile="false"/>
@@ -17,4 +18,5 @@
     <include file="classpath:config/liquibase/changelog/25590814000000_add_col_jhi_user.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/25590817000000_add_col_mp_account.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/25590821000000_insert_jhi_authority.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20160917000000_added_index_UserComment.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "mp_user_comment")
-public class UserComment implements Serializable {
+public class UserComment extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
