@@ -6,36 +6,62 @@
             <center><h3>{{vm.announcement.subject}}</h3></center>
             <md-divider></md-divider>
             <div layout="row"  layout-align="end center">
-                <md-button  class="md-default" ui-sref="announcement">
-                    <md-icon class="material-icons">close</md-icon>
-                    <span class="hidden-xs hidden-sm"></span>
-                </md-button>
             </div>
             <div class="well">
                 <p><h5>{{vm.announcement.startDate | date:'mediumDate'}}</h5></p>
-                <p><span ng-bind-html="vm.announcement.detail"></span></p>
+                <div ta-bind="text" ng-model="vm.announcement.detail" ta-readonly='disabled'></div>
             </div>
 
-            <div layout="row"  layout-align="space-between center">
-                <md-button  class="md-primary" ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})">
+            <div layout="row" layout-align="start center">
+                <md-button  class="md-default" ui-sref="announcement">
+                    <md-icon class="material-icons">arrow_back</md-icon>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
+                </md-button>
+                <md-button  class="md-primary" ng-init="vm.getAnnouncement({id:vm.announcement.id})" ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})">
                     <md-icon class="material-icons">note_add</md-icon>
                     <span class="hidden-xs hidden-sm" translate="mypropApp.userComment.home.createLabel"></span>
                 </md-button>
-                <button type="button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
-                        class="btn btn-primary"
-                        has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
-                    <span class="glyphicon glyphicon-pencil"></span>
-                    <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
-                </button>
+                <md-button  class="md-default" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
+                            has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                    <md-icon class="material-icons">mode_edit</md-icon>
+                    <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                </md-button>
             </div>
         </div>
     </md-whiteframe>
 
-    <div ng-controller="UserCommentAnnouncementController as uc" ng-init="uc.getByAnnouncement()">
-        <md-whiteframe ng-repeat="userComment in uc.userComments" class="md-whiteframe-1dp" flex layout>
-            {{userComment.comment}}
-        </md-whiteframe>
-    </div>
+    <md-whiteframe class="md-whiteframe-1dp" flex layout ng-controller="UserCommentAnnouncementController as uc" ng-init="uc.getByAnnouncement()">
+        <div flex>
+            <md-list  class="md-dense" flex>
+                <md-list-item class="md-3-line  md-long-text" ng-repeat="userComment in uc.userComments">
+                    <div class="md-list-item-text" layout="column">
+                        <div layout="row" layout-align="space-between center">
+                           <p><label translate="mypropApp.userComment.user"></label>{{userComment.user.login}}</p>
+                           <p>{{userComment.lastModifiedDate | date:'short'}}</p>
+                        </div>
+                        <div class="well">
+                            <div ta-bind="text" ng-model="userComment.comment" ta-readonly='disabled'></div>
+                        </div>
+                        <div layout = "row">
+                            <md-button  class="md-default" ui-sref="announcement-detail.user-comment-edit({announceId:userComment.id})">
+                                <md-icon class="material-icons">mode_edit</md-icon>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                            </md-button>
+                            <md-button  class="md-warn" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
+                                <md-icon class="material-icons">delete</md-icon>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            </md-button>
+                        </div>
+
+                    </div>
+
+                    <md-divider ></md-divider>
+                </md-list-item>
+
+            </md-list>
+        </div>
+
+    </md-whiteframe>
 
 
 

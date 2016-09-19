@@ -14,9 +14,6 @@
         </md-card-title>
         <md-card-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <md-icon class="material-icons">favorite</md-icon>
-            </div>
-            <div layout="row" layout-align="end center">
                 <md-button class="md-primary"
                            ui-sref="announcement-detail({id:announcement.id})">
                     <md-icon class="material-icons">visibility</md-icon>
@@ -29,6 +26,9 @@
                     <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                 </md-button>
             </div>
+            <div layout="row" layout-align="end center">
+                <md-icon class="material-icons">favorite</md-icon>
+            </div>
         </md-card-actions>
     </md-card>
     <md-card md-theme="default" md-theme-watch  ng-repeat="announcement in vm.announcements | unpin">
@@ -40,9 +40,6 @@
         </md-card-title>
         <md-card-actions layout="row" layout-align="space-between center">
             <div layout="row" layout-align="start center">
-                <!--<i class="material-icons">favorite</i>-->
-            </div>
-            <div layout="row" layout-align="end center">
                 <md-button class="md-primary" ui-sref="announcement-detail({id:announcement.id})" >
                     <md-icon class="material-icons">visibility</md-icon>
                     <span class="hidden-xs hidden-sm" translate="mypropApp.announcement.detail"></span>
@@ -53,6 +50,9 @@
                     <md-icon class="material-icons">delete</md-icon>
                     <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                 </md-button>
+            </div>
+            <div layout="row" layout-align="end center">
+                <!--<i class="material-icons">favorite</i>-->
             </div>
         </md-card-actions>
     </md-card>

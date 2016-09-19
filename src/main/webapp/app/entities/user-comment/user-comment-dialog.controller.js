@@ -6,21 +6,24 @@
         .controller('UserCommentDialogController', UserCommentDialogController);
 
     UserCommentDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity',
-        'UserComment', 'Announcement', 'User', 'Principal'];
+        'UserComment', 'Announcement', 'User', 'Principal', '$log'];
 
     function UserCommentDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity,
-        UserComment, Announcement, User, Principal) {
+        UserComment, Announcement, User, Principal, $log) {
         var vm = this;
 
         vm.userComment = entity;
         vm.clear = clear;
         vm.save = save;
-        getAnnouncement();
+        vm.getAnnouncement = getAnnouncement();
         getLogin();
 
         function getAnnouncement() {
-            vm.userComment.announcement = Announcement.get({id : $stateParams.id});
-            vm.announcements = Announcement.query();
+            if (vm.userComment.id == null) {
+                $log.debug("user-comment-dialog.controller - getAnnouncement() with announcementId:" + $stateParams.id );
+                vm.userComment.announcement = Announcement.get({id : $stateParams.id});
+                vm.announcements = Announcement.query();
+            }
         }
 
         function getLogin() {

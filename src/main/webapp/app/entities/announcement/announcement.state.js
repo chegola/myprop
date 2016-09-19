@@ -94,7 +94,7 @@
             }
         })
         .state('announcement-detail', {
-            parent: 'entity',
+            parent: 'announcement',
             url: '/announcement/{id}',
             data: {
                 //authorities: ['ROLE_USER'],
@@ -128,7 +128,7 @@
         })
 
         .state('announcement-detail.user-comment-new', {
-           // parent: 'announcement-detail',
+            parent: 'announcement-detail',
             url: '/user-comment-new',
             data: {
                 authorities: ['ROLE_USER']
@@ -151,7 +151,56 @@
                 }).result.then(function() {
                     $state.go('announcement-detail', {id : $stateParams.id}, { reload: true });
                 }, function() {
-                    $state.go('announcement-detail', {id : $stateParams.id}, { reload: false });
+                    $state.go('^');
+                });
+            }]
+        })
+        .state('announcement-detail.user-comment-edit', {
+            parent: 'announcement-detail',
+            url: '/{announceId}/edit',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/user-comment/user-comment-dialog.html',
+                    controller: 'UserCommentDialogController',
+                    controllerAs: 'vm',
+                    backdrop: 'static',
+                    size: 'lg',
+                    resolve: {
+                        entity: ['UserComment', function(UserComment) {
+                            return UserComment.get({id : $stateParams.announceId}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                   $state.go('announcement-detail', {id : $stateParams.id}, { reload: true });
+                }, function() {
+                   $state.go('^');
+                });
+            }]
+        })
+        .state('announcement-detail.user-comment-delete', {
+            parent: 'announcement-detail',
+            url: '/{announceId}/delete',
+            data: {
+                authorities: ['ROLE_USER']
+            },
+            onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+                $uibModal.open({
+                    templateUrl: 'app/entities/user-comment/user-comment-delete-dialog.html',
+                    controller: 'UserCommentDeleteController',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve: {
+                        entity: ['UserComment', function(UserComment) {
+                            return UserComment.get({id : $stateParams.announceId}).$promise;
+                        }]
+                    }
+                }).result.then(function() {
+                   $state.go('announcement-detail', {id : $stateParams.id}, { reload: true });
+                }, function() {
+                    $state.go('^');
                 });
             }]
         })

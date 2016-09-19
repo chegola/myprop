@@ -4,11 +4,11 @@
         .module('mypropApp')
         .factory('Announcement', Announcement);
 
-    Announcement.$inject = ['$resource', 'DateUtils'];
+    Announcement.$inject = ['$resource', 'DateUtils', '$log'];
 
-    function Announcement ($resource, DateUtils) {
+    function Announcement ($resource, DateUtils, $log) {
         var resourceUrl =  'api/announcements/:id';
-
+        $log.debug("Announcement.service:");
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},
             'get': {

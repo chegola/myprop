@@ -11,14 +11,15 @@
             "updated": "A User Comment is updated with identifier {{ param }}",
             "deleted": "A User Comment is deleted with identifier {{ param }}",
             "delete": {
-                "question": "Are you sure you want to delete User Comment {{ id }}?"
+                "question": "คุณต้องการลบคอมเม้นหรือไม่ ?"
             },
             "detail": {
                 "title": "User Comment"
             },
-            "comment": "Comment",
+            "comment": "คอมเม้น",
             "announcement": "Announcement",
-            "user": "User"
+            "user": "คอมเม้นโดย :"
+
         }
     }
 }

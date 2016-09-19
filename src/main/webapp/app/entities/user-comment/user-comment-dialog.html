@@ -1,4 +1,3 @@
-
 <form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
 
     <div class="modal-header">
@@ -13,7 +12,10 @@
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.userComment.id" readonly />
         </div>
-        <div class="form-group">
+
+        <div text-angular ng-model="vm.userComment.comment" aria-required="" required></div>
+
+        <!--<div class="form-group">
             <label class="control-label" translate="mypropApp.userComment.comment" for="field_comment">Comment</label>
             <input type="text" class="form-control" name="comment" id="field_comment"
                     ng-model="vm.userComment.comment"
@@ -25,7 +27,7 @@
                 </p>
             </div>
         </div>
-
+-->
         <div class="form-group" hidden>
             <label translate="mypropApp.userComment.announcement" for="field_announcement">Announcement</label>
             <select class="form-control" id="field_announcement" name="announcement" ng-model="vm.userComment.announcement" ng-options="announcement as announcement.id for announcement in vm.announcements track by announcement.id">
@@ -41,11 +43,15 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
-        </button>
-        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
-        </button>
+        <div layout="row" layout-align="start center">
+            <md-button  type="submit" class="md-primary" ng-disabled="editForm.$invalid || vm.isSaving">
+                <md-icon class="material-icons">done</md-icon>
+                <span class="hidden-xs hidden-sm" translate="entity.action.save"></span>
+            </md-button>
+            <md-button  data-dismiss="modal" ng-click="vm.clear()" class="md-default" >
+                <md-icon class="material-icons">close</md-icon>
+                <span class="hidden-xs hidden-sm" translate="entity.action.cancel"></span>
+            </md-button>
+        </div>
     </div>
 </form>

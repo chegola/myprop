@@ -117,7 +117,7 @@
             }]
         })
         .state('user-comment.edit', {
-            parent: 'user-comment',
+            //parent: 'user-comment',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
@@ -135,7 +135,8 @@
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('user-comment', null, { reload: true });
+                   // $state.go('user-comment', null, { reload: true });
+                   $state.go('announcement-detail', {id : $stateParams.id}, { reload: true });
                 }, function() {
                     $state.go('^');
                 });
