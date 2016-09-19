@@ -4,12 +4,24 @@
         .module('mypropApp')
         .controller('UserCommentAnnouncementController', UserCommentAnnouncementController);
 
-    UserCommentAnnouncementController.$inject = ['$scope', '$state', 'UserComment', '$stateParams', 'AlertService', '$log'];
+    UserCommentAnnouncementController.$inject = ['$scope', '$state', 'UserComment', '$stateParams',
+        'AlertService', '$log', 'Principal'];
 
-    function UserCommentAnnouncementController ($scope, $state, UserComment, $stateParams, AlertService, $log) {
+    function UserCommentAnnouncementController ($scope, $state, UserComment, $stateParams,
+        AlertService, $log, Principal) {
+
         var vm = this;
         vm.userComments = [];
         vm.getByAnnouncement = getByAnnouncement;
+        vm.isOwnComment = false;
+        vm.user = null;
+        getAccount();
+
+        function getAccount() {
+            Principal.identity().then(function(account) {
+                vm.user = account.login;
+            });
+        }
 
         function getByAnnouncement() {
             UserComment.queryByAnnouncement({id : $stateParams.id, sort: sort()},

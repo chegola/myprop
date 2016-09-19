@@ -42,15 +42,24 @@
                         <div class="well">
                             <div ta-bind="text" ng-model="userComment.comment" ta-readonly='disabled'></div>
                         </div>
-                        <div layout = "row">
-                            <md-button  class="md-default" ui-sref="announcement-detail.user-comment-edit({announceId:userComment.id})">
-                                <md-icon class="material-icons">mode_edit</md-icon>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
-                            </md-button>
-                            <md-button  class="md-warn" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
-                                <md-icon class="material-icons">delete</md-icon>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
-                            </md-button>
+                        <div layout="row">
+                            <div layout = "row" ng-show="{{userComment.user.login == uc.user}}" >
+                                <md-button  class="md-default" ui-sref="announcement-detail.user-comment-edit({announceId:userComment.id})">
+                                    <md-icon class="material-icons">mode_edit</md-icon>
+                                    <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                                </md-button>
+                                <md-button  class="md-warn" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                                </md-button>
+                            </div>
+                            <div layout = "row" has-any-authority="ROLE_ADMIN,ROLE_MANAGER" >
+                                <md-button  class="md-default" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
+                                    <md-icon class="material-icons">delete</md-icon>
+                                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                                </md-button>
+                            </div>
+
                         </div>
 
                     </div>
