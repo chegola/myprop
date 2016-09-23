@@ -157,7 +157,7 @@
         })
         .state('announcement-detail.user-comment-edit', {
             parent: 'announcement-detail',
-            url: '/{announceId}/edit',
+            url: '/user-comment/{announceId}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -182,7 +182,7 @@
         })
         .state('announcement-detail.user-comment-delete', {
             parent: 'announcement-detail',
-            url: '/{announceId}/delete',
+            url: '/user-comment/{announceId}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -206,7 +206,7 @@
         })
         .state('announcement-detail.edit', {
             parent: 'announcement-detail',
-            url: '/detail/edit',
+            url: '/detail/{id}/edit',
             data: {
                authorities: ['ROLE_ADMIN', 'ROLE_MANAGER']
             },
