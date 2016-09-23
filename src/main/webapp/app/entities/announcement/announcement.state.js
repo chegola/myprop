@@ -95,7 +95,7 @@
         })
         .state('announcement-detail', {
             parent: 'announcement',
-            url: '/announcement/{id}',
+            url: '/{id}',
             data: {
                 //authorities: ['ROLE_USER'],
                 pageTitle: 'mypropApp.announcement.detail.title'

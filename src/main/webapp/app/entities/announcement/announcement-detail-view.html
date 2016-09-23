@@ -1,79 +1,73 @@
-<div flex-xs flex-gt-xs="80" layout="column">
+<div layout="column"  >
     <jhi-alert-error></jhi-alert-error>
-    <md-whiteframe class="md-whiteframe-1dp" flex layout layout-align="start center" >
-
-        <div md-layout="column" flex  layout-margin>
+    <md-whiteframe class="md-whiteframe-1dp"  layout-align="start center" >
+        <div md-layout="column" layout-padding>
             <center><h3>{{vm.announcement.subject}}</h3></center>
             <md-divider></md-divider>
             <div layout="row"  layout-align="end center">
             </div>
-            <div class="well">
+            <div class="well" flex>
                 <p><h5>{{vm.announcement.startDate | date:'mediumDate'}}</h5></p>
                 <div ta-bind="text" ng-model="vm.announcement.detail" ta-readonly='disabled'></div>
             </div>
 
             <div layout="row" layout-align="start center">
-                <md-button  class="md-default" ui-sref="announcement">
+                <md-button  class="md-icon-button md-default" ui-sref="announcement">
                     <md-icon class="material-icons">arrow_back</md-icon>
-                    <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
                 </md-button>
-                <md-button  class="md-primary" ng-init="vm.getAnnouncement({id:vm.announcement.id})" ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})">
+                <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
+                <md-button  class="md-icon-button md-primary" ng-init="vm.getAnnouncement({id:vm.announcement.id})"
+                            ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})"
+                            has-authority="ROLE_USER">
                     <md-icon class="material-icons">note_add</md-icon>
-                    <span class="hidden-xs hidden-sm" translate="mypropApp.userComment.home.createLabel"></span>
                 </md-button>
-                <md-button  class="md-default" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
+                <span class="hidden-xs hidden-sm" translate="mypropApp.userComment.home.createLabel"></span>
+                <md-button  class="md-icon-button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
                             has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
                     <md-icon class="material-icons">mode_edit</md-icon>
-                    <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                 </md-button>
+                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
             </div>
         </div>
     </md-whiteframe>
 
-    <md-whiteframe class="md-whiteframe-1dp" flex layout ng-controller="UserCommentAnnouncementController as uc" ng-init="uc.getByAnnouncement()">
-        <div flex>
-            <md-list  class="md-dense" flex>
+    <md-whiteframe class="md-whiteframe-1dp" ng-controller="UserCommentAnnouncementController as uc"
+                   ng-init="uc.getByAnnouncement()">
+        <div flex  >
+            <md-list  flex>
                 <md-list-item class="md-3-line  md-long-text" ng-repeat="userComment in uc.userComments">
                     <div class="md-list-item-text" layout="column">
                         <div layout="row" layout-align="space-between center">
                            <p><label translate="mypropApp.userComment.user"></label>{{userComment.user.login}}</p>
-                           <p>{{userComment.lastModifiedDate | date:'short'}}</p>
+                           <p><label>{{userComment.lastModifiedDate | date:'short'}}</label></p>
                         </div>
-                        <div class="well">
+                        <div class="well" flex >
                             <div ta-bind="text" ng-model="userComment.comment" ta-readonly='disabled'></div>
                         </div>
-                        <div layout="row">
-                            <div layout = "row" ng-show="{{userComment.user.login == uc.user}}" >
-                                <md-button  class="md-default" ui-sref="announcement-detail.user-comment-edit({announceId:userComment.id})">
+                        <div layout="row" layout-align="start center">
+                            <div layout = "row" ng-show="{{userComment.user.login == uc.user}}" layout-align="start center" >
+                                <md-button  class="md-icon-button" ui-sref="announcement-detail.user-comment-edit({announceId:userComment.id})">
                                     <md-icon class="material-icons">mode_edit</md-icon>
-                                    <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
                                 </md-button>
-                                <md-button  class="md-warn" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
+                                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                                <md-button  class="md-icon-button md-warn" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
                                     <md-icon class="material-icons">delete</md-icon>
-                                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                                 </md-button>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </div>
-                            <div layout = "row" has-any-authority="ROLE_ADMIN,ROLE_MANAGER" >
-                                <md-button  class="md-default" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
+                            <div layout = "row" has-any-authority="ROLE_ADMIN,ROLE_MANAGER" layout-align="start center">
+                                <md-button  class="md-icon-button" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
                                     <md-icon class="material-icons">delete</md-icon>
-                                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                                 </md-button>
+                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </div>
-
                         </div>
-
                     </div>
-
                     <md-divider ></md-divider>
                 </md-list-item>
-
             </md-list>
         </div>
-
     </md-whiteframe>
-
-
-
 </div>
 
 
