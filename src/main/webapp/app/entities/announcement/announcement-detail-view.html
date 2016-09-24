@@ -16,17 +16,23 @@
                     <md-icon class="material-icons">arrow_back</md-icon>
                 </md-button>
                 <span class="hidden-xs hidden-sm" translate="entity.action.back"></span>
-                <md-button  class="md-icon-button md-primary" ng-init="vm.getAnnouncement({id:vm.announcement.id})"
-                            ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})"
-                            has-authority="ROLE_USER">
-                    <md-icon class="material-icons">note_add</md-icon>
-                </md-button>
-                <span class="hidden-xs hidden-sm" translate="mypropApp.userComment.home.createLabel"></span>
-                <md-button  class="md-icon-button" ui-sref="announcement-detail.edit({id:vm.announcement.id})"
-                            has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
-                    <md-icon class="material-icons">mode_edit</md-icon>
-                </md-button>
-                <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                <div has-authority="ROLE_USER" >
+                    <div layout="row" layout-align="start center">
+                        <md-button  class="md-icon-button md-primary" ng-init="vm.getAnnouncement({id:vm.announcement.id})"
+                                    ui-sref="announcement-detail.user-comment-new({id:vm.announcement.id})">
+                            <md-icon class="material-icons">question_answer</md-icon>
+                        </md-button>
+                        <span class="hidden-xs hidden-sm" translate="mypropApp.userComment.home.createLabel"></span>
+                    </div>
+                </div>
+                <div has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                    <div layout="row" layout-align="start center">
+                        <md-button  class="md-icon-button" ui-sref="announcement-detail.edit({id:vm.announcement.id})">
+                            <md-icon class="material-icons">mode_edit</md-icon>
+                        </md-button>
+                        <span class="hidden-xs hidden-sm" translate="entity.action.edit"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </md-whiteframe>
@@ -55,12 +61,15 @@
                                 </md-button>
                                 <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
                             </div>
-                            <div layout = "row" has-any-authority="ROLE_ADMIN,ROLE_MANAGER" layout-align="start center">
-                                <md-button  class="md-icon-button" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
-                                    <md-icon class="material-icons">delete</md-icon>
-                                </md-button>
-                                <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                            <div has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                                <div layout="row" layout-align="start center">
+                                    <md-button  class="md-icon-button" ui-sref="announcement-detail.user-comment-delete({announceId:userComment.id})">
+                                        <md-icon class="material-icons">delete</md-icon>
+                                    </md-button>
+                                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                                </div>
                             </div>
+
                         </div>
                     </div>
                     <md-divider ></md-divider>

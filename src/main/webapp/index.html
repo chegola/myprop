@@ -70,8 +70,9 @@
                 <img  src="content/images/logo-Pruklada-color-small.png">
             </md-list-item>
             <md-divider ></md-divider>
-            <md-list-item class="md-1-line" ng-click="vm.close()" ui-sref="announcement" aria-label="announcement">
-                <div class="md-list-item-text" layout="column">
+            <md-list-item class="md-1-line" ng-click="vm.close()" ui-sref="announcement" aria-label="announcement" >
+                <div class="md-list-item-text" layout="row">
+                    <md-icon class="material-icons">announcement</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.announcement"></h6>
                 </div>
             </md-list-item>
@@ -79,14 +80,16 @@
             <md-list-item class="md-1-line" ng-click="vm.close()" ui-sref="settings"
                           ng-switch-when="true"
                           aria-label="Settings">
-                <div class="md-list-item-text" layout="column">
+                <div class="md-list-item-text" layout="row">
+                    <md-icon class="material-icons">settings</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.account.settings"></h6>
                 </div>
             </md-list-item>
             <md-list-item class="md-1-line"  ng-click="vm.close()" ui-sref="password"
                           ng-switch-when="true"
                           aria-label="Password">
-                <div class="md-list-item-text" layout="column">
+                <div class="md-list-item-text" layout="row">
+                    <md-icon class="material-icons">swap_horiz</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.account.password"></h6>
                 </div>
             </md-list-item>
@@ -96,19 +99,22 @@
             <div ng-controller="JhiLanguageController as languageVm">
                 <md-list-item class="md-1-line"  ng-click="languageVm.changeLanguage(language);vm.close();"
                               ng-repeat="language in languageVm.languages">
-                    <div class="md-list-item-text" layout="column" >
+                    <div class="md-list-item-text" layout="row" >
+                        <md-icon class="material-icons">language</md-icon>&nbsp;&nbsp;&nbsp;
                         <h6>{{language | findLanguageFromKey}}</h6>
                     </div>
                 </md-list-item>
             </div>
             <md-divider ></md-divider>
             <md-list-item class="md-1-line" ng-click="vm.login()" ng-switch-when="false" aria-label="Login">
-                <div class="md-list-item-text" layout="column">
+                <div class="md-list-item-text" layout="row">
+                    <md-icon class="material-icons">perm_identity</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.account.login"></h6>
                 </div>
             </md-list-item>
             <md-list-item class="md-1-line"  ng-switch-when="true" ng-click="vm.logout()" aria-label="Logout">
-                <div class="md-list-item-text" layout="column">
+                <div class="md-list-item-text" layout="row">
+                    <md-icon class="material-icons">power_settings_new</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.account.logout"></h6>
                 </div>
             </md-list-item>
@@ -117,21 +123,24 @@
             <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
                           ui-sref="user-management" has-authority="ROLE_ADMIN"
                           aria-label="User management">
-                <div class="md-list-item-text" layout="column" >
+                <div class="md-list-item-text" layout="row" >
+                    <md-icon class="material-icons">supervisor_account</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.admin.userManagement"></h6>
                 </div>
             </md-list-item>
             <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
                           ui-sref="my-account.open" has-authority="ROLE_ADMIN"
                           aria-label="User management">
-                <div class="md-list-item-text" layout="column" >
+                <div class="md-list-item-text" layout="row" >
+                    <md-icon class="material-icons">record_voice_over</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.entities.myAccount"></h6>
                 </div>
             </md-list-item>
             <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
                           ui-sref="user-comment" has-authority="ROLE_ADMIN"
                           aria-label="User management">
-                <div class="md-list-item-text" layout="column" >
+                <div class="md-list-item-text" layout="row" >
+                    <md-icon class="material-icons">question_answer</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.entities.userComment"></h6>
                 </div>
             </md-list-item>
