@@ -7,27 +7,7 @@
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
-  <!--      <div class="form-group" ng-show="vm.userComment.id">
-            <label for="id" translate="global.field.id">ID</label>
-            <input type="text" class="form-control" id="id" name="id"
-                    ng-model="vm.userComment.id" readonly />
-        </div>-->
-
         <div text-angular ng-model="vm.userComment.comment" aria-required="" required></div>
-
-        <!--<div class="form-group">
-            <label class="control-label" translate="mypropApp.userComment.comment" for="field_comment">Comment</label>
-            <input type="text" class="form-control" name="comment" id="field_comment"
-                    ng-model="vm.userComment.comment"
-                    ng-maxlength="2000" />
-            <div ng-show="editForm.comment.$invalid">
-                <p class="help-block"
-                    ng-show="editForm.comment.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="2000">
-                    This field cannot be longer than 2000 characters.
-                </p>
-            </div>
-        </div>
--->
         <div class="form-group" hidden>
             <label translate="mypropApp.userComment.announcement" for="field_announcement">Announcement</label>
             <select class="form-control" id="field_announcement" name="announcement" ng-model="vm.userComment.announcement" ng-options="announcement as announcement.id for announcement in vm.announcements track by announcement.id">
