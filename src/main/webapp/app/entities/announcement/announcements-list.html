@@ -19,12 +19,14 @@
                     <md-icon class="material-icons">visibility</md-icon>
                 </md-button>
                 <span class="hidden-xs hidden-sm" translate="mypropApp.announcement.detail"></span>
-                <div layout="row" layout-align="start center">
-                    <md-button class="md-icon-button md-warn"
-                               ui-sref="announcement.delete({id:announcement.id})">
-                        <md-icon class="material-icons">delete</md-icon>
-                    </md-button>
-                    <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                <div has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
+                    <div layout="row" layout-align="start center">
+                        <md-button class="md-icon-button md-warn"
+                                   ui-sref="announcement.delete({id:announcement.id})">
+                            <md-icon class="material-icons">delete</md-icon>
+                        </md-button>
+                        <span class="hidden-xs hidden-sm" translate="entity.action.delete"></span>
+                    </div>
                 </div>
             </div>
             <div layout="row" layout-align="end center">
