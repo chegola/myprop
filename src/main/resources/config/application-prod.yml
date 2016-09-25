@@ -46,8 +46,8 @@ spring:
     social:
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            clientId: 817226791746420
-            clientSecret: e437b3cefc70d51107eb8a41d1f6ec38
+            clientId: 1008540939235405
+            clientSecret: f0e7b84804106061512c70473f5e3260
 
 liquibase:
     contexts: prod
