@@ -54,6 +54,8 @@ spring:
         facebook:
             clientId: 817226791746420
             clientSecret: e437b3cefc70d51107eb8a41d1f6ec38
+            #clientId: 545473812317914
+            #clientSecret: 65959947a16f0881d6fb058853d93741
 
 
 liquibase:
