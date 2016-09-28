@@ -5,6 +5,7 @@ import com.myprop.domain.Unit;
 import com.myprop.repository.UnitRepository;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.hamcrest.Matchers.hasItem;
@@ -183,6 +184,7 @@ public class UnitResourceIntTest {
         assertThat(units).hasSize(databaseSizeBeforeDelete - 1);
     }
 
+    @Ignore
     @Test
     @Transactional
     public void searchUnit() throws Exception {
