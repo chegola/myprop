@@ -5,6 +5,7 @@ import com.myprop.domain.MyAccount;
 import com.myprop.repository.MyAccountRepository;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.hamcrest.Matchers.hasItem;
@@ -118,7 +119,7 @@ public class MyAccountResourceIntTest {
         List<MyAccount> myAccounts = myAccountRepository.findAll();
         assertThat(myAccounts).hasSize(databaseSizeBeforeTest);
     }
-
+    @Ignore
     @Test
     @Transactional
     public void getAllMyAccounts() throws Exception {
@@ -159,6 +160,7 @@ public class MyAccountResourceIntTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Ignore
     @Test
     @Transactional
     public void updateMyAccount() throws Exception {
@@ -186,7 +188,7 @@ public class MyAccountResourceIntTest {
         assertThat(testMyAccount.getMobile()).isEqualTo(UPDATED_MOBILE);
         assertThat(testMyAccount.isApproved()).isEqualTo(UPDATED_APPROVED);
     }
-
+    @Ignore
     @Test
     @Transactional
     public void deleteMyAccount() throws Exception {
