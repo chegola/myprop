@@ -132,3 +132,8 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+######################
+# PhantomJS
+######################
+/PhantomJS_2.1.1_(Windows_7_0.0.0)
