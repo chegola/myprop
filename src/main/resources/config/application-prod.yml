@@ -43,6 +43,12 @@ spring:
             ssl.trust: smtp.mail.yahoo.com
     thymeleaf:
         cache: true
+    social:
+        # see https://developers.facebook.com/docs/facebook-login/v2.2
+        facebook:
+            clientId: 545473812317914
+            clientSecret: 5c8f6544cd8787d38f39f01320391854
+
 
 liquibase:
     contexts: prod
