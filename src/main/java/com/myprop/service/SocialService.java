@@ -59,7 +59,7 @@ public class SocialService {
         String providerId = connection.getKey().getProviderId();
         User user = createUserIfNotExist(userProfile, langKey, providerId);
         createSocialConnection(user.getLogin(), connection);
-        //mailService.sendSocialRegistrationValidationEmail(user, providerId);
+        mailService.sendSocialRegistrationValidationEmail(user, providerId);
     }
 
     private User createUserIfNotExist(UserProfile userProfile, String langKey, String providerId) {
