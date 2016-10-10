@@ -232,7 +232,7 @@
         })
         .state('announcement.new', {
             parent: 'announcement',
-            url: '/new',
+            //url: '/new',
             data: {
                 authorities: ['ROLE_ADMIN', 'ROLE_MANAGER']
             },

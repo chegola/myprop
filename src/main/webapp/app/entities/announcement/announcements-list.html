@@ -1,5 +1,5 @@
 <div  layout="column">
-    <md-button class="md-fab md-primary md-fab-bottom-right" aria-label="new ticket" style="position:fixed"
+    <md-button class="md-fab md-primary md-fab-top-right" aria-label="new ticket" style="position:fixed"
                ui-sref="announcement.new" has-any-authority="ROLE_ADMIN,ROLE_MANAGER">
         <md-icon md-font-set="material-icons">add</md-icon>
     </md-button>
@@ -62,5 +62,8 @@
             </div>
         </md-card-actions>
     </md-card>
-
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
 </div>
