@@ -70,11 +70,14 @@ server:
 
 jhipster:
     security:
-        authentication:
-            jwt:
-                secret: my-secret-token-to-change-in-production
+        rememberMe:
+            # security key (this key should be unique for your application, and kept secret)
+            key: de44835e2f88e4e5713e98166f7ab097d09f8e8f
+        #authentication:
+        #    jwt:
+        #        secret: my-secret-token-to-change-in-production
                 # Token is valid 24 hours
-                tokenValidityInSeconds: 86400
+        #        tokenValidityInSeconds: 86400
     mail: # specific JHipster mail property, for standard properties see MailProperties
         from: arkhomk@yahoo.com
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration

@@ -314,11 +314,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.6.0</version>
-        </dependency>
+        </dependency>-->
         <!-- Spring Cloud -->
         <dependency>
             <groupId>net.logstash.logback</groupId>

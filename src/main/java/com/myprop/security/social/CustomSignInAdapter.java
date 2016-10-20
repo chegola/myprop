@@ -1,7 +1,6 @@
 package com.myprop.security.social;
 
 import com.myprop.config.JHipsterProperties;
-import com.myprop.security.jwt.TokenProvider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,25 +30,15 @@ public class CustomSignInAdapter implements SignInAdapter {
     @Inject
     private JHipsterProperties jHipsterProperties;
 
-    @Inject
-    private TokenProvider tokenProvider;
 
     @Override
     public String signIn(String userId, Connection<?> connection, NativeWebRequest request){
-        try {
-            UserDetails user = userDetailsService.loadUserByUsername(userId);
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                user,
-                null,
-                user.getAuthorities());
-
-            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            String jwt = tokenProvider.createToken(authenticationToken, false);
-            ServletWebRequest servletWebRequest = (ServletWebRequest) request;
-            servletWebRequest.getResponse().addCookie(getSocialAuthenticationCookie(jwt));
-        } catch (AuthenticationException exception) {
-            log.error("Social authentication error");
-        }
+        UserDetails user = userDetailsService.loadUserByUsername(userId);
+        Authentication newAuth = new UsernamePasswordAuthenticationToken(
+            user,
+            null,
+            user.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(newAuth);
         return jHipsterProperties.getSocial().getRedirectAfterSignIn();
     }
 

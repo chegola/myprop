@@ -16,7 +16,7 @@
             getPreviousState: getPreviousState,
             login: login,
             logout: logout,
-            loginWithToken: loginWithToken,
+            //loginWithToken: loginWithToken,
             resetPasswordFinish: resetPasswordFinish,
             resetPasswordInit: resetPasswordInit,
             resetPreviousState: resetPreviousState,
@@ -47,7 +47,7 @@
                 var isAuthenticated = Principal.isAuthenticated();
 
                 // an authenticated user can't access to login and register pages
-                if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register' || $rootScope.toState.name === 'social-auth')) {
+                if (isAuthenticated && $rootScope.toState.parent === 'account' && ($rootScope.toState.name === 'login' || $rootScope.toState.name === 'register')) {
                     $state.go('home');
                 }
 
@@ -60,7 +60,7 @@
 
                 if ($rootScope.toState.data.authorities && $rootScope.toState.data.authorities.length > 0 && !Principal.hasAnyAuthority($rootScope.toState.data.authorities)) {
                     if (isAuthenticated) {
-                        // user is signed in but not authorized for desired state
+                        // user is signed in but not auth11orized for desired state
                         $state.go('accessdenied');
                     }
                     else {
@@ -129,9 +129,11 @@
             return deferred.promise;
         }
 
+/*
         function loginWithToken(jwt, rememberMe) {
             return AuthServerProvider.loginWithToken(jwt, rememberMe);
         }
+*/
 
         function logout () {
             AuthServerProvider.logout();

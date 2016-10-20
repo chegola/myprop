@@ -5,7 +5,7 @@
     "packageName": "com.myprop",
     "packageFolder": "com/myprop",
     "serverPort": "8080",
-    "authenticationType": "jwt",
+    "authenticationType": "session",
     "hibernateCache": "no",
     "clusteredHttpSession": "no",
     "websocket": "no",
@@ -15,7 +15,7 @@
     "searchEngine": "no",
     "buildTool": "maven",
     "enableSocialSignIn": true,
-    "jwtSecretKey": "9ec1b842253d1285af1ab3f758648fa918277c10",
+    "rememberMeKey": "de44835e2f88e4e5713e98166f7ab097d09f8e8f",
     "useSass": false,
     "applicationType": "monolith",
     "testFrameworks": [
