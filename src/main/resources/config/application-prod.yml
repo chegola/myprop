@@ -68,9 +68,7 @@ jhipster:
         cache: # Used by the CachingHttpHeadersFilter
             timeToLiveInDays: 1461
     security:
-        security:
-            rememberMe:
-            # security key (this key should be unique for your application, and kept secret)
+        rememberMe:  # security key (this key should be unique for your application, and kept secret)
             key: de44835e2f88e4e5713e98166f7ab097d09f8e8f
 #        authentication:
 #            jwt:
