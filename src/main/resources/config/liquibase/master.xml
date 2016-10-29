@@ -19,7 +19,7 @@
     <include file="classpath:config/liquibase/changelog/25590817000000_add_col_mp_account.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/25590821000000_insert_jhi_authority.xml" relativeToChangelogFile="false"/>
     <include file="classpath:config/liquibase/changelog/20160917000000_added_index_UserComment.xml" relativeToChangelogFile="false"/>
-    <include file="classpath:config/liquibase/changelog/25591019000000_added_table_jhi_persistent_token.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161019000000_added_jhi_persistent_token.xml" relativeToChangelogFile="false"/>
 
 
 </databaseChangeLog>
