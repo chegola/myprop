@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="che" id="mp_persistent_token-create-table">
+        <createTable tableName="mp_persistent_token">
+            <!-- Maximum line length of Base64 output is 76 -->
+            <column name="series" type="varchar(76)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint"/>
+            <column name="token_value" type="varchar(76)">
+                <constraints nullable="false" />
+            </column>
+            <column name="token_date" type="date"/>
+            <column name="ip_address" type="varchar(39)"/>
+            <column name="user_agent" type="varchar(255)"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="mp_persistent_token"
+                                 constraintName="fk_user_persistent_token"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+    </changeSet>
+</databaseChangeLog>
