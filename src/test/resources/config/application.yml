@@ -70,11 +70,9 @@ jhipster:
         maxPoolSize: 50
         queueCapacity: 10000
     security:
-        authentication:
-            jwt:
-                secret: 9ec1b842253d1285af1ab3f758648fa918277c10
-                # Token is valid 24 hours
-                tokenValidityInSeconds: 86400
+        rememberMe:
+            # security key (this key should be unique for your application, and kept secret)
+            key: de44835e2f88e4e5713e98166f7ab097d09f8e8f
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
     swagger:
