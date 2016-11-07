@@ -11,7 +11,8 @@
                 "unit": "Unit",
                 "announcement": "Announcement",
                 "userComment": "User Comment",
-                "line-verify" : "LINE Verify",
+                "line-verify" : "LINE Verify","line-verify" : "LINE Verify",
+                "line": "Line",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

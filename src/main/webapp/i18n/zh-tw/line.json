@@ -1,0 +1,26 @@
+{
+    "mypropApp": {
+        "line" : {
+            "home": {
+                "title": "Lines",
+                "createLabel": "Create a new Line",
+                "createOrEditLabel": "Create or edit a Line",
+                "search": "Search for Line"
+            },
+            "created": "A new Line is created with identifier {{ param }}",
+            "updated": "A Line is updated with identifier {{ param }}",
+            "deleted": "A Line is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Line {{ id }}?"
+            },
+            "detail": {
+                "title": "Line"
+            },
+            "sourceId": "Source Id",
+            "sourceType": "Source Type",
+            "active": "Active",
+            "timestamp": "Timestamp",
+            "displayName": "Display Name"
+        }
+    }
+}

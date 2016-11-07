@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span translate="mypropApp.line.detail.title">Line</span> {{vm.line.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span translate="mypropApp.line.sourceId">Source Id</span></dt>
+        <dd>
+            <span>{{vm.line.sourceId}}</span>
+        </dd>
+        <dt><span translate="mypropApp.line.sourceType">Source Type</span></dt>
+        <dd>
+            <span>{{vm.line.sourceType}}</span>
+        </dd>
+        <dt><span translate="mypropApp.line.active">Active</span></dt>
+        <dd>
+            <span>{{vm.line.active}}</span>
+        </dd>
+        <dt><span translate="mypropApp.line.timestamp">Timestamp</span></dt>
+        <dd>
+            <span>{{vm.line.timestamp | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span translate="mypropApp.line.displayName">Display Name</span></dt>
+        <dd>
+            <span>{{vm.line.displayName}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="line-detail.edit({id:vm.line.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

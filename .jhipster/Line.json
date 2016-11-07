@@ -1,0 +1,31 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "sourceId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sourceType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "active",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "timestamp",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "displayName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161107161204",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "mp_line",
+    "pagination": "pager",
+    "enableEntityAudit": false
+}

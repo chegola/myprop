@@ -1,0 +1,60 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myLineLabel" translate="mypropApp.line.home.createOrEditLabel">Create or edit a Line</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.line.id">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.line.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="mypropApp.line.sourceId" for="field_sourceId">Source Id</label>
+            <input type="text" class="form-control" name="sourceId" id="field_sourceId"
+                    ng-model="vm.line.sourceId"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="mypropApp.line.sourceType" for="field_sourceType">Source Type</label>
+            <input type="text" class="form-control" name="sourceType" id="field_sourceType"
+                    ng-model="vm.line.sourceType"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="mypropApp.line.active" for="field_active">Active</label>
+            <input type="checkbox" class="form-control" name="active" id="field_active"
+                    ng-model="vm.line.active"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="mypropApp.line.timestamp" for="field_timestamp">Timestamp</label>
+                <div class="input-group">
+                    <input id="field_timestamp" type="text" class="form-control" name="timestamp" uib-datepicker-popup="{{dateformat}}" ng-model="vm.line.timestamp" is-open="vm.datePickerOpenStatus.timestamp"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('timestamp')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="mypropApp.line.displayName" for="field_displayName">Display Name</label>
+            <input type="text" class="form-control" name="displayName" id="field_displayName"
+                    ng-model="vm.line.displayName"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

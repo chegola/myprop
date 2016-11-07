@@ -17,7 +17,7 @@ import java.util.Collections;
 
 /**
  * Created by che on 7/11/2559.
- */
+
 @LineMessageHandler
 public class LineWebhookObject {
 
@@ -63,3 +63,5 @@ public class LineWebhookObject {
     }
 
 }
+
+ */
