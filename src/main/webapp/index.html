@@ -128,7 +128,7 @@
             </md-list-item>
             <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
                           ui-sref="my-account.open" has-authority="ROLE_ADMIN"
-                          aria-label="User management">
+                          aria-label="My account">
                 <div class="md-list-item-text" layout="row" >
                     <md-icon class="material-icons">record_voice_over</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.entities.myAccount"></h6>
@@ -136,12 +136,22 @@
             </md-list-item>
             <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
                           ui-sref="user-comment" has-authority="ROLE_ADMIN"
-                          aria-label="User management">
+                          aria-label="User comment">
                 <div class="md-list-item-text" layout="row" >
                     <md-icon class="material-icons">question_answer</md-icon>&nbsp;&nbsp;&nbsp;
                     <h6 translate="global.menu.entities.userComment"></h6>
                 </div>
             </md-list-item>
+            <md-list-item class="md-1-line"  ng-click="vm.close()" ng-switch-when="true"
+                          ui-sref="line-verity" has-authority="ROLE_ADMIN"
+                          aria-label="LINE verify">
+                <div class="md-list-item-text" layout="row" >
+                    <md-icon class="material-icons">question_answer</md-icon>&nbsp;&nbsp;&nbsp;
+                    <h6 translate="global.menu.entities.line-verify"></h6>
+                </div>
+            </md-list-item>
+
+
         </md-list>
     </md-sidenav>
     <!-- Container #4 -->
@@ -207,7 +217,6 @@
 <script src="app/services/auth/has-any-authority.directive.js"></script>
 <script src="app/services/auth/auth.session.service.js"></script>
 <script src="app/services/auth/auth.service.js"></script>
-<script src="app/services/auth/auth.jwt.service.js"></script>
 <script src="app/services/auth/activate.service.js"></script>
 <script src="app/services/auth/account.service.js"></script>
 <script src="app/owl-carousel/owl.carousel.js"></script>

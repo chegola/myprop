@@ -68,6 +68,8 @@
         <sonar.sources>${project.basedir}/src/main/</sonar.sources>
         <sonar.surefire.reportsPath>${project.testresult.directory}/surefire-reports</sonar.surefire.reportsPath>
         <sonar.tests>${project.basedir}/src/test/</sonar.tests>
+        <!-- LINE bot sdk -->
+        <line.bot.version>1.2.0</line.bot.version>
         <!-- These remain empty unless the corresponding profile is active -->
         <profile.no-liquibase></profile.no-liquibase>
         <profile.swagger></profile.swagger>
@@ -398,6 +400,36 @@
             <scope>test</scope>
         </dependency>
         <!-- jhipster-needle-maven-add-dependency -->
+
+
+        <dependency>
+            <groupId>com.linecorp.bot</groupId>
+            <artifactId>line-bot-api-client</artifactId>
+            <version>${line.bot.version}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.linecorp.bot</groupId>
+            <artifactId>line-bot-model</artifactId>
+            <version>${line.bot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.linecorp.bot</groupId>
+            <artifactId>line-bot-servlet</artifactId>
+            <version>${line.bot.version}</version>
+        </dependency>
+<!--
+
+        <dependency>
+            <groupId>com.linecorp.bot</groupId>
+            <artifactId>line-bot-spring-boot</artifactId>
+            <version>1.2.0-SNAPSHOT</version>
+        </dependency>
+-->
+
+
     </dependencies>
     <build>
         <defaultGoal>spring-boot:run</defaultGoal>
