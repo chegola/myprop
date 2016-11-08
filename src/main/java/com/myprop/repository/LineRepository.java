@@ -11,5 +11,5 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public interface LineRepository extends JpaRepository<Line,Long> {
-
+    Line findBySourceId(String soureceId);
 }
