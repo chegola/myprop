@@ -47,6 +47,11 @@ public class LineWebhookObject {
     private LineRepository lineRepository;
 
     @EventMapping
+    public void defaultMessageEvent(Event event) {
+        log.info("default message event: " + event);
+    }
+    
+    @EventMapping
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException {
         TextMessageContent message = event.getMessage();
     }
@@ -57,6 +62,7 @@ public class LineWebhookObject {
         Line lineAccount = lineRepository.findBySourceId(event.getSource().getUserId());
         lineAccount.setActive(Boolean.FALSE);
         lineRepository.save(lineAccount);
+        log.info("LINE account updated " + lineAccount.getSourceId());
     }
 
     @EventMapping
@@ -85,6 +91,7 @@ public class LineWebhookObject {
         line.setActive(active);
         line.setTimestamp(localDate);
         lineRepository.save(line);
+        log.info("LINE account added " + line.toString());
     }
 
 
