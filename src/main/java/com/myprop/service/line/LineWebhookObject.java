@@ -2,17 +2,13 @@ package com.myprop.service.line;
 
 import com.linecorp.bot.client.LineMessagingService;
 import com.linecorp.bot.model.ReplyMessage;
-import com.linecorp.bot.model.event.FollowEvent;
-import com.linecorp.bot.model.event.JoinEvent;
-import com.linecorp.bot.model.event.MessageEvent;
-import com.linecorp.bot.model.event.UnfollowEvent;
+import com.linecorp.bot.model.event.*;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.source.GroupSource;
 import com.linecorp.bot.model.event.source.UserSource;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
-import com.linecorp.bot.model.event.Event;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
 import com.myprop.domain.Line;
@@ -26,6 +22,7 @@ import java.io.UncheckedIOException;
 import java.time.*;
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import lombok.NonNull;
 import retrofit2.Response;
@@ -51,19 +48,29 @@ public class LineWebhookObject {
     public void defaultMessageEvent(Event event) {
         log.info("default message event: " + event);
     }
-    
+
     @EventMapping
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException {
         TextMessageContent message = event.getMessage();
     }
 
     @EventMapping
+    public void handleLeaveEvent(LeaveEvent event) {
+        log.info("Leave event occur: {}", event);
+        GroupSource groupSource = (GroupSource) event.getSource();
+        lineRepository.findBySourceId(groupSource.getGroupId()).ifPresent(u -> {
+            lineRepository.delete(u);
+            log.debug("Deleted LINE : {}", u);
+        });
+    }
+
+    @EventMapping
     public void handleUnfollowEvent(UnfollowEvent event) {
-        log.info("unfollowed this bot: {}", event.getSource());
-        Line lineAccount = lineRepository.findBySourceId(event.getSource().getUserId());
-        lineAccount.setActive(Boolean.FALSE);
-        lineRepository.save(lineAccount);
-        log.info("LINE account updated " + lineAccount.getSourceId());
+        log.info("Unfollow event occur: {}", event.getSource());
+        lineRepository.findBySourceId(event.getSource().getUserId()).ifPresent(u -> {
+            lineRepository.delete(u);
+            log.debug("Deleted LINE : {}", u);
+        });
     }
 
     @EventMapping
@@ -92,7 +99,7 @@ public class LineWebhookObject {
         line.setActive(active);
         line.setTimestamp(localDate);
         lineRepository.save(line);
-        log.info("LINE account added " + line.toString());
+        log.info("LINE account added: {}", line);
     }
 
 
