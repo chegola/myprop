@@ -85,8 +85,6 @@ public class AnnouncementResource {
         String baseUrl = request.getScheme() + // "http"
             "://" +                                // "://"
             request.getServerName() +              // "myhost"
-            ":" +                                  // ":"
-            request.getServerPort() +              // "80"
             request.getContextPath().concat("/#/announcement/" + result.getId());
 
         if (result.getSendLine()) {
