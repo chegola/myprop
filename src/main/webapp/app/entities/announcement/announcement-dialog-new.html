@@ -25,13 +25,35 @@
                 </p>
             </div>
         </div>
-        <div class="form-group">
-            <label for="field_sticky">
-            <input ng-disabled="vm.announcement.sticky === null" type="checkbox"  id="field_sticky"
-                   ng-model="vm.announcement.sticky"
-            /><span translate="mypropApp.announcement.sticky">Sticky</span>
-            </label>
+        <div class="well">
+            <div layout="row" layout-align="space-between center">
+                <div class="form-group">
+                    <label for="field_sticky">
+                        <input ng-disabled="vm.announcement.sticky === null" type="checkbox"  id="field_sticky"
+                               ng-model="vm.announcement.sticky"
+                        /><span translate="mypropApp.announcement.sticky">Sticky</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_sendEmail">
+                        <input ng-disabled="vm.announcement.sendEmail === null" type="checkbox"  id="field_sendEmail"
+                               ng-model="vm.announcement.sendEmail"
+                        /><span translate="mypropApp.announcement.sendEmail">Send: Email</span>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label for="field_sendLine">
+                        <input ng-disabled="vm.announcement.sendLine === null" type="checkbox"  id="field_sendLine"
+                               ng-model="vm.announcement.sendLine"
+                        /><span translate="mypropApp.announcement.sendLine">Send: LINE</span>
+                    </label>
+                </div>
+            </div>
         </div>
+
+
         <div text-angular ng-model="vm.announcement.detail"></div>
 <!--        <div class="form-group">
             <label class="control-label" translate="mypropApp.announcement.detail" for="field_detail">Detail</label>

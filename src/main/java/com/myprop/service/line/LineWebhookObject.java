@@ -5,7 +5,6 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.event.*;
 import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.source.GroupSource;
-import com.linecorp.bot.model.event.source.UserSource;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -22,7 +21,6 @@ import java.io.UncheckedIOException;
 import java.time.*;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import lombok.NonNull;
 import retrofit2.Response;
@@ -55,6 +53,17 @@ public class LineWebhookObject {
     }
 
     @EventMapping
+    public void handleJoinEvent(JoinEvent event) {
+        // String replyToken = event.getReplyToken();
+        // this.replyText(replyToken, "Joined " + event.getSource());
+        log.info("Joined " + event.getSource());
+        GroupSource groupSource = (GroupSource) event.getSource();
+        addLineInfo(GROUP_SOURCE, groupSource.getGroupId(), Boolean.TRUE,
+            event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate());
+    }
+
+
+    @EventMapping
     public void handleLeaveEvent(LeaveEvent event) {
         log.info("Leave event occur: {}", event);
         GroupSource groupSource = (GroupSource) event.getSource();
@@ -82,15 +91,6 @@ public class LineWebhookObject {
             event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate());
     }
 
-    @EventMapping
-    public void handleJoinEvent(JoinEvent event) {
-        // String replyToken = event.getReplyToken();
-        // this.replyText(replyToken, "Joined " + event.getSource());
-        log.info("Joined " + event.getSource());
-        GroupSource groupSource = (GroupSource) event.getSource();
-        addLineInfo(GROUP_SOURCE, groupSource.getGroupId(), Boolean.TRUE,
-            event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate());
-    }
 
     private void addLineInfo(String sourceType, String sourceId, Boolean active, LocalDate localDate) {
         Line line = new Line();

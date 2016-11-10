@@ -37,6 +37,27 @@ public class Announcement implements Serializable {
     @Column(name = "sticky")
     private Boolean sticky;
 
+    private transient Boolean sendEmail;
+
+    private transient Boolean sendLine;
+
+    public Boolean getSendLine() {
+        return sendLine;
+    }
+
+    public void setSendLine(Boolean sendLine) {
+        this.sendLine = sendLine;
+    }
+
+    public Boolean getSendEmail() {
+        return sendEmail;
+    }
+
+    public void setSendEmail(Boolean sendEmail) {
+        this.sendEmail = sendEmail;
+    }
+
+
     public Long getId() {
         return id;
     }

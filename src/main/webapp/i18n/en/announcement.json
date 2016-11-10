@@ -23,7 +23,9 @@
             "title" : "Announcement from Juristic",
             "detail" : "More details",
             "back" : "Back",
-            "sticky" : "Pin Subject"
+            "sticky" : "Pin Subject",
+            "sendEmail" : "Send email",
+            "sendLine" : "Post LINE"
         }
     }
 }

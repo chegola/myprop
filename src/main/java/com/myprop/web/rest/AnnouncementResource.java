@@ -1,8 +1,15 @@
 package com.myprop.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.linecorp.bot.client.LineMessagingServiceBuilder;
+import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.response.BotApiResponse;
+import com.linecorp.bot.spring.boot.LineBotProperties;
 import com.myprop.domain.Announcement;
+import com.myprop.domain.Line;
 import com.myprop.domain.User;
+import com.myprop.repository.LineRepository;
 import com.myprop.repository.UserRepository;
 import com.myprop.service.AnnouncementService;
 import com.myprop.service.MailService;
@@ -17,8 +24,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import retrofit2.Response;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -43,6 +52,12 @@ public class AnnouncementResource {
     @Inject
     private UserRepository userRepository;
 
+    @Inject
+    private LineRepository lineRepository;
+
+    @Inject
+    private LineBotProperties lineBotProperties;
+
     /**
      * POST  /announcements : Create a new announcement.
      *
@@ -54,17 +69,55 @@ public class AnnouncementResource {
         method = RequestMethod.POST,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Announcement> createAnnouncement(@Valid @RequestBody Announcement announcement) throws URISyntaxException {
+    public ResponseEntity<Announcement> createAnnouncement(@Valid @RequestBody Announcement announcement, HttpServletRequest request) throws URISyntaxException {
         log.debug("REST request to save Announcement : {}", announcement);
         if (announcement.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("announcement", "idexists", "A new announcement cannot already have an ID")).body(null);
+            return ResponseEntity.badRequest().
+                headers(HeaderUtil.createFailureAlert("announcement", "id exists", "A new announcement cannot already have an ID")).body(null);
         }
+
         Announcement result = announcementService.save(announcement);
-        this.sendAnnouncementEmail(announcement);
+
+        if (result.getSendEmail()) {
+            sendAnnouncementEmail(result);
+        }
+
+        String baseUrl = request.getScheme() + // "http"
+            "://" +                                // "://"
+            request.getServerName() +              // "myhost"
+            ":" +                                  // ":"
+            request.getServerPort() +              // "80"
+            request.getContextPath().concat("/#/announcement/" + result.getId());
+
+        if (result.getSendLine()) {
+            sendLineMessage(result, baseUrl);
+        }
+
         return ResponseEntity.created(new URI("/api/announcements/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("announcement", result.getId().toString()))
             .body(result);
     }
+
+    private void sendLineMessage(Announcement announcement, String baseUrl)  {
+        log.debug("Send LINE message: " + announcement.getSubject());
+        TextMessage textMessage = new TextMessage(announcement.getSubject() + "\n" + baseUrl);
+        List<Line> lines = lineRepository.findAllBySourceType("GroupSource");
+        for (Line l : lines) {
+            PushMessage pushMessage = new PushMessage(l.getSourceId(), textMessage);
+            try {
+                Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lineBotProperties.getChannelToken())
+                    .build()
+                    .pushMessage(pushMessage)
+                    .execute();
+                log.debug(response.code() + " " + response.message());
+            } catch (Exception e) {
+                log.debug("Exception occure :" + e.getMessage());
+            }
+
+        }
+    }
+
 
     private void sendAnnouncementEmail(Announcement announcement){
         List<User> users = userRepository.findAllBySubscribed(true);
@@ -88,7 +141,7 @@ public class AnnouncementResource {
     public ResponseEntity<Announcement> updateAnnouncement(@Valid @RequestBody Announcement announcement) throws URISyntaxException {
         log.debug("REST request to update Announcement : {}", announcement);
         if (announcement.getId() == null) {
-            return createAnnouncement(announcement);
+            return createAnnouncement(announcement, null);
         }
         Announcement result = announcementService.save(announcement);
         return ResponseEntity.ok()

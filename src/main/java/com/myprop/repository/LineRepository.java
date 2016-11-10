@@ -13,4 +13,6 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public interface LineRepository extends JpaRepository<Line,Long> {
     Optional<Line> findBySourceId(String soureceId);
+
+    List<Line> findAllBySourceType(String groupType);
 }

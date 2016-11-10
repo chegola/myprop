@@ -251,7 +251,10 @@
                                 detail: null,
                                 startDate: null,
                                 endDate: null,
-                                id: null
+                                id: null,
+                                sendEmail: true,
+                                sendLine: true,
+                                sticky: false
                             };
                         }
                     }
