@@ -3,7 +3,11 @@ package com.myprop.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.model.PushMessage;
+import com.linecorp.bot.model.action.URIAction;
+import com.linecorp.bot.model.message.Message;
+import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.template.ButtonsTemplate;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.LineBotProperties;
 import com.myprop.domain.Announcement;
@@ -24,13 +28,17 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import retrofit2.Response;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -82,13 +90,8 @@ public class AnnouncementResource {
             sendAnnouncementEmail(result);
         }
 
-        String baseUrl = request.getScheme() + // "http"
-            "://" +                                // "://"
-            request.getServerName() +              // "myhost"
-            request.getContextPath().concat("/#/announcement/" + result.getId());
-
         if (result.getSendLine()) {
-            sendLineMessage(result, baseUrl);
+            sendLineMessage(result, request);
         }
 
         return ResponseEntity.created(new URI("/api/announcements/" + result.getId()))
@@ -96,12 +99,34 @@ public class AnnouncementResource {
             .body(result);
     }
 
-    private void sendLineMessage(Announcement announcement, String baseUrl)  {
+    private void sendLineMessage(Announcement announcement, HttpServletRequest request)  {
         log.debug("Send LINE message: " + announcement.getSubject());
+
+        String baseUrl = request.getScheme() + // "http"
+            "://" +                                // "://"
+            request.getServerName() +              // "myhost"
+            request.getContextPath().concat("/#/announcement/" + announcement.getId());
+
         TextMessage textMessage = new TextMessage(announcement.getSubject() + "\n" + baseUrl);
-        List<Line> lines = lineRepository.findAllBySourceType("GroupSource");
+
+        ButtonsTemplate buttonTemplate = new ButtonsTemplate(
+            "https://i.imgsafe.org/60dd163537.png",
+            "ข่าวสารจากนิติบุคลลพฤกษ์ลดาฯ",
+            announcement.getSubject(),
+            Arrays.asList(new URIAction("ดูรายละเอียด", baseUrl)
+            ));
+
+        TemplateMessage templateMessage = new TemplateMessage("ข่าวสารจากนิติบุคคลพฤกษ์ลดาฯ", buttonTemplate);
+
+        List<Message> messages = new ArrayList<Message>();
+        messages.add(templateMessage);
+        //messages.add(textMessage);
+
+        //List<Line> lines = lineRepository.findAllBySourceType("GroupSource");
+        List<Line> lines = lineRepository.findAll();
         for (Line l : lines) {
-            PushMessage pushMessage = new PushMessage(l.getSourceId(), textMessage);
+            //PushMessage pushMessage = new PushMessage(l.getSourceId(), textMessage);
+            PushMessage pushMessage = new PushMessage(l.getSourceId(), messages);
             try {
                 Response<BotApiResponse> response = LineMessagingServiceBuilder
                     .create(lineBotProperties.getChannelToken())
@@ -116,6 +141,10 @@ public class AnnouncementResource {
         }
     }
 
+    private String createUri(String url) {
+        return ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path(url).build().toString();
+    }
 
     private void sendAnnouncementEmail(Announcement announcement){
         List<User> users = userRepository.findAllBySubscribed(true);
@@ -136,10 +165,10 @@ public class AnnouncementResource {
         method = RequestMethod.PUT,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Announcement> updateAnnouncement(@Valid @RequestBody Announcement announcement) throws URISyntaxException {
+    public ResponseEntity<Announcement> updateAnnouncement(@Valid @RequestBody Announcement announcement, HttpServletRequest request) throws URISyntaxException {
         log.debug("REST request to update Announcement : {}", announcement);
         if (announcement.getId() == null) {
-            return createAnnouncement(announcement, null);
+            return createAnnouncement(announcement, request);
         }
         Announcement result = announcementService.save(announcement);
         return ResponseEntity.ok()
