@@ -85,3 +85,8 @@ jhipster:
         contactEmail:
         license:
         licenseUrl:
+
+line:
+    bot:
+        channelSecret: SECRET
+        channelToken: TOKEN

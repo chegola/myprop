@@ -121,7 +121,7 @@ public class LineResourceIntTest {
         // Get all the lines
         restLineMockMvc.perform(get("/api/lines?sort=id,desc"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(line.getId().intValue())))
                 .andExpect(jsonPath("$.[*].sourceId").value(hasItem(DEFAULT_SOURCE_ID.toString())))
                 .andExpect(jsonPath("$.[*].sourceType").value(hasItem(DEFAULT_SOURCE_TYPE.toString())))
@@ -139,7 +139,7 @@ public class LineResourceIntTest {
         // Get the line
         restLineMockMvc.perform(get("/api/lines/{id}", line.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.id").value(line.getId().intValue()))
             .andExpect(jsonPath("$.sourceId").value(DEFAULT_SOURCE_ID.toString()))
             .andExpect(jsonPath("$.sourceType").value(DEFAULT_SOURCE_TYPE.toString()))

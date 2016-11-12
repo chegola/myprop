@@ -148,7 +148,7 @@ public class AnnouncementResourceIntTest {
         // Get all the announcements
         restAnnouncementMockMvc.perform(get("/api/announcements?sort=id,desc"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(announcement.getId().intValue())))
                 .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT.toString())))
                 .andExpect(jsonPath("$.[*].detail").value(hasItem(DEFAULT_DETAIL.toString())))
@@ -166,7 +166,7 @@ public class AnnouncementResourceIntTest {
         // Get the announcement
         restAnnouncementMockMvc.perform(get("/api/announcements/{id}", announcement.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.id").value(announcement.getId().intValue()))
             .andExpect(jsonPath("$.subject").value(DEFAULT_SUBJECT.toString()))
             .andExpect(jsonPath("$.detail").value(DEFAULT_DETAIL.toString()))

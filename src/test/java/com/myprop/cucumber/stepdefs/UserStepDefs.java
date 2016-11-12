@@ -37,7 +37,7 @@ public class UserStepDefs extends StepDefs {
     public void the_user_is_found() throws Throwable {
         actions
             .andExpect(status().isOk())
-            .andExpect(content().contentType("application/json"));
+            .andExpect(content().contentType("application/json;charset=UTF-8"));
     }
 
     @Then("^his last name is '(.*)'$")

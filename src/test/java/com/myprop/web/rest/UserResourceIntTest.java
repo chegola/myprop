@@ -55,7 +55,7 @@ public class UserResourceIntTest {
         restUserMockMvc.perform(get("/api/users/admin")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.lastName").value("Administrator"));
     }
 
@@ -73,7 +73,7 @@ public class UserResourceIntTest {
         restUserMockMvc.perform(get("/api/users/john.doe@localhost.com")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType("application/json"))
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.login").value("john.doe@localhost.com"));
 
         userRepository.delete(user);

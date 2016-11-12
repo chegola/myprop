@@ -43,6 +43,7 @@ public class SocialConfiguration implements SocialConfigurer {
     @Override
     public void addConnectionFactories(ConnectionFactoryConfigurer connectionFactoryConfigurer, Environment environment) {
         // Google configuration
+       /*
         String googleClientId = environment.getProperty("spring.social.google.clientId");
         String googleClientSecret = environment.getProperty("spring.social.google.clientSecret");
         if (googleClientId != null && googleClientSecret != null) {
@@ -56,8 +57,10 @@ public class SocialConfiguration implements SocialConfigurer {
         } else {
             log.error("Cannot configure GoogleConnectionFactory id or secret null");
         }
+        */
 
-        // Facebook configuration
+       // Facebook configuration
+
         String facebookClientId = environment.getProperty("spring.social.facebook.clientId");
         String facebookClientSecret = environment.getProperty("spring.social.facebook.clientSecret");
         if (facebookClientId != null && facebookClientSecret != null) {
@@ -71,7 +74,7 @@ public class SocialConfiguration implements SocialConfigurer {
         } else {
             log.error("Cannot configure FacebookConnectionFactory id or secret null");
         }
-
+/*
         // Twitter configuration
         String twitterClientId = environment.getProperty("spring.social.twitter.clientId");
         String twitterClientSecret = environment.getProperty("spring.social.twitter.clientSecret");
@@ -86,7 +89,7 @@ public class SocialConfiguration implements SocialConfigurer {
         } else {
             log.error("Cannot configure TwitterConnectionFactory id or secret null");
         }
-
+*/
         // jhipster-needle-add-social-connection-factory
     }
 

@@ -101,7 +101,7 @@ public class UserCommentResourceIntTest {
         // Get all the userComments
         restUserCommentMockMvc.perform(get("/api/user-comments?sort=id,desc"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(userComment.getId().intValue())))
                 .andExpect(jsonPath("$.[*].comment").value(hasItem(DEFAULT_COMMENT.toString())));
     }
@@ -115,7 +115,7 @@ public class UserCommentResourceIntTest {
         // Get the userComment
         restUserCommentMockMvc.perform(get("/api/user-comments/{id}", userComment.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.id").value(userComment.getId().intValue()))
             .andExpect(jsonPath("$.comment").value(DEFAULT_COMMENT.toString()));
     }

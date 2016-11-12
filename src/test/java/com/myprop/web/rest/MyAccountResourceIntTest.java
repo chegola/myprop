@@ -145,7 +145,7 @@ public class MyAccountResourceIntTest {
         // Get the myAccount
         restMyAccountMockMvc.perform(get("/api/my-accounts/{id}", myAccount.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.id").value(myAccount.getId().intValue()))
             .andExpect(jsonPath("$.name_surname").value(DEFAULT_NAME_SURNAME.toString()))
             .andExpect(jsonPath("$.mobile").value(DEFAULT_MOBILE.toString()))

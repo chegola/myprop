@@ -108,7 +108,7 @@ public class UnitResourceIntTest {
         // Get all the units
         restUnitMockMvc.perform(get("/api/units?sort=id,desc"))
                 .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(unit.getId().intValue())))
                 .andExpect(jsonPath("$.[*].externalId").value(hasItem(DEFAULT_EXTERNAL_ID.toString())))
                 .andExpect(jsonPath("$.[*].area").value(hasItem(DEFAULT_AREA.toString())));
@@ -123,7 +123,7 @@ public class UnitResourceIntTest {
         // Get the unit
         restUnitMockMvc.perform(get("/api/units/{id}", unit.getId()))
             .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
             .andExpect(jsonPath("$.id").value(unit.getId().intValue()))
             .andExpect(jsonPath("$.externalId").value(DEFAULT_EXTERNAL_ID.toString()))
             .andExpect(jsonPath("$.area").value(DEFAULT_AREA.toString()));
