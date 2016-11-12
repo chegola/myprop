@@ -7,6 +7,7 @@ import com.linecorp.bot.model.event.message.TextMessageContent;
 import com.linecorp.bot.model.event.source.GroupSource;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
@@ -27,6 +28,7 @@ import java.util.List;
 import lombok.NonNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.scheduling.annotation.Scheduled;
 import retrofit2.Response;
 
 
@@ -170,6 +172,32 @@ public class LineWebhookObject {
         }
     }
 
+    /**
+     * Get LINE display name during overnight.
+     * <p>
+     * This is scheduled to get fired everyday, at 01:00 (am).
+     * </p>
+     */
+    @Scheduled(cron = "0 0 1 * * ?")
+    public void getDisplayName() {
+        lineRepository.findAllByDisplayName("").ifPresent(u -> {
+            try {
+                u.setDisplayName(getLineProfile(u.getSourceId()));
+                lineRepository.save(u);
+            } catch (IOException ex) {
+                log.debug(ex.getMessage());
+            }
+        });
+    }
+
+    private String getLineProfile(String userId) throws IOException {
+        Response<UserProfileResponse> response = lineMessagingService.getProfile(userId).execute();
+        if (response.isSuccessful()) {
+            UserProfileResponse profiles = response.body();
+            return profiles.getDisplayName();
+        } else
+            return "";
+    }
 }
 
 
