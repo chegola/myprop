@@ -73,14 +73,23 @@ public class LineWebhookObject {
                 for (Announcement a : announcements) {
                     sb.append(i).append(".");
                     sb.append(a.getSubject()).append("\n");
-                    sb.append("https://phrueklada.herokuapp.com/#/announcement/").append(a.getId());
+                    sb.append("https://phrueklada.herokuapp.com/#/announcement/").append(a.getId()).append("\n");
                     i += 1;
                 }
                 this.replyText(replyToken, sb.toString());
                 break;
             }
-            case "บัญชีค่าส่วนกลาง" :{
+            case "ค่าส่วนกลาง" :{
+                StringBuilder sb = new StringBuilder();
+                sb.append("ปี 2555 อัตรา 22บาท/ตรว. ธ.กรุงเทพ เลขที่บัญชี 022-7-07907-6").append("\n");
+                sb.append("ปี 2556 อัตรา 30บาท/ตรว. ธ.กสิกรไทย เลขที่บัญชี 572-2-28493-5").append("\n");
+                sb.append("ปี 2557-59 อัตรา 25บาท/ตรว. ธ.กสิกรไทย เลขที่บัญชี 572-2-28493-5").append("\n");
+                sb.append("เมื่อชำระแล้วกรุณานำใบนำฝาก (pay-in slip) หรือสำเนามาติดต่อขอรับใบเสร็ขรับเงินได้ที่นำนักงานนิติบุคคลฯ หรือแจ้งทาง LINE ID: jangjang. (มีจุดลงท้าย) ");
+                sb.append("กรุณาระบุเลขที่บ้านของท่านไว้ในใบนำฝาก เพื่อความสะดวกรวดเร็วในการออกใบเสร็จรับเงิน. หากมีข้อสงสัยกรุณาติดต่อสำนักงานนิติบุคคลฯ").append("\n");
+                sb.append("ด้วยความนับถืออย่างสูง").append("\n");
 
+                this.replyText(replyToken, sb.toString());
+                break;
             }
 
         }
