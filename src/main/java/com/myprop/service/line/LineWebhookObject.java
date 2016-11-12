@@ -10,7 +10,9 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
 import com.linecorp.bot.spring.boot.annotation.EventMapping;
 import com.linecorp.bot.spring.boot.annotation.LineMessageHandler;
+import com.myprop.domain.Announcement;
 import com.myprop.domain.Line;
+import com.myprop.repository.AnnouncementRepository;
 import com.myprop.repository.LineRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,8 @@ import java.util.Collections;
 import java.util.List;
 
 import lombok.NonNull;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import retrofit2.Response;
 
 
@@ -42,6 +46,9 @@ public class LineWebhookObject {
     @Inject
     private LineRepository lineRepository;
 
+    @Inject
+    private AnnouncementRepository announcementRepository;
+
     @EventMapping
     public void defaultMessageEvent(Event event) {
         log.info("default message event: " + event);
@@ -50,8 +57,34 @@ public class LineWebhookObject {
     @EventMapping
     public void handleTextMessageEvent(MessageEvent<TextMessageContent> event) throws IOException {
         TextMessageContent message = event.getMessage();
+        handleTextContent(event.getReplyToken(), event, message);
+
     }
 
+    private void handleTextContent(String replyToken, Event event, TextMessageContent content)
+        throws IOException {
+        String text = content.getText();
+        log.info("Got text message from {}: {}", replyToken, text);
+        switch (text) {
+            case "ข่าวสาร": {
+                Page<Announcement> announcements = announcementRepository.findLastThree(new PageRequest(0, 3));
+                StringBuilder sb = new StringBuilder();
+                int i = 1;
+                for (Announcement a : announcements) {
+                    sb.append(i).append(".");
+                    sb.append(a.getSubject()).append("\n");
+                    sb.append("https://phrueklada.herokuapp.com/#/announcement/").append(a.getId());
+                    i += 1;
+                }
+                this.replyText(replyToken, sb.toString());
+                break;
+            }
+            case "บัญชีค่าส่วนกลาง" :{
+
+            }
+
+        }
+    }
     @EventMapping
     public void handleJoinEvent(JoinEvent event) {
         // String replyToken = event.getReplyToken();
