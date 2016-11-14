@@ -25,7 +25,8 @@
             "back" : "Back",
             "sticky" : "Pin Subject",
             "sendEmail" : "Send email",
-            "sendLine" : "Post LINE"
+            "sendLine" : "Post LINE",
+            "max_length" : "Subject should not more than 60"
         }
     }
 }

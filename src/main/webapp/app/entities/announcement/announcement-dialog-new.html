@@ -16,14 +16,19 @@
         <div class="form-group">
             <label class="control-label" translate="mypropApp.announcement.subject" for="field_subject">Subject</label>
             <input type="text" class="form-control" name="subject" id="field_subject"
-                    ng-model="vm.announcement.subject"
-                    required />
+                    ng-model="vm.announcement.subject"  ng-maxlength=60
+                   required />
             <div ng-show="editForm.subject.$invalid">
                 <p class="help-block"
                     ng-show="editForm.subject.$error.required" translate="entity.validation.required">
                     This field is required.
                 </p>
+                <p class="help-block"
+                   ng-show="editForm.subject.$error.maxlength" translate="mypropApp.announcement.max_length">
+                    Announcement subject cannot be longer than 60 characters.
+                </p>
             </div>
+
         </div>
         <div class="well">
             <div layout="row" layout-align="space-between center">

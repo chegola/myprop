@@ -25,7 +25,8 @@
             "back" : "กลับ",
             "sticky" : "ปักหมุด",
             "sendEmail" : "ส่งอีเมล์",
-            "sendLine" : "ส่ง LINE"
+            "sendLine" : "ส่ง LINE",
+            "max_length" : "หัวข้อข่าวสารไม่ควรยาวเกิน 60 ตัวอักษร"
         }
     }
 }
