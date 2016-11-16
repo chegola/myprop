@@ -209,9 +209,11 @@ public class LineWebhookObject {
     }
 
     private String getLineProfile(String userId) throws IOException {
+        log.info("LINE getProfile..." );
         Response<UserProfileResponse> response = lineMessagingService.getProfile(userId).execute();
         if (response.isSuccessful()) {
             UserProfileResponse profiles = response.body();
+            log.info("Got displayName :" + profiles.getDisplayName());
             return profiles.getDisplayName();
         } else
             return "";
