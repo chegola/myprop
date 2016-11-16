@@ -24,8 +24,10 @@ import java.io.UncheckedIOException;
 import java.time.*;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import lombok.NonNull;
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -51,6 +53,9 @@ public class LineWebhookObject {
     @Inject
     private AnnouncementRepository announcementRepository;
 
+    @Inject
+    private MessageSource messageSource;
+
     @EventMapping
     public void defaultMessageEvent(Event event) {
         log.info("default message event: " + event);
@@ -75,23 +80,21 @@ public class LineWebhookObject {
                 for (Announcement a : announcements) {
                     sb.append(i).append(".");
                     sb.append(a.getSubject()).append("\n");
-                    sb.append("https://phrueklada.herokuapp.com/#/announcement/").append(a.getId()).append("\n");
+                    sb.append("https://phrueklada.herokuapp.com/#/announcement/").append(a.getId()).append("\n\n");
                     i += 1;
                 }
                 this.replyText(replyToken, sb.toString());
                 break;
             }
             case "ค่าส่วนกลาง" :{
-                StringBuilder sb = new StringBuilder();
-                sb.append("-ปี 2555 อัตรา 22 บาท/ตรว. ธ.กรุงเทพ เลขที่บัญชี 022-7-07907-6").append("\n\n");
-                sb.append("-ปี 2556 อัตรา 30 บาท/ตรว. ธ.กสิกรไทย เลขที่บัญชี 572-2-28493-5").append("\n\n");
-                sb.append("-ปี 2557-59 อัตรา 25บาท/ตรว. ธ.กสิกรไทย เลขที่บัญชี 572-2-28493-5").append("\n\n");
-                sb.append("เมื่อชำระแล้วกรุณานำใบนำฝาก (pay-in slip) หรือสำเนามาติดต่อขอรับใบเสร็ขรับเงินได้ที่นำนักงานนิติบุคคลฯ หรือแจ้งทาง LINE ID: jangjang. (มีจุดลงท้าย) ").append("\n");
-                sb.append("กรุณาระบุเลขที่บ้านของท่านไว้ในใบนำฝาก เพื่อความสะดวกรวดเร็วในการออกใบเสร็จรับเงิน. หากมีข้อสงสัยกรุณาติดต่อสำนักงานนิติบุคคลฯ").append("\n\n");
-                sb.append("ด้วยความนับถืออย่างสูง").append("\n");
-
+                StringBuilder sb = new StringBuilder(messageSource.getMessage("line.public.account", null, Locale.ENGLISH));
                 this.replyText(replyToken, sb.toString());
                 break;
+            }
+
+            default: {
+                StringBuilder sb = new StringBuilder(messageSource.getMessage("line.default.message", null, Locale.ENGLISH));
+                this.replyText(replyToken, sb.toString());
             }
 
         }
