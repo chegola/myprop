@@ -105,8 +105,15 @@ public class LineWebhookObject {
         // this.replyText(replyToken, "Joined " + event.getSource());
         log.info("Joined " + event.getSource());
         GroupSource groupSource = (GroupSource) event.getSource();
+        String displayName;
+        try {
+            displayName = getLineProfile(groupSource.getGroupId());
+
+        } catch (Exception e) {
+            displayName = "";
+        }
         addLineInfo(GROUP_SOURCE, groupSource.getGroupId(), Boolean.TRUE,
-            event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate());
+            event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate(), displayName);
     }
 
 
@@ -134,17 +141,25 @@ public class LineWebhookObject {
         //String replyToken = event.getReplyToken();
         //this.replyText(replyToken, "Got followed event");
         log.info("Got followed event " + event.getSource());
+        String displayName;
+        try {
+            displayName = getLineProfile(event.getSource().getUserId());
+
+        } catch (Exception e) {
+            displayName = "";
+        }
         addLineInfo(USER_SOURCE, event.getSource().getUserId(), Boolean.TRUE,
-            event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate());
+            event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate(), displayName);
     }
 
 
-    private void addLineInfo(String sourceType, String sourceId, Boolean active, LocalDate localDate) {
+    private void addLineInfo(String sourceType, String sourceId, Boolean active, LocalDate localDate, String displayName) {
         Line line = new Line();
         line.setSourceType(sourceType);
         line.setSourceId(sourceId);
         line.setActive(active);
         line.setTimestamp(localDate);
+        line.setDisplayName(displayName);
         lineRepository.save(line);
         log.info("LINE account added: {}", line);
     }
