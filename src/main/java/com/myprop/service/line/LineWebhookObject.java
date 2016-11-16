@@ -105,13 +105,7 @@ public class LineWebhookObject {
         // this.replyText(replyToken, "Joined " + event.getSource());
         log.info("Joined " + event.getSource());
         GroupSource groupSource = (GroupSource) event.getSource();
-        String displayName;
-        try {
-            displayName = getLineProfile(groupSource.getGroupId());
-
-        } catch (Exception e) {
-            displayName = "";
-        }
+        String displayName = "";  // Group can't get group name
         addLineInfo(GROUP_SOURCE, groupSource.getGroupId(), Boolean.TRUE,
             event.getTimestamp().atZone(ZoneId.systemDefault()).toLocalDate(), displayName);
     }
