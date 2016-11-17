@@ -92,10 +92,10 @@ public class LineWebhookObject {
                 break;
             }
 
-            default: {
+            /*default: {
                 StringBuilder sb = new StringBuilder(messageSource.getMessage("line.default.message", null, Locale.ENGLISH));
                 this.replyText(replyToken, sb.toString());
-            }
+            }*/
 
         }
     }
